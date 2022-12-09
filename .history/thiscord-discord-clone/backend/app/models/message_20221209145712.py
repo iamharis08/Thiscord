@@ -7,6 +7,6 @@ class Message(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id') nullable=False)
+    channel_id = db.Column(db.Integer, nullable=False)
     message = db.Column(db.String(2000), nullable=False)
