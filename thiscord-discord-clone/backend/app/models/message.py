@@ -10,3 +10,6 @@ class Message(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'), nullable=False)
     message = db.Column(db.String(2000), nullable=False)
+
+    user = db.relationship("User", back_populates="messages")
+    channel = db.relationship("Channel", back_populates="messages")
