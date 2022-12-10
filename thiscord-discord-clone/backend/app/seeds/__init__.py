@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .channels import seed_channels, undo_channels
 from .messages import seed_messages, undo_messages
 from .servers import seed_servers, undo_servers
+from .servers_users import seed_servers_users, undo_servers_users
 
 from app.models.db import db, environment, SCHEMA
 
@@ -23,10 +24,12 @@ def seed():
         undo_channels()
         undo_messages()
         undo_servers()
+        undo_servers_users()
     seed_users()
     seed_servers()
     seed_channels()
     seed_messages()
+    seed_servers_users()
     # Add other seed functions here
 
 
@@ -37,4 +40,5 @@ def undo():
     undo_channels()
     undo_messages()
     undo_servers()
+    undo_servers_users()
     # Add other undo functions here

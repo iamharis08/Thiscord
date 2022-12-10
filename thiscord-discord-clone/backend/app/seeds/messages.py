@@ -45,7 +45,18 @@ def seed_messages():
     message20 = Message(
       user_id=6, channel_id=4, message="Hope someone posts something else soon..")
 
-    all_messages = [message1, message2, message3, message4, message5, message6, message7, message8, message9, message10, message11, message12, message13, message14, message15, message16, message17, message18, message19, message20]
+    all_messages = [
+      message1, message2,
+      message3, message4,
+      message5, message6,
+      message7, message8,
+      message9, message10,
+      message11, message12,
+      message13, message14,
+      message15, message16,
+      message17, message18,
+      message19, message20
+    ]
     add_messages = [db.session.add(message) for message in all_messages]
     db.session.commit()
 

@@ -16,9 +16,9 @@ class Server(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     private = db.Column(db.Boolean, default=False)
 
-    users = db.relationship("User", back_populates="servers")
+    users = db.relationship("User", secondary=servers_users, back_populates="servers")
     channels = db.relationship("Channel", back_populates="server", cascade="all, delete")
-    server_users = db.relationship("User", secondary=servers_users, Lazy="joined", back_populates="user_servers")
+    # server_users = db.relationship("User", secondary=servers_users, back_populates="user_servers")
 
     def to_dict(self):
         return {
