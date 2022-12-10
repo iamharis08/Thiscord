@@ -12,12 +12,18 @@ class Server(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String(100), nullable=True, default='replace_username')
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     private = db.Column(db.Boolean, default=False)
 
     users = db.relationship("User", back_populates="servers")
     channels = db.relationship("Channel", back_populates="server", cascade="all, delete")
-    # owner = db.relationship("User", back_populates="owned_servers")
+    server_users = db.relationship("User", secondary=servers_users, Lazy="joined", back_populates="user_servers")
 
-    server_users = db.relationship("User", secondary=servers_users, back_populates="user_servers")
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'ownerId': self.owner_id,
+            'private': self.private
+        }

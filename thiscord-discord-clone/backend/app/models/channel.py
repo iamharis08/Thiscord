@@ -14,3 +14,10 @@ class Channel(db.Model):
 
     server = db.relationship("Server", back_populates="channels")
     messages = db.relationship("Message", back_populates="channel", cascade="all, delete")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'serverId': self.server_id,
+        }

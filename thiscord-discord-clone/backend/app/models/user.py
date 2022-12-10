@@ -17,8 +17,6 @@ class User(db.Model, UserMixin):
 
     messages = db.relationship("Message", back_populates="user", cascade="all, delete")
     servers = db.relationship("Server", back_populates="users", cascade="all, delete")
-    # owned_servers = db.relationship("Server", back_populates="owner", cascade="all, delete")
-
     user_servers = db.relationship("Server", secondary=servers_users, back_populates="server_users")
 
 

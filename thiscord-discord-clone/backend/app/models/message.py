@@ -1,6 +1,12 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from sqlalchemy.orm import declarative_mixin
+from datetime import datetime
 
-class Message(db.Model):
+@declarative_mixin
+class TimestampMixin:
+    created_at = db.Column(db.DateTime, default=datetime.now())
+
+class Message(db.Model, TimestampMixin):
     __tablename__ = 'messages'
 
     if environment == "production":
@@ -13,3 +19,11 @@ class Message(db.Model):
 
     user = db.relationship("User", back_populates="messages")
     channel = db.relationship("Channel", back_populates="messages")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'userId': self.user_id,
+            'channelId': self.channel_id,
+            'message':self.message
+        }
