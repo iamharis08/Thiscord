@@ -19,6 +19,9 @@ servers_users = db.Table(
     )
 )
 
+if environment == "production":
+    servers_users.schema = SCHEMA
+
 # helper function for adding prefix to foreign key column references in production
 def add_prefix_for_prod(attr):
     if environment == "production":
