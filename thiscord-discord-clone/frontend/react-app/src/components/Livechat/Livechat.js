@@ -24,9 +24,9 @@ const LiveChat = () => {
         })
 
         // when component unmounts, disconnect
-        return (() => {
-            socket.disconnect()
-        })
+        // return (() => {
+            // socket.disconnect()
+        // })
     }, [])
 
     const updateChatInput = (e) => {
