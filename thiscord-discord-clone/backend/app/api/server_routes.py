@@ -15,8 +15,11 @@ def server_index():
     id = request.args.get('id')
     one_server = Server.query.get(id)
 
+    return one_server.to_dict(), 200
+
 
 @sv.route("/")
+@login_required
 def users_server():
     id = current_user.id
     servers = Server.query.join(User).filter(user_id == id ).all()
