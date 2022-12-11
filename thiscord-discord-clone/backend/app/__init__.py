@@ -14,7 +14,7 @@ from .config import Config
 # from flask_socketio import SocketIO, send, emit, join_room, leave_room
 from .socketIO import socketio
 
-app = Flask(__name__, static_folder='../frontend/react-app/build', static_url_path='/')
+app = Flask(__name__, static_folder='../../frontend/react-app/build', static_url_path='/')
 
 # Setup login manager
 login = LoginManager(app)
