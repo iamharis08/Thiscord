@@ -3,8 +3,8 @@ import os
 
 if os.environ.get("FLASK_ENV") == "production":
     origins = [
-        "http://actual-app-url.herokuapp.com",
-        "https://actual-app-url.herokuapp.com"
+        "http://this-cord.onrender.com/",
+        "https://this-cord.onrender.com/"
     ]
 else:
     origins = "*"
