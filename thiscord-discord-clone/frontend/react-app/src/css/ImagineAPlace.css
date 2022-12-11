@@ -1,6 +1,52 @@
 .hero-container {
     display: flex;
-    
+    justify-content: center;
     padding-top: 120px;
     padding-bottom: 120px;
+}
+
+.hero-body {
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-text {
+    position: absolute;
+    z-index: 99;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-h1-text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    /* position: absolute; */
+    /* z-index: 99; */
+
+}
+
+.hero-body-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    /* z-index: 90; */
+    /* position: absolute; */
+}
+
+.hero-image-container {
+    /* position: relative; */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#hero-image {
+    position: relative;
+    width: 100%;
+    /* z-index: 1; */
 }

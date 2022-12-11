@@ -15,6 +15,9 @@ const ImagineAPlace = () => {
                     </div>
                 </div>
             </div>
+            <div className='hero-image-container'>
+                <img id='hero-image' src='https://theme.zdassets.com/theme_assets/678183/b7e9dce75f9edb23504e13b4699e208f204e5015.png' alt=''></img>
+            </div>
         </main>
     )
 }
