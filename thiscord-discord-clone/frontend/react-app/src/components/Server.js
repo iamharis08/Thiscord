@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink} from 'react-router-dom';
 
 function Server() {
   const [server, setServer] = useState({});
@@ -14,6 +14,7 @@ function Server() {
     (async () => {
       const response = await fetch(`/api/servers/${serverId}`);
       const responseData = await response.json();
+
       setServer(responseData.server);
     //   console.log(responseData.users, 'RESPONSE USER ')
       setUsers(responseData.users)
@@ -47,7 +48,8 @@ function Server() {
             <strong>Channels</strong>
             {channels?.map(channel => (
             <li key={channel?.id}>
-            {channel?.name}
+                <NavLink to={`/channels/${channel.id}`}> {channel?.name}</NavLink>
+
             </li>
             ))}
         </div>

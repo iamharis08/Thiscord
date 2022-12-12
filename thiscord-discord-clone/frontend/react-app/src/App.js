@@ -12,6 +12,7 @@ import { authenticate } from './store/session';
 import ImagineAPlace from './components/ImagineAPlace';
 import Servers from './components/Servers';
 import Server from './components/Server';
+import Channel from './components/Channel'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -55,6 +56,9 @@ function App() {
         </Route>
         <Route path='/servers/:serverId' exact={true}>
           <Server />
+        </Route>
+        <Route path='/channels/:channelId' exact={true}>
+          <Channel />
         </Route>
       </Switch>
     </BrowserRouter>
