@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
 import "./Livechat.css"
 
@@ -7,7 +7,7 @@ let socket;
 
 const LiveChat = () => {
     const user = useSelector(state => state.session.user);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const [messages, setMessages] = useState([])
     // use state for controlled form input
     const [chatInput, setChatInput] = useState("");
