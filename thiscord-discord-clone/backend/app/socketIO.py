@@ -1,16 +1,16 @@
 from flask_socketio import SocketIO, send, emit, join_room, leave_room
 import os
 
-# if os.environ.get("FLASK_ENV") == "production":
-#     origins = [
-#         "http://this-cord.onrender.com/",
-#         "https://this-cord.onrender.com/"
-#     ]
-# else:
-#     origins = "*"
+if os.environ.get("FLASK_ENV") == "production":
+    origins = [
+        "http://this-cord.onrender.com",
+        "https://this-cord.onrender.com"
+    ]
+else:
+    origins = "*"
 
 # create your SocketIO instance
-socketio = SocketIO(cors_allowed_origins="*")
+socketio = SocketIO(cors_allowed_origins=origins)
 
 # @app.route("/livechat")
 # def livechat():
