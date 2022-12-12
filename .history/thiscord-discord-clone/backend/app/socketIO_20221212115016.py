@@ -10,7 +10,7 @@ import os
 #     origins = "*"
 
 # create your SocketIO instance
-socketio = SocketIO(cors_allowed_origins="*")
+socketio = SocketIO(cors_allowed_origins=origins)
 
 # @app.route("/livechat")
 # def livechat():

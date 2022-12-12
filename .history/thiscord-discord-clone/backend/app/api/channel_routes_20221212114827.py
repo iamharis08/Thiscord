@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, render_template, url_for, session, request, jsonify
 from flask_login import login_required
-from flask_sqlalchemy import update
+from sqlalchemy import
 import json
 from app.models import db, Server, User, Channel, Message
 from app.forms import ChannelForm
@@ -56,9 +56,9 @@ def update_channel(id, methods=['PUT']):
 @channel_routes.route("/<int:id>")
 @login_required
 def edit_channel(id, methods=['DELETE']):
-    # pass
+    pass
     channel = Channel.query.get(id)
     db.session.delete(channel)
     db.session.commit()
 
-    return channel, 200
+    return 

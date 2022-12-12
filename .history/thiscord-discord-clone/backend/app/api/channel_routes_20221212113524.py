@@ -1,6 +1,5 @@
 from flask import Blueprint, redirect, render_template, url_for, session, request, jsonify
 from flask_login import login_required
-from flask_sqlalchemy import update
 import json
 from app.models import db, Server, User, Channel, Message
 from app.forms import ChannelForm
@@ -30,7 +29,7 @@ def one_channel_index(id):
         print(user, '!!! -- USER!!!!')
         # print(c['userId'], 'TRYING TO JOIN USER TO MESSAGES !!!!!!!!!!')
         m['user'] = user
-        # print(m)
+        # print(m)hry
         message_with_user.append(m)
 
     print("! RESPONSE OBJ ! ------", {"channel": one_channel, "messages": message_with_user}, " ----- ! RESPONSE OBJ !")
@@ -41,24 +40,17 @@ def one_channel_index(id):
 @login_required
 def update_channel(id, methods=['PUT']):
     form = ChannelForm() #Change form as needed for edit channel form
-    channel = Channel.query.get(id)
+    channel= Channel.query.get(id)
     formatted_channel = channel.to_dict()
-    if form.validate_on_submit():
-        formatted_channel['name'] = form.data.name
-        # updated_channel = Channel(
-        # name= form.data['name']
-        # # server_id = formatted_channel.id
-    # )
-    session.add(formatted_channel)
+    updated_channel = Channel(
+        name= form.data['name']
+        # server_id = formatted_channel.id
+    )
+    session.add(updated_channel)
     session.commit()
-    return formatted_channel, 201
+    return updated_channel.to_dict(), 201
 
 @channel_routes.route("/<int:id>")
 @login_required
 def edit_channel(id, methods=['DELETE']):
-    # pass
-    channel = Channel.query.get(id)
-    db.session.delete(channel)
-    db.session.commit()
-
-    return channel, 200
+    pass
