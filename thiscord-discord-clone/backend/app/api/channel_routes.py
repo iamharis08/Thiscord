@@ -11,26 +11,21 @@ from app.forms import ServerForm
 
 channel_routes = Blueprint("channel", __name__)
 
-# @channel_routes.route("/<int:id>/test")
-# @login_required
-# def update_channel(id):
-#     # pass
-#     form = ChannelForm() #Change form as needed for edit channel form
-#     channel = Channel.query.get(id)
-#     print(channel, "-- JUST CHANNEL CLASS OBJ")
-#     formatted_channel = channel.to_dict()
-#     print(formatted_channel, "--- FORMATTED CHANNEL")
-#     # if form.validate_on_submit():
-#     #     formatted_channel['name'] = form.data.name
+@channel_routes.route("/<int:id>/test/", methods=['PUT'])
+@login_required
+def update_channel(id):
+    # pass
+    form = ChannelForm() #Change form as needed for edit channel form
+    form['csrf_token'].data = request.cookies['csrf_token']
+    channel = Channel.query.get(id)
+    channel.name = form.name.data
+    print(form.name.data, "HERE IS FORM NAME DATA!!!!!")
 
-#     #     updated_channel = Channel(
-#     #     name= form.data['name']
-#     #     server_id = formatted_channel.id
-#     # )
+    db.session.add(channel)
+    db.session.commit()
 
-#     # session.add(formatted_channel)
-#     # session.commit()
-#     return "", 201
+    print({'channel': channel.to_dict()})
+    return {'channel': channel.to_dict()}, 201
 
 @channel_routes.route("/<int:id>")
 @login_required
