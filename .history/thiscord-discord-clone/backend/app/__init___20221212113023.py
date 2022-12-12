@@ -79,11 +79,8 @@ def api_help():
                     for rule in app.url_map.iter_rules() if rule.endpoint != 'static' }
     return route_list
 
-
-# moved higher up -- testing
 if __name__ == '__main__':
     socketio.run(app)
-
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

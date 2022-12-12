@@ -80,7 +80,6 @@ def api_help():
     return route_list
 
 
-# moved higher up -- testing
 if __name__ == '__main__':
     socketio.run(app)
 
