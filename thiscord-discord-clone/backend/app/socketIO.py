@@ -27,6 +27,8 @@ def handle_message(data):
 # handle chat messages
 @socketio.on("chat")
 def handle_chat(data):
+    #save message to database
+
     emit("chat", data, broadcast=True)
 
 @socketio.on('join')

@@ -36,3 +36,10 @@ def users_server():
     servers = {'servers': [server.to_dict() for server in joined_servers]}
     # print('-----', servers, '--- SERVERS')
     return servers, 200
+
+
+
+@server_routes.route("/", methods=["POST"])
+@login_required
+def create_server():
+  pass

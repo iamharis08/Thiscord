@@ -11,6 +11,27 @@ from app.forms import ServerForm
 
 channel_routes = Blueprint("channel", __name__)
 
+# @channel_routes.route("/<int:id>/test")
+# @login_required
+# def update_channel(id):
+#     # pass
+#     form = ChannelForm() #Change form as needed for edit channel form
+#     channel = Channel.query.get(id)
+#     print(channel, "-- JUST CHANNEL CLASS OBJ")
+#     formatted_channel = channel.to_dict()
+#     print(formatted_channel, "--- FORMATTED CHANNEL")
+#     # if form.validate_on_submit():
+#     #     formatted_channel['name'] = form.data.name
+
+#     #     updated_channel = Channel(
+#     #     name= form.data['name']
+#     #     server_id = formatted_channel.id
+#     # )
+
+#     # session.add(formatted_channel)
+#     # session.commit()
+#     return "", 201
+
 @channel_routes.route("/<int:id>")
 @login_required
 def one_channel_index(id):
@@ -36,24 +57,7 @@ def one_channel_index(id):
     return {"channel": one_channel, "messages": message_with_user}, 200
 
 
-@channel_routes.route("/<int:id>")
-@login_required
-def update_channel(id, methods=['PUT']):
-    pass
-    # form = ChannelForm() #Change form as needed for edit channel form
-    # channel = Channel.query.get(id)
-    # formatted_channel = channel.to_dict()
-    # if form.validate_on_submit():
-    #     formatted_channel['name'] = form.data.name
 
-        # updated_channel = Channel(
-        # name= form.data['name']
-        # # server_id = formatted_channel.id
-    # )
-
-    # session.add(formatted_channel)
-    # session.commit()
-    # return formatted_channel, 201
 
 @channel_routes.route("/<int:id>")
 @login_required
