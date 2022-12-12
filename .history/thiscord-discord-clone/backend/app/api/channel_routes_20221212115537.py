@@ -50,7 +50,7 @@ def update_channel(id, methods=['PUT']):
         # name= form.data['name']
         # # server_id = formatted_channel.id
     # )
-
+    
     # session.add(formatted_channel)
     # session.commit()
     # return formatted_channel, 201

@@ -39,21 +39,18 @@ def one_channel_index(id):
 @channel_routes.route("/<int:id>")
 @login_required
 def update_channel(id, methods=['PUT']):
-    pass
-    # form = ChannelForm() #Change form as needed for edit channel form
-    # channel = Channel.query.get(id)
-    # formatted_channel = channel.to_dict()
-    # if form.validate_on_submit():
-    #     formatted_channel['name'] = form.data.name
-
+    form = ChannelForm() #Change form as needed for edit channel form
+    channel = Channel.query.get(id)
+    formatted_channel = channel.to_dict()
+    if form.validate_on_submit():
+        formatted_channel['name'] = form.data.name
         # updated_channel = Channel(
         # name= form.data['name']
         # # server_id = formatted_channel.id
     # )
-
-    # session.add(formatted_channel)
-    # session.commit()
-    # return formatted_channel, 201
+    session.add(formatted_channel)
+    session.commit()
+    return formatted_channel, 201
 
 @channel_routes.route("/<int:id>")
 @login_required
