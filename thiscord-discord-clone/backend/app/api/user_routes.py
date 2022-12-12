@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User
+from flask_login import login_required, current_user
+from app.models import User, Server
 
 user_routes = Blueprint('users', __name__)
 
@@ -22,4 +22,11 @@ def user(id):
     Query for a user by id and returns that user in a dictionary
     """
     user = User.query.get(id)
+    # print(user.to_dict(), "HERE IN CURRENT USER")
+    # print("--------------",current_user.to_dict(), id)
+
+    # servers = Server.query()
+    joined_servers = Server.query.filter(Server.users.any(id=id)).all()
+    print('---- JOINED SERVERS ----', [server.to_dict() for server in joined_servers])
+
     return user.to_dict()

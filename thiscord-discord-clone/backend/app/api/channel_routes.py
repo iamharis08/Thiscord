@@ -4,12 +4,12 @@ import json
 
 from flask_sqlalchemy import SQLAlchemy
 
-from ..models import Channel
-from ..forms import ServerForm
+from app.models import Channel
+from app.forms import ServerForm
 
-bp = Blueprint("channel", __name__, url_prefix="/api/channels")
+channel_routes = Blueprint("channel", __name__)
 
-@bp.route("/<int:id>")
+@channel_routes.route("/<int:id>")
 @login_required
 def channel_index():
     id = request.args.get('id')
