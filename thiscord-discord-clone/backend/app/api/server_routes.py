@@ -69,7 +69,7 @@ def delete_server(id):
 
 
 
-@server_routes.route("", methods=["POST"])
+@server_routes.route("/", methods=["POST"])
 @login_required
 def create_server():
     form = ServerForm()
@@ -85,7 +85,7 @@ def create_server():
 
     return {"server": new_server.to_dict()}, 201
 
-@server_routes.route("")
+@server_routes.route("/")
 @login_required
 def users_server():
     id = current_user.id
