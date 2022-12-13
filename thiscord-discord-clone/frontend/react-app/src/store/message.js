@@ -38,12 +38,12 @@ export const fetchMessages = (channelId) => async (dispatch) => {
 // };
 
 
-state = {messages: [], message: {}}
+const initialState = {messages: [], message: {}}
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
       case LOAD_MESSAGES:
-        return { messages: [...state.messages]}
+        return { messages: [...state.messages, ...action.messages]}
       default:
         return state;
     }
