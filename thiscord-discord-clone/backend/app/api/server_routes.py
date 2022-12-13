@@ -53,9 +53,6 @@ def delete_server(id):
         return {"message": "Successfully Deleted"}, 200
     return 'BAD REQUEST', 404
 
-
-
-
 @server_routes.route("/", methods=["POST"])
 @login_required
 def create_server():
@@ -75,8 +72,6 @@ def create_server():
 
     return {"server": new_server.to_dict()}, 201
 
-
-
 @server_routes.route("/")
 @login_required
 def users_server():
@@ -91,8 +86,3 @@ def users_server():
     return servers, 200
 
 
-
-@server_routes.route("/", methods=["POST"])
-@login_required
-def create_server():
-  pass
