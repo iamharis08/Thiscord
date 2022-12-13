@@ -14,7 +14,8 @@ export const fetchMessages = (channelId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json()
-    dispatch(loadMessages(data));
+    console.log('THUNKMESSAGES', data)
+    dispatch(loadMessages(data.messages));
   }
 };
 

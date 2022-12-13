@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 
 let socket;
 function Channel() {
+  // const dispatch = useDispatch()
   const allMessages = useSelector(state => state.message.messages)
+
   const user = useSelector(state => state.session.user)
   const [channel, setChannel] = useState({})
+  const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
   const { channelId } = useParams();
@@ -20,34 +23,45 @@ function Channel() {
     // clear the input field after the message is sent
     setChatInput("")
   }
-  
+
   useEffect(() => {
+
     (async () => {
       const response = await fetch(`/api/channels/${channelId}`);
       const responseData = await response.json();
 
-      setMessages(responseData.messages)
+
       setChannel(responseData.channel)
+      setMessages([...responseData.messages])
     })();
-  }, [channelId]);
+    console.log('AL MESSAGES', allMessages)
+    // setMessages([...allMessages])
+
+  }, []);
 
   useEffect(() => {
-
     // create websocket/connect
     socket = io();
+    console.log('----USERRR', user)
+    socket.emit('join', {"user": user, 'room': channelId})
 
-    // listen for chat events
-    socket.on("chat", (chat) => {
-        // when we recieve a chat, add it into our messages array in state
-        setMessages([...allMessages])
-
-    })
 
     // when component unmounts, disconnect
     return (() => {
-        socket.disconnect()
-    })
+      socket.disconnect()
+  })
 }, [])
+
+useEffect(() => {
+// listen for chat events
+socket.on("chat", (chat) => {
+  // when we recieve a chat, add it into our messages array in state
+console.log("-----chat", chat)
+setMessages(messages => [...messages, chat.msg])
+console.log('inHANDLERmesagess', messages)
+})
+console.log('mesagess', messages)
+}, [messages])
 
 const updateChatInput = (e) => {
   setChatInput(e.target.value)
@@ -73,8 +87,8 @@ const updateChatInput = (e) => {
 
       <div>
         <strong>Messages</strong>
-        {messages?.map(message => (
-          <li key={message?.id}>
+        {messages?.map((message, i) => (
+          <li key={i}>
             {message?.user?.username} | &nbsp;{message?.message}
           </li>
         ))}
