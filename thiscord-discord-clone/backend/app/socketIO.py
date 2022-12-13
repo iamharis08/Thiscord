@@ -1,4 +1,5 @@
 from flask_socketio import SocketIO, send, emit, join_room, leave_room
+from app.models import db, Message
 import os
 
 if os.environ.get("FLASK_ENV") == "production":
@@ -16,9 +17,10 @@ socketio = SocketIO(cors_allowed_origins=origins)
 # def livechat():
 #     return render_template("livechat.html")
 
-@socketio.on('message')
-def handle_message(data):
-    print('received message: ' + data)
+# @socketio.on('message')
+# def handle_message(data):
+#     print('received message: ' + data)
+#     send(data, broadcast=True)
 
 # @socketio.on('message') docs send message
 # def handle_message(message):
@@ -27,6 +29,13 @@ def handle_message(data):
 # handle chat messages
 @socketio.on("chat")
 def handle_chat(data):
+    message = Message(
+        user_id=data.user_id,
+        channel_id=data.channel_id,
+        message=data
+    )
+    db.session.add(message)
+    db.session.commit()
     emit("chat", data, broadcast=True)
 
 @socketio.on('join')

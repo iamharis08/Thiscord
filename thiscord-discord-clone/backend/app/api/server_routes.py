@@ -5,10 +5,33 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 
 from app.models import db, Server, User, Channel
-from app.forms import ServerForm
+from app.forms import ServerForm, ChannelForm
 import sys
 
 server_routes = Blueprint("server", __name__)
+
+
+
+
+@server_routes.route("/<int:id>/channels", methods=["POST"])
+@login_required
+def create_channel(id):
+
+  form=ChannelForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  new_channel = Channel(
+    name=form.data["name"],
+    server_id = id
+  )
+
+  db.session.add(new_channel)
+  db.session.commit()
+
+  return new_channel.to_dict(), 302
+
+
+
 
 @server_routes.route("/<int:id>")
 @login_required
@@ -24,10 +47,46 @@ def server_index(id):
     return {"server": one_server.to_dict(), "users": server_users, "channels": server_channels}, 200
 
 
+@server_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+def delete_server(id):
+    user = current_user.to_dict()
+
+    server = Server.query.get(id)
+    if user['id'] == server.owner_id:
+        db.session.delete(server)
+        db.session.commit()
+        return {"message": "Successfully Deleted"}, 200
+    return 'BAD REQUEST', 404
+
+
+
+
+@server_routes.route("/", methods=["POST"])
+@login_required
+def create_server():
+    form = ServerForm()
+    owner = current_user.to_dict()
+    print(owner['id'])
+    form['csrf_token'].data = request.cookies['csrf_token']
+    new_server = Server(name=form.name.data,
+    owner_id=owner['id'],
+     private=False
+    )
+    current_user.servers.append(new_server)
+    print(current_user.servers, '-- SERVERS OF CURRENT USER!!!')
+    db.session.add(new_server)
+    db.session.commit()
+    print(' !! NEW SERVER !! --> ', new_server.to_dict())
+
+    return {"server": new_server.to_dict()}, 201
+
+
+
 @server_routes.route("/")
 @login_required
 def users_server():
-    print('---- HERE IN SERVER ROUTES ----')
+    # print('---- HERE IN SERVER ROUTES ----')
     id = current_user.id
     # print("--------------",current_user.to_dict(), id)
     # servers = Server.query.join(User).filter(user_id == id ).all()
