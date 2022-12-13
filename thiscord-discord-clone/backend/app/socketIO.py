@@ -1,6 +1,6 @@
 from flask_socketio import SocketIO, send, emit, join_room, leave_room
-from flask_login import current_user, login_user, logout_user, login_required
 from app.models import db, Message
+from flask_login import login_required, current_user
 import os
 
 if os.environ.get("FLASK_ENV") == "production":
@@ -14,39 +14,33 @@ else:
 # create your SocketIO instance
 socketio = SocketIO(cors_allowed_origins=origins)
 
-# @app.route("/livechat")
-# def livechat():
-#     return render_template("livechat.html")
-
-# @socketio.on('message')
-# def handle_message(data):
-#     print('received message: ' + data)
-#     send(data, broadcast=True)
-
-# @socketio.on('message') docs send message
-# def handle_message(message):
-#     send(message, broadcast=True)
 
 # handle chat messages
 @socketio.on("chat")
 def handle_chat(data):
+    print('--------BACKENDDATA', data, current_user)
     message = Message(
-        user_id=data.user_id,
-        channel_id=data.channel_id,
-        message=data
+        user_id=current_user.id,
+        channel_id=int(data['room']),
+        message=data['message']
     )
-    print('message in socket io, here it is!!! ::', message)
-    print('here is user in handle_chat, too! ::', current_user)
     db.session.add(message)
     db.session.commit()
-    emit("chat", data, broadcast=True)
+
+    if data['room']:
+        print('-----INROOMBACKEND', data)
+        room = data['room']
+        emit("chat", data, broadcast=True, to=room)
+
+
 
 @socketio.on('join')
 def on_join(data):
-    username = data['username']
+    print('------USERDATASOCKET', data)
+    username = data['user']['username']
     room = data['room']
     join_room(room)
-    send(username + ' has entered the room.', to=room)
+    emit(username + ' has entered the room.', to=room)
 
 @socketio.on('leave')
 def on_leave(data):
