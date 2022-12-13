@@ -7,7 +7,7 @@ import '../css/Navbar.css'
 const NavBar = () => {
   return (
     <nav>
-      <ul>
+      <div className="home-navbar">
           <NavLink to='/' exact={true} activeClassName='active'>
             Thiscord
           </NavLink>
@@ -22,7 +22,7 @@ const NavBar = () => {
             Users
           </NavLink> */}
           <LogoutButton />
-      </ul>
+        </div>
     </nav>
   );
 }

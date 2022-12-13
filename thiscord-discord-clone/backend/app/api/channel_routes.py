@@ -4,7 +4,6 @@ import json
 from app.models import db, Server, User, Channel, Message
 from app.forms import ChannelForm
 from sqlalchemy.orm import joinedload
-# from flask_sqlalchemy import SQLAlchemy
 
 from app.models import Channel
 from app.forms import ServerForm
@@ -18,47 +17,49 @@ def one_channel_index(id):
     one_channel = channel.to_dict()
     one_channel_messages = Message.query.filter(Message.channel_id == id).order_by(Message.created_at.asc()).all()
 
-
-    # query(User).options(joinedload(User.username))
-
-    # one_channel_messages = Message.query.join(User).options(joinedload(User.username)).filter(Message.channel_id==id).order_by(Message.created_at.asc()).all()
     channel_messages = [message.to_dict() for message in one_channel_messages]
     message_with_user = []
     for m in channel_messages:
         user = User.query.get(m['userId']).to_dict()
-        print(user, '!!! -- USER!!!!')
-        # print(c['userId'], 'TRYING TO JOIN USER TO MESSAGES !!!!!!!!!!')
         m['user'] = user
-        # print(m)
         message_with_user.append(m)
 
-    print("! RESPONSE OBJ ! ------", {"channel": one_channel, "messages": message_with_user}, " ----- ! RESPONSE OBJ !")
     return {"channel": one_channel, "messages": message_with_user}, 200
 
 @channel_routes.route("/<int:id>", methods=['PUT'])
 @login_required
 def update_channel(id):
-    # pass
-    form = ChannelForm() #Change form as needed for edit channel form
+    form = ChannelForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     channel = Channel.query.get(id)
     channel.name = form.name.data
-    print(form.name.data, "HERE IS FORM NAME DATA!!!!!")
 
     db.session.add(channel)
     db.session.commit()
 
-    print({'channel': channel.to_dict()})
     return {'channel': channel.to_dict()}, 201
 
-@channel_routes.route("/<int:id>")
+@channel_routes.route("/<int:id>", methods=['DELETE'])
 @login_required
-def delete_channel(id, methods=['DELETE']):
-    # pass
-    # user = current_user.to_dict()
-    # server = Sever.query.get
+def delete_channel(id):
     channel = Channel.query.get(id)
-    db.session.delete(channel)
-    db.session.commit()
+    channel_dict = channel.to_dict()
+    user = current_user.to_dict()
+    server = Server.query.get(channel_dict['serverId'])
+    if server.owner_id == user['id']:
+        db.session.delete(channel)
+        db.session.commit()
+        return {"message": "Channel successfully deleted!"}, 200
+    return "Bad Data!"
 
-    return channel, 200
+
+@channel_routes.route("/<int:id>/messages", methods=["PUT"])
+@login_required
+def edit_channel_message(id):
+    pass
+
+
+@channel_routes.route("/<int:id>/messages", methods=["DELETE"])
+@login_required
+def edit_channel_message(id):
+    pass

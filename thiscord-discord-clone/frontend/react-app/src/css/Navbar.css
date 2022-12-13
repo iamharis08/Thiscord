@@ -1,0 +1,12 @@
+.home-navbar {
+    background-color: #5865f2;
+    display: flex;
+    /* flex-wrap: wrap; */
+    position: absolute;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 80px;
+    align-items: center;
+    vertical-align: middle;
+    z-index: 2;
+}

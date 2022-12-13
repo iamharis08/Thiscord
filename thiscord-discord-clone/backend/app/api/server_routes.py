@@ -33,12 +33,26 @@ def server_index(id):
     one_server = Server.query.get(id)
     one_server_users = User.query.filter(User.servers.any(id=id)).all()
     server_users = [ user.to_dict() for user in one_server_users]
-    # print(one_server.to_dict(), "--- TESTING HERE IS ONE SERVER ---")
-    print(server_users, "---- TESTING HERE ARE SERVER USERS ---")
     one_server_channels = Channel.query.filter(Channel.server_id == id).all()
     server_channels = [server.to_dict() for server in one_server_channels]
 
     return {"server": one_server.to_dict(), "users": server_users, "channels": server_channels}, 200
+
+
+@server_routes.route("/<int:id>", methods=['PUT'])
+@login_required
+def update_server(id):
+    # pass
+    form = ServerForm() #Change form as needed for edit channel form
+    form['csrf_token'].data = request.cookies['csrf_token']
+    server = Server.query.get(id)
+    server.name = form.name.data
+
+    db.session.add(server)
+    db.session.commit()
+
+    return {'server': server.to_dict()}, 201
+
 
 
 @server_routes.route("/<int:id>", methods=["DELETE"])
@@ -53,36 +67,28 @@ def delete_server(id):
         return {"message": "Successfully Deleted"}, 200
     return 'BAD REQUEST', 404
 
+
+
 @server_routes.route("/", methods=["POST"])
 @login_required
 def create_server():
     form = ServerForm()
     owner = current_user.to_dict()
-    print(owner['id'])
     form['csrf_token'].data = request.cookies['csrf_token']
     new_server = Server(name=form.name.data,
     owner_id=owner['id'],
      private=False
     )
     current_user.servers.append(new_server)
-    print(current_user.servers, '-- SERVERS OF CURRENT USER!!!')
     db.session.add(new_server)
     db.session.commit()
-    print(' !! NEW SERVER !! --> ', new_server.to_dict())
 
     return {"server": new_server.to_dict()}, 201
 
-@server_routes.route("/")
+@server_routes.route("")
 @login_required
 def users_server():
-    # print('---- HERE IN SERVER ROUTES ----')
     id = current_user.id
-    # print("--------------",current_user.to_dict(), id)
-    # servers = Server.query.join(User).filter(user_id == id ).all()
     joined_servers = Server.query.filter(Server.users.any(id=id)).all()
-    print(joined_servers)
     servers = {'servers': [server.to_dict() for server in joined_servers]}
-    # print('-----', servers, '--- SERVERS')
     return servers, 200
-
-

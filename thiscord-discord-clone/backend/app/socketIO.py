@@ -1,4 +1,5 @@
 from flask_socketio import SocketIO, send, emit, join_room, leave_room
+from flask_login import current_user, login_user, logout_user, login_required
 from app.models import db, Message
 import os
 
@@ -34,6 +35,8 @@ def handle_chat(data):
         channel_id=data.channel_id,
         message=data
     )
+    print('message in socket io, here it is!!! ::', message)
+    print('here is user in handle_chat, too! ::', current_user)
     db.session.add(message)
     db.session.commit()
     emit("chat", data, broadcast=True)
