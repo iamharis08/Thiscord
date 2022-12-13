@@ -35,9 +35,6 @@ def one_channel_index(id):
     print("! RESPONSE OBJ ! ------", {"channel": one_channel, "messages": message_with_user}, " ----- ! RESPONSE OBJ !")
     return {"channel": one_channel, "messages": message_with_user}, 200
 
-
-
-
 @channel_routes.route("/<int:id>", methods=['PUT'])
 @login_required
 def update_channel(id):
@@ -54,14 +51,9 @@ def update_channel(id):
     print({'channel': channel.to_dict()})
     return {'channel': channel.to_dict()}, 201
 
-
-
-
-
-
 @channel_routes.route("/<int:id>")
 @login_required
-def edit_channel(id, methods=['DELETE']):
+def delete_channel(id, methods=['DELETE']):
     # pass
     # user = current_user.to_dict()
     # server = Sever.query.get

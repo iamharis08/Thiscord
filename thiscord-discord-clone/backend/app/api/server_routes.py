@@ -10,9 +10,6 @@ import sys
 
 server_routes = Blueprint("server", __name__)
 
-
-
-
 @server_routes.route("/<int:id>/channels", methods=["POST"])
 @login_required
 def create_channel(id):
@@ -29,9 +26,6 @@ def create_channel(id):
   db.session.commit()
 
   return new_channel.to_dict(), 302
-
-
-
 
 @server_routes.route("/<int:id>")
 @login_required
@@ -95,3 +89,10 @@ def users_server():
     servers = {'servers': [server.to_dict() for server in joined_servers]}
     # print('-----', servers, '--- SERVERS')
     return servers, 200
+
+
+
+@server_routes.route("/", methods=["POST"])
+@login_required
+def create_server():
+  pass
