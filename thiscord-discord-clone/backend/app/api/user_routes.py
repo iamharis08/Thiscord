@@ -22,11 +22,8 @@ def user(id):
     Query for a user by id and returns that user in a dictionary
     """
     user = User.query.get(id)
-    # print(user.to_dict(), "HERE IN CURRENT USER")
-    # print("--------------",current_user.to_dict(), id)
 
-    # servers = Server.query()
     joined_servers = Server.query.filter(Server.users.any(id=id)).all()
-    print('---- JOINED SERVERS ----', [server.to_dict() for server in joined_servers])
+    print("---- USER'S JOINED SERVERS ----", [server.to_dict() for server in joined_servers])
 
     return user.to_dict()
