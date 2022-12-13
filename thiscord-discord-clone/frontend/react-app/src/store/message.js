@@ -15,7 +15,7 @@ export const fetchMessages = (channelId) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json()
     console.log('THUNKMESSAGES', data)
-    dispatch(loadMessages(data.messages));
+    dispatch(loadMessages(data));
   }
 };
 
@@ -39,12 +39,12 @@ export const fetchMessages = (channelId) => async (dispatch) => {
 // };
 
 
-const initialState = {messages: [], message: {}}
+const initialState = {messages: [], message: {}, channel:{}}
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
       case LOAD_MESSAGES:
-        return { messages: [...state.messages, ...action.messages]}
+        return { messages: [...state.messages, ...action.data.messages], channels: action.data}
       default:
         return state;
     }

@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
+import { fetchMessages } from '../store/message';
 
 let socket;
 function Channel() {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const allMessages = useSelector(state => state.message.messages)
 
   const user = useSelector(state => state.session.user)
@@ -19,13 +20,15 @@ function Channel() {
     e.preventDefault()
     // emit a message
     console.log('BEFORE EMITTING CHAT', { user: user, msg: chatInput, room: channelId })
-    socket.emit("chat", { user: user, msg: chatInput, room: channelId});
+    socket.emit("chat", { user: user, message: chatInput, room: channelId});
     // clear the input field after the message is sent
+    setMessages(messages => [...messages, { user: user, message: chatInput, room: channelId }])
+
     setChatInput("")
   }
 
   useEffect(() => {
-
+    // dispatch(fetchMessages(channelId))
     (async () => {
       const response = await fetch(`/api/channels/${channelId}`);
       const responseData = await response.json();
@@ -33,35 +36,46 @@ function Channel() {
 
       setChannel(responseData.channel)
       setMessages([...responseData.messages])
+      console.log('AL MESSAGES', messages)
     })();
-    console.log('AL MESSAGES', allMessages)
     // setMessages([...allMessages])
+     // create websocket/connect
+     socket = io();
+     console.log('----USERRR', user)
+     socket.emit('join', {"user": user, 'room': channelId})
+
+
+     console.log("USEEFFECT ONEEEEE")
+
+
+
 
   }, []);
 
-  useEffect(() => {
-    // create websocket/connect
-    socket = io();
-    console.log('----USERRR', user)
-    socket.emit('join', {"user": user, 'room': channelId})
-
-
-    // when component unmounts, disconnect
-    return (() => {
-      socket.disconnect()
-  })
-}, [])
 
 useEffect(() => {
 // listen for chat events
 socket.on("chat", (chat) => {
   // when we recieve a chat, add it into our messages array in state
-console.log("-----chat", chat)
-setMessages(messages => [...messages, chat.msg])
-console.log('inHANDLERmesagess', messages)
+// console.log("-----chat", chat)
+if (chat.user.id !== user.id){
+  console.log("INSIDEIFSTAEMENT", messages)
+  console.log("SPREADDD", [...messages, chat])
+
+  setMessages(messages => [...messages, chat]);
+  console.log("AFTERRRR", messages)
+}
+// setMessages(messages => [...messages, chat])
+// console.log('inHANDLERmesagess', messages,)
 })
-console.log('mesagess', messages)
-}, [messages])
+// console.log('mesagess', messages)
+// console.log("USEEFFECT TWOOOOOOO")
+ // when component unmounts, disconnect
+ return (() => {
+  socket.disconnect()
+})
+}, [])
+
 
 const updateChatInput = (e) => {
   setChatInput(e.target.value)

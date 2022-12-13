@@ -16,7 +16,7 @@ const LiveChat = () => {
 
         // create websocket/connect
         socket = io();
-
+        console.log("INSIDEIFSTAEMENT", messages)
         // listen for chat events
         socket.on("chat", (chat) => {
             // when we recieve a chat, add it into our messages array in state

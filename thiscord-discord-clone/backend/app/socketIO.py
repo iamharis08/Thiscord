@@ -34,7 +34,7 @@ def handle_chat(data):
     message = Message(
         user_id=current_user.id,
         channel_id=int(data['room']),
-        message=data['msg']
+        message=data['message']
     )
     db.session.add(message)
     db.session.commit()
