@@ -38,7 +38,7 @@ export const fetchMessages = (channelId) => async (dispatch) => {
 // };
 
 
-state = {messages: [], message: {}}
+const initialState = {messages: [], message: {}}
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {

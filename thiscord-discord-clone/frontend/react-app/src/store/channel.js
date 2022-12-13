@@ -37,7 +37,7 @@ export const fetchOneChannel = channelId => async (dispatch) => {
 
 
 
-state = { channels: [], channel: {} }
+const initialState = { channels: [], channel: {} }
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
