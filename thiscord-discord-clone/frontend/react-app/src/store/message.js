@@ -1,5 +1,6 @@
 
 const LOAD_MESSAGES = 'message/LOAD_MESSAGES'
+const DELETE_MESSAGE = 'message/DELETE';
 
 
 const loadMessages = (messages) => ({
@@ -8,7 +9,7 @@ const loadMessages = (messages) => ({
 });
 
 const deleteMessage = messageId => ({
-  type: DELETE,
+  type: DELETE_MESSAGE,
   messageId
 });
 
@@ -22,6 +23,17 @@ export const fetchMessages = (channelId) => async (dispatch) => {
     dispatch(loadMessages(data));
   }
 };
+
+// export const deleteSpotThunk = (spotId) => async (dispatch) => {
+//   const response = await csrfFetch(`/api/spots/${spotId}`, {
+//     method: 'DELETE',
+//     headers: { 'Content-Type': 'application/json' },
+//   });
+
+//   if (response.ok) {
+//     dispatch(deleteSpot(spotId))
+//   }
+// };
 
 // export const fetchCreateMessages = (channelId) => async (dispatch) => {
 //   const response = await fetch(`/api/channels/${channelId}`,{
