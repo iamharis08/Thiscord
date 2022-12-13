@@ -10,6 +10,8 @@ from app.forms import ServerForm
 
 channel_routes = Blueprint("channel", __name__)
 
+
+
 @channel_routes.route("/<int:id>")
 @login_required
 def one_channel_index(id):
@@ -26,6 +28,8 @@ def one_channel_index(id):
 
     return {"channel": one_channel, "messages": message_with_user}, 200
 
+
+
 @channel_routes.route("/<int:id>", methods=['PUT'])
 @login_required
 def update_channel(id):
@@ -33,11 +37,19 @@ def update_channel(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     channel = Channel.query.get(id)
     channel.name = form.name.data
+    user = current_user.to_dict()
+    server = Server.query.get(channel.server_id)
 
-    db.session.add(channel)
-    db.session.commit()
+    if server.owner_id == user['id']:
 
-    return {'channel': channel.to_dict()}, 201
+        db.session.add(channel)
+        db.session.commit()
+
+        return {'channel': channel.to_dict()}, 201
+
+    return "Can't Edit a Channel in a Server You Don't Own!", 401
+
+
 
 @channel_routes.route("/<int:id>", methods=['DELETE'])
 @login_required
@@ -46,20 +58,11 @@ def delete_channel(id):
     channel_dict = channel.to_dict()
     user = current_user.to_dict()
     server = Server.query.get(channel_dict['serverId'])
+
     if server.owner_id == user['id']:
+
         db.session.delete(channel)
         db.session.commit()
         return {"message": "Channel successfully deleted!"}, 200
-    return "Bad Data!"
 
-
-@channel_routes.route("/<int:id>/messages", methods=["PUT"])
-@login_required
-def edit_channel_message(id):
-    pass
-
-
-@channel_routes.route("/<int:id>/messages", methods=["DELETE"])
-@login_required
-def edit_channel_message(id):
-    pass
+    return "Can't Delete a Channel in a Server You Don't Own!", 401

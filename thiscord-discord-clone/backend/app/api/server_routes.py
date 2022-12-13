@@ -69,7 +69,7 @@ def delete_server(id):
 
 
 
-@server_routes.route("/", methods=["POST"])
+@server_routes.route("", methods=["POST"])
 @login_required
 def create_server():
     form = ServerForm()

@@ -3,5 +3,5 @@ from wtforms.fields import StringField
 from wtforms.validators import DataRequired, Length
 
 
-class ChannelForm(FlaskForm):
+class MessageForm(FlaskForm):
     message = StringField("Message", validators=[DataRequired(), Length(min=0, max=2000)])
