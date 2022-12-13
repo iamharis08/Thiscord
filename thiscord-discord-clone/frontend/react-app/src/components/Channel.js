@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { fetchMessages } from '../store/message';
-
+// import {socket} from '../components/socketInstance.js'
 let socket;
+
 function Channel() {
   const dispatch = useDispatch()
   const allMessages = useSelector(state => state.message.messages)
@@ -16,19 +17,10 @@ function Channel() {
   const [chatInput, setChatInput] = useState("");
   const { channelId } = useParams();
 
-  const sendChat = (e) => {
-    e.preventDefault()
-    // emit a message
-    console.log('BEFORE EMITTING CHAT', { user: user, msg: chatInput, room: channelId })
-    socket.emit("chat", { user: user, message: chatInput, room: channelId});
-    // clear the input field after the message is sent
-    setMessages(messages => [...messages, { user: user, message: chatInput, room: channelId }])
 
-    setChatInput("")
-  }
 
   useEffect(() => {
-    // dispatch(fetchMessages(channelId))
+    // listen for chat events
     (async () => {
       const response = await fetch(`/api/channels/${channelId}`);
       const responseData = await response.json();
@@ -36,45 +28,57 @@ function Channel() {
 
       setChannel(responseData.channel)
       setMessages([...responseData.messages])
-      console.log('AL MESSAGES', messages)
+
     })();
-    // setMessages([...allMessages])
-     // create websocket/connect
-     socket = io();
-     console.log('----USERRR', user)
-     socket.emit('join', {"user": user, 'room': channelId})
+    socket = io();
+    socket.emit('join', {"user": user, 'room': channelId})
+    socket.on("chat", (chat) => {
+      // when we recieve a chat, add it into our messages array in state
+
+    // if (chat.user.id !== user.id){
 
 
-     console.log("USEEFFECT ONEEEEE")
+      setMessages(messages => [...messages, chat]);
+
+    // }
+    })
+
+
+     return (() => {
+      socket.disconnect()
+
+     })
+
+    }, [])
+
+  // useEffect(() => {
 
 
 
 
-  }, []);
+    //  socket.on("chat", (chat) => {
+    //   // when we recieve a chat, add it into our messages array in state
+
+    // if (chat.user.id !== user.id){
 
 
-useEffect(() => {
-// listen for chat events
-socket.on("chat", (chat) => {
-  // when we recieve a chat, add it into our messages array in state
-// console.log("-----chat", chat)
-if (chat.user.id !== user.id){
-  console.log("INSIDEIFSTAEMENT", messages)
-  console.log("SPREADDD", [...messages, chat])
+    //   setMessages(messages => [...messages, chat]);
 
-  setMessages(messages => [...messages, chat]);
-  console.log("AFTERRRR", messages)
-}
-// setMessages(messages => [...messages, chat])
-// console.log('inHANDLERmesagess', messages,)
-})
-// console.log('mesagess', messages)
-// console.log("USEEFFECT TWOOOOOOO")
- // when component unmounts, disconnect
- return (() => {
-  socket.disconnect()
-})
-}, [])
+    // }
+    // })
+
+
+    //  return (() => {
+    //   socket.disconnect()
+
+    //  })
+
+
+
+  // }, []);
+
+
+
 
 
 const updateChatInput = (e) => {
@@ -82,7 +86,16 @@ const updateChatInput = (e) => {
 };
 
 
+const sendChat = (e) => {
+  e.preventDefault()
+  // emit a message
+  // console.log('BEFORE EMITTING CHAT', { user: user, msg: chatInput, room: channelId })
+  socket.emit("chat", { user: user, message: chatInput, room: channelId});
+  // clear the input field after the message is sent
+  // setMessages(messages => [...messages, { user: user, message: chatInput, room: channelId }])
 
+  setChatInput("")
+}
 
   // if (!channel) {
   //   return null;

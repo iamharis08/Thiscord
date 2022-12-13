@@ -24,9 +24,9 @@ const LiveChat = () => {
         })
 
         // when component unmounts, disconnect
-        // return (() => {
-            // socket.disconnect()
-        // })
+        return (() => {
+            socket.disconnect()
+        })
     }, [])
 
     const updateChatInput = (e) => {
@@ -45,7 +45,7 @@ const LiveChat = () => {
         <>
             <div>
                 {messages.map((message, ind) => (
-                    <div key={ind}>{`${message.user}: ${message.msg}`}</div>
+                    <div key={ind}>{`${message.user}: ${message.message}`}</div>
                 ))}
             </div>
             <form onSubmit={sendChat}>
