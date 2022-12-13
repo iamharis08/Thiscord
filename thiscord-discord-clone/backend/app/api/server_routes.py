@@ -10,6 +10,8 @@ import sys
 
 server_routes = Blueprint("server", __name__)
 
+
+# Add Channel to Server
 @server_routes.route("/<int:id>/channels", methods=["POST"])
 @login_required
 def create_channel(id):
@@ -27,6 +29,7 @@ def create_channel(id):
 
   return new_channel.to_dict(), 302
 
+# Get Server
 @server_routes.route("/<int:id>")
 @login_required
 def server_index(id):
@@ -39,6 +42,7 @@ def server_index(id):
     return {"server": one_server.to_dict(), "users": server_users, "channels": server_channels}, 200
 
 
+# Update Server
 @server_routes.route("/<int:id>", methods=['PUT'])
 @login_required
 def update_server(id):
@@ -54,7 +58,7 @@ def update_server(id):
     return {'server': server.to_dict()}, 201
 
 
-
+# Delete Server
 @server_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_server(id):
@@ -68,7 +72,7 @@ def delete_server(id):
     return 'BAD REQUEST', 404
 
 
-
+# Create Server
 @server_routes.route("/", methods=["POST"])
 @login_required
 def create_server():
@@ -85,6 +89,7 @@ def create_server():
 
     return {"server": new_server.to_dict()}, 201
 
+# Get Current User Servers
 @server_routes.route("/")
 @login_required
 def users_server():
