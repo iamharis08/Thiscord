@@ -36,7 +36,7 @@ export const fetchOneServer = serverId => async (dispatch) => {
 
 
 
-state = { servers: [], server: {} }
+const initialState = { servers: [], server: {} }
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
