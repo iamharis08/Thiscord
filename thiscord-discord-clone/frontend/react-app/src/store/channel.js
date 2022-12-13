@@ -136,6 +136,8 @@ export default function reducer(state = initialState, action) {
       return updateChannel
 
     case DELETE_CHANNEL:
+      const deleteChannel = { ...state, channels: { ...state.channels}, channel: {...state.channel}, channelList: [...state.channelList] }
+
     default:
       return state;
   }
