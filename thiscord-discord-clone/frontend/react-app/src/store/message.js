@@ -31,7 +31,7 @@ export const fetchMessages = (channelId) => async (dispatch) => {
 
 
 export const deleteMessageThunk = (messageId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${messageId}`, {
+  const response = await fetch(`/api/spots/${messageId}`, {
     method: 'DELETE',
   });
 
@@ -64,7 +64,7 @@ export default function reducer(state = initialState, action) {
         let normalizedObj = normalize(action.channelInfo.messages)
         return { messages: {...normalizedObj}}
       }
-      case DELETE:
+      case DELETE_MESSAGE:
         const deletedState = { ...state };
         delete deletedState.messages[action.messageId]
         return {...deletedState};

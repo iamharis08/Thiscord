@@ -1,5 +1,6 @@
 const LOAD_CHANNELS = 'channel/LOAD_CHANNELS'
 const ADD_CHANNEL = 'channel/ADD_CHANNEL'
+const UPDATE_CHANNEL = 'channel/UPDATE_CHANNEL'
 const DELETE_CHANNEL = 'channel/DELETE_CHANNEL'
 
 
@@ -16,6 +17,11 @@ const addChannel = (channel) => {
     channel
   }
 }
+
+const updateChannel = (channel) => ({
+  type: UPDATE_CHANNEL,
+  channel
+})
 
 const deleteChannel = (channelId) => {
   return {
@@ -47,7 +53,8 @@ export const fetchOneChannel = channelId => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json()
-    dispatch(loadChannels(data))
+    console.log('data in THUNK OK', data)
+    dispatch(addChannel(data))
     return data
   }
 }
@@ -71,7 +78,7 @@ export const createChannel = (channel, serverId) => async (dispatch) => {
 }
 
 
-export const updateChannel = (channel) => async (dispatch) => {
+export const fetchUpdateChannel = (channel) => async (dispatch) => {
   const response = await fetch(`/api/channels/${channel.id}`, {
     method: "PUT",
     headers: {
@@ -83,7 +90,7 @@ export const updateChannel = (channel) => async (dispatch) => {
   if (response.ok) {
     const updatedChannel = await response.json()
 
-    dispatch(addChannel(updatedChannel))
+    dispatch(updateChannel(updatedChannel))
     return updatedChannel
   }
 }
@@ -105,43 +112,46 @@ export const removeChannel = (channel) => async (dispatch) => {
 
 // --- INITIAL STATE --- //
 
-const initialState = { channels: {}, channelList: [], channel: {} }
+const initialState = { channels: {}, channel: {} }
 
 
 // --- REDUCER --- //
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+
     case LOAD_CHANNELS:
-      const loadChannels = { ...state, channels: { ...state.channelList }, channelList: [...state.channels], channel: { ...state.channel } }
-      action.channels.forEach((channel) => (loadChannels.channelList[channel.id] = channel))
+      console.log('HERE IN LOAD CHANNELS', action)
+      const loadChannels = {
+        ...state, channels: { ...state.channels },
+        channel: { ...state.channel }
+      }
+      action.channels.forEach((channel) => (loadChannels.channels[channel.id] = channel))
       return loadChannels;
 
     case ADD_CHANNEL:
-      if (!state.channels[action.channel.id]) {
-        const addChannel = {
-          ...state,
-          channels: { ...state.channels, [action.channel.id]: action.channel },
-          channelList: [...state.channelList, action.channel],
-          channel: { ...state.channel }
-        }
-        addChannel.channel = action.channel
-        return addChannel
+      const addChannel = {
+        ...state,
+        channel: { ...state.channel }
       }
+      addChannel.channel = action.channel
+      return addChannel
 
+    case UPDATE_CHANNEL:
       const updateChannel = {
         ...state,
-        channels: { ...state.channels, [action.channel.id]: { ...state.channels[action.channel.id], ...action.channel } },
-        channelList: [...state.channelList],
         channel: { ...state.channel, ...action.channel }
       }
       return updateChannel
 
     case DELETE_CHANNEL:
-      const deleteChannel = { ...state, channels: { ...state.channels }, channel: { ...state.channel }, channelList: [...state.channelList] }
+      const deleteChannel = {
+        ...state,
+        channels: { ...state.channels },
+        channel: { ...state.channel }
+      }
       delete deleteChannel.channels[action.channelId]
       deleteChannel.channel = {}
-      deleteChannel.channelList.filter(channel => channel.id !== action.channelId)
       return deleteChannel
 
     default:

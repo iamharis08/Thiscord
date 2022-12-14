@@ -1,18 +1,24 @@
 const LOAD_SERVERS = 'server/LOAD_SERVERS'
 const ADD_SERVER = 'server/ADD_SERVER'
+const UPDATE_SERVER = 'server/UPDATE_SERVER'
 const DELETE_SERVER = 'server/DELETE_SERVER'
 
 
 // --- ACTIONS --- //
 
 const loadServers = (servers) => ({
-    type: LOAD_SERVERS,
-    servers
-  })
-;
+  type: LOAD_SERVERS,
+  servers
+})
+  ;
 
 const addServer = (server) => ({
   type: ADD_SERVER,
+  server
+})
+
+const updateServer = (server) => ({
+  type: UPDATE_SERVER,
   server
 })
 
@@ -24,7 +30,7 @@ const deleteServer = (server) => ({
 // --- THUNKS --- //
 
 export const fetchServers = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/servers`, {
+  const response = await fetch(`/api/servers/`, {
     method: 'GET'
   });
 
@@ -43,9 +49,9 @@ export const fetchOneServer = (serverId) => async (dispatch) => {
   });
 
   if (response.ok) {
-    const data = await response.json()
-    dispatch(loadServers(data))
-    return data
+    const server = await response.json()
+    dispatch(addServer(server))
+    return server
   }
 }
 
@@ -67,7 +73,7 @@ export const createServer = (server) => async (dispatch) => {
   }
 }
 
-export const updateServer = (server) => async (dispatch) => {
+export const fetchUpdateServer = (server) => async (dispatch) => {
   const response = await fetch(`/api/servers/${server.id}`, {
     method: "PUT",
     headers: {
@@ -79,7 +85,7 @@ export const updateServer = (server) => async (dispatch) => {
   if (response.ok) {
     const updatedServer = await response.json()
 
-    dispatch(addServer(updatedServer))
+    dispatch(updateServer(updatedServer))
     return updatedServer
   }
 }
@@ -98,38 +104,50 @@ export const removeServer = (server) => async (dispatch) => {
 
 // --- INITIAL STATE --- //
 
-const initialState = { servers: {}, serversList: [], server: {} }
+
+const initialState = { servers: {}, server: {} }
 
 
 // --- REDUCER --- //
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+
     case LOAD_SERVERS:
-      const loadServers = { ...state, servers: { ...state.servers },
-       serversList: [ ...state.serversList ],
-        server: { ...state.server } }
-        action.servers.forEach((server) => (loadServers.servers[server.id] = server))
-        return loadServers
+      const loadServers = {
+        ...state, servers: { ...state.servers },
+        server: { ...state.server }
+      }
+      action.servers.servers.forEach((server) => (loadServers.servers[server.id] = server))
+      return loadServers
 
     case ADD_SERVER:
-      if (!state.servers[action.server.id]) {
-        const addServer = {
-          ...state,
-          servers: { ...state.servers, [action.server.id]: action.server },
-          serversList: [...state.serversList, action.server],
-          server: { ...state.server }
-        }
-        addServer.server = action.server
-        return addServer
+      const addServer = {
+        ...state,
+        server: { ...state.server }
       }
+      addServer.server = action.server
+      return addServer
 
+    case UPDATE_SERVER: {
       const updateServer = {
         ...state,
-        servers: {...state.servers, [action.server.id]: { ...state.servers[action.server.id], ...action.server}},
-        serversList: [...state.serversList],
         server: { ...state.server, ...action.server }
       }
+
+      return updateServer
+    }
+
+    case DELETE_SERVER: {
+      const deleteServer = {
+        ...state,
+        servers: { ...state.servers },
+        server: { ...state.server }
+      }
+      delete deleteServer.servers[action.server.id]
+      deleteServer.server = {}
+      return deleteServer
+    }
 
     default:
       return state;

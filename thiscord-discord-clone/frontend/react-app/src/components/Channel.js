@@ -4,6 +4,10 @@ import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { fetchMessages } from '../store/message';
 // import {socket} from '../components/socketInstance.js'
+
+import { fetchOneChannel } from '../store/channel';
+
+
 let socket;
 
 function Channel() {
@@ -17,7 +21,8 @@ function Channel() {
   const [chatInput, setChatInput] = useState("");
   const { channelId } = useParams();
 
-
+  const currChannel = useSelector(state => state.channel.channel)
+  console.log(currChannel, 'CURRENT CHANNEL!!')
 
   useEffect(() => {
     // listen for chat events
@@ -30,8 +35,11 @@ function Channel() {
       setMessages([...responseData.messages])
 
     })();
+
+    dispatch(fetchOneChannel(channelId))
+
     socket = io();
-    socket.emit('join', {"user": user, 'room': channelId})
+    socket.emit('join', { "user": user, 'room': channelId })
     socket.on("chat", (chat) => {
 
 
@@ -42,31 +50,31 @@ function Channel() {
     })
 
 
-     return (() => {
+    return (() => {
       socket.disconnect()
 
-     })
+    })
 
-    }, [])
+  }, [])
 
   //
 
 
 
 
-const updateChatInput = (e) => {
-  setChatInput(e.target.value)
-};
+  const updateChatInput = (e) => {
+    setChatInput(e.target.value)
+  };
 
 
-const sendChat = (e) => {
-  e.preventDefault()
+  const sendChat = (e) => {
+    e.preventDefault()
 
-  socket.emit("chat", { user: user, message: chatInput, room: channelId});
+    socket.emit("chat", { user: user, message: chatInput, room: channelId });
 
 
-  setChatInput("")
-}
+    setChatInput("")
+  }
 
   // if (!channel) {
   //   return null;
@@ -92,12 +100,12 @@ const sendChat = (e) => {
         ))}
       </div>
       <form onSubmit={sendChat}>
-                <input
-                    value={chatInput}
-                    onChange={updateChatInput}
-                />
-                <button type="submit">Send</button>
-            </form>
+        <input
+          value={chatInput}
+          onChange={updateChatInput}
+        />
+        <button type="submit">Send</button>
+      </form>
     </>
   );
 }
