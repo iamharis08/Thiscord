@@ -48,11 +48,12 @@ body {
   display: flex;
   align-items: center;
   color: white;
-  font-weight: bold;
+  font-weight: 450;
 }
 
 .single-message-message-info {
   display: flex;
   align-items: center;
-  color: rgb(220, 221, 222)
+  color: rgb(220, 221, 222);
+  font-weight: 275;
 }
