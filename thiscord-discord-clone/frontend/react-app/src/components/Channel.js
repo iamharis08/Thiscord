@@ -86,21 +86,21 @@ function Channel() {
   return (
     <div className='channel-container'>
       <div className='channel-header-container'>
-          <span className='channel-hash'>
-            <strong>#</strong>
-            </span>
-            <span className='channel-name'>
-             {channel?.name}
-            </span>
+        <span className='channel-hash'>
+          <strong>#</strong>
+        </span>
+        <span className='channel-name'>
+          {channel?.name}
+        </span>
       </div>
       <div className='channel-messages-container'>
         {messages?.map((message, i) => (
           <div key={i} className='single-message-container'>
             <div className='single-message-user-info'>
-              {message?.user?.username} | "(timestamp)"
+              {message?.user?.username}  (timestamp) ||
             </div>
             <div className='single-message-message-info'>
-              {message?.message}
+             {message?.message}
             </div>
           </div>
         ))}
