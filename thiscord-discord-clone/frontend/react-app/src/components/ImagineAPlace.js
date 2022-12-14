@@ -1,9 +1,6 @@
 import React from 'react';
 import '../css/ImagineAPlace.css'
-import channelsHomeSvg from '../css/images/thiscord-channel-img.svg'
-import voiceChannelImg from '../css/images/voice-channel-img.svg'
-import membersHomeImg from '../css/images/members-home-img.svg'
-import voiceCallImg from '../css/images/voice-call-img.svg'
+
 
 
 const ImagineAPlace = () => {
