@@ -1,9 +1,5 @@
 import React from 'react';
 import '../css/ImagineAPlace.css'
-import channelsHomeSvg from '../css/images/thiscord-channel-img.svg'
-import voiceChannelImg from '../css/images/voice-channel-img.svg'
-import membersHomeImg from '../css/images/members-home-img.svg'
-import voiceCallImg from '../css/images/voice-call-img.svg'
 
 
 const ImagineAPlace = () => {
@@ -20,7 +16,7 @@ const ImagineAPlace = () => {
             </div>
             <div className='channels-section-container'>
                 <div className='channels-home-image'>
-                    <img src={channelsHomeSvg} alt='something in there' />
+                    <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671038950/thiscord-channel-img_rjweka.svg' alt='something in there' />
                 </div>
                 <div className='channels-home-text'>
                     <h2 id='channels-home-h2'>Create an invite-only place where you belong</h2>
@@ -37,12 +33,12 @@ const ImagineAPlace = () => {
                     </span>
                 </div>
                 <div className='voice-channels-home-image'>
-                    <img src={voiceChannelImg} alt=''/>
+                    <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671038884/voice-channel-img_umaobg.svg' alt=''/>
                 </div>
             </div>
             <div className='members-section-container'>
                 <div className='members-home-image'>
-                    <img src={membersHomeImg} alt=''/>
+                    <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671038805/members-home-img_n7oomh.svg' alt=''/>
                 </div>
                 <div className='members-home-text'>
                     <h2 id='members-home-h2'>From few to a fandom</h2>
@@ -59,7 +55,7 @@ const ImagineAPlace = () => {
                     </span>
                 </div>
                 <div className='voice-call-home-image'>
-                    <img src={voiceCallImg} alt=''/>
+                    <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671037592/voice-call-img_e0hjeu.svg' alt=''/>
                 </div>
             </div>
         </main>
