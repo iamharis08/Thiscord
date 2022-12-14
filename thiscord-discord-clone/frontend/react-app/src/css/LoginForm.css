@@ -1,6 +1,7 @@
 html,body{
     margin: 0px;
     box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
 }
 
 .login-form-page{
@@ -52,7 +53,7 @@ html,body{
 }
 
 .top-header{
-    font-weight: bolder;
+    font-weight: 500;
     font-size: 24px;
     margin-bottom: 8px;
 }
@@ -62,7 +63,7 @@ html,body{
 }
 
 .input-text{
-    font-weight: bolder;
+    font-weight: 500;
     font-size: 12px;
     margin-bottom: 8px;
     color: #B9BBBE;
@@ -108,6 +109,7 @@ input[name="password"]{
 .forgot-password{
     color: #00AFF4;
     margin: 4px 0px 20px;
+    font-size: 14px;
 }
 
 .submit-button{
@@ -134,7 +136,9 @@ input[name="password"]{
 }
 #need-account{
     color: #9A9DA1;
+    font-size: 14px;
 }
 .register{
     margin: 4px 0px 20px;
+    font-size: 14px;
 }

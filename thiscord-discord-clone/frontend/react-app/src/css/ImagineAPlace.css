@@ -1,12 +1,14 @@
 html, body {
     margin: 0;
     box-sizing: border-box;
+   
 }
 
 .hero-container {
     display: flex;
     justify-content: center;
     width: 100%;
+
 }
 
 
