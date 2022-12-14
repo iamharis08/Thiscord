@@ -60,6 +60,7 @@ function App() {
         <Route path='/channels/:channelId' exact={true}>
           <Channel />
         </Route>
+        
       </Switch>
     </BrowserRouter>
   );
