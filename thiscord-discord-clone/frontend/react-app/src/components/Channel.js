@@ -96,12 +96,27 @@ function Channel() {
       <div className='channel-messages-container'>
         {messages?.map((message, i) => (
           <div key={i} className='single-message-container'>
+            { message && i !== 0 && messages[i - 1]?.user?.id !== messages[i]?.user?.id ? (
+              <>
             <div className='single-message-user-info'>
               {message?.user?.username}  (timestamp) ||
             </div>
             <div className='single-message-message-info'>
              {message?.message}
             </div>
+              </>
+            )
+            : (
+            <>
+            <div className='single-message-user-info'>
+              {/* {message?.user?.username} */}
+                (timestamp) ||
+            </div>
+            <div className='single-message-message-info'>
+             {message?.message}
+            </div>
+              </>
+            )}
           </div>
         ))}
       </div>
