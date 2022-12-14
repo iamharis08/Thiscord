@@ -11,7 +11,7 @@ from app.forms import ServerForm
 channel_routes = Blueprint("channel", __name__)
 
 
-
+#Get one Channel
 @channel_routes.route("/<int:id>")
 @login_required
 def one_channel_index(id):
@@ -20,6 +20,7 @@ def one_channel_index(id):
     one_channel_messages = Message.query.filter(Message.channel_id == id).order_by(Message.created_at.asc()).all()
 
     channel_messages = [message.to_dict() for message in one_channel_messages]
+    print('------ messages from channel', channel_messages, '------ MESSAGES FROM CHANNEL')
     message_with_user = []
     for m in channel_messages:
         user = User.query.get(m['userId']).to_dict()
@@ -29,7 +30,7 @@ def one_channel_index(id):
     return {"channel": one_channel, "messages": message_with_user}, 200
 
 
-
+# Update Channel
 @channel_routes.route("/<int:id>", methods=['PUT'])
 @login_required
 def update_channel(id):
@@ -50,7 +51,7 @@ def update_channel(id):
     return "Can't Edit a Channel in a Server You Don't Own!", 401
 
 
-
+# Delete Channel
 @channel_routes.route("/<int:id>", methods=['DELETE'])
 @login_required
 def delete_channel(id):

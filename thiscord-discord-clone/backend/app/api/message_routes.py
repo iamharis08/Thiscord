@@ -6,7 +6,7 @@ from app.forms import MessageForm
 
 message_routes = Blueprint("message", __name__)
 
-
+# Edit Message
 @message_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def edit_message(id):
@@ -25,7 +25,7 @@ def edit_message(id):
   return "YOU CAN'T EDIT THIS MESSAGE", 401
 
 
-
+# Delete Message
 @message_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_message(id):

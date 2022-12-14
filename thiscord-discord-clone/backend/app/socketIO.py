@@ -18,12 +18,12 @@ socketio = SocketIO(cors_allowed_origins=origins)
 # handle chat messages
 @socketio.on("chat")
 def handle_chat(data):
-    print('--------BACKENDDATA', data, current_user)
     message = Message(
         user_id=current_user.id,
         channel_id=int(data['room']),
         message=data['message']
     )
+    print('--------BACKENDDATA', message.to_dict())
     db.session.add(message)
     db.session.commit()
 
