@@ -48,18 +48,54 @@ body {
     font-family: sans-serif;
 }
 
+.link:active {
+    border-radius: 45px;
+}
+
+/* .hiddenItems { */
+    /* border: 1px rgb(55, 255, 0) solid; */
+    /* overflow: hidden; */
+    /* margin: 0;
+    box-sizing: border-box; */
+/* } */
+
+.triangle {
+    position: absolute;
+    /* width: 0;
+	height: 0; */
+    margin-left: 75px;
+    margin-top: 22px;
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-right: 5px solid rgb(24, 24, 24);
+}
+
 .serverNames {
+    padding: 10px;
+    border-radius: 4px;
     list-style: none;
     font-family: sans-serif;
-    color: rgb(219, 219, 219);
+    color: rgb(231, 231, 231);
     background-color: rgb(24, 24, 24);
     position: absolute;
     /* align-items: center;
     justify-content: center; */
-    margin-left: 20px;
+    margin-left: 80px; /* ----was 20px---- */
+    margin-top: 8px;
     /* border: 2px red solid; */
+    box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.507);
 }
 
-.link:active {
-    border-radius: 45px;
+.whiteNub {
+    /* margin: 0;
+    box-sizing: border-box; */
+    height: 20px;
+    width: 10px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20%;
+    color: rgb(255, 255, 255);
+    /* border: 1px blue solid; */
+    margin-left: -16px;
+    margin-top: 18.7px;
+    position: absolute;
 }

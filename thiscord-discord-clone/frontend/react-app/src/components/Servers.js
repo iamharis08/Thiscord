@@ -24,27 +24,31 @@ function ServersList() {
   }, [dispatch]);
 
   const serverComponents = Object.values(serverArr.servers).map((server) => {
-  const displayServerName = (serverId) => {
-    setHoveredId(serverId);
-  };
+    const displayServerName = (serverId) => {
+      setHoveredId(serverId);
+    };
 
-  const hideServerName = () => {
-    setHoveredId(-1);
-  };
+    const hideServerName = () => {
+      setHoveredId(-1);
+    };
 
     return (
       <div className="listItem" key={server.id}>
+        {hoveredId === server.id &&
+        <span className='hiddenItems'>
+          <span className='whiteNub'></span>
+          <span className='textBox'>
+            <span className='triangle'></span>
+            <span className='serverNames'>
+              {server.name}</span>
+          </span>
+        </span>
+        }
         <span className='serverIcon'
           onMouseOut={hideServerName}
           onMouseOver={() => displayServerName(server.id)}>
           <NavLink className='link' to={`/servers/${server.id}`}>{server.id}</NavLink>
         </span>
-        {hoveredId === server.id &&
-          <span>
-            <span className='whiteBud'></span>
-            <span className='serverNames'>{server.name}</span>
-          </span>
-          }
       </div>
     );
   });
