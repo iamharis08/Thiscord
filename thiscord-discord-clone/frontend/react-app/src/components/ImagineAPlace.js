@@ -10,7 +10,7 @@ const ImagineAPlace = () => {
     return (
         <main>
             <div className='hero-container'>
-                <img id='hero-image' src='https://theme.zdassets.com/theme_assets/678183/b7e9dce75f9edb23504e13b4699e208f204e5015.png' alt=''></img>
+                <img id='hero-image' src='https://theme.zdassets.com/theme_assets/678183/b7e9dce75f9edb23504e13b4699e208f204e5015.png' alt='' />
                 <div className='hero-text'>
                     <h1 className='hero-h1-text'>IMAGINE A PLACE...</h1>
                     <div className='hero-body-text'>
@@ -20,7 +20,7 @@ const ImagineAPlace = () => {
             </div>
             <div className='channels-section-container'>
                 <div className='channels-home-image'>
-                    <img src={channelsHomeSvg} alt='something in there' />
+                    <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671038950/thiscord-channel-img_rjweka.svg' alt='something in there' />
                 </div>
                 <div className='channels-home-text'>
                     <h2 id='channels-home-h2'>Create an invite-only place where you belong</h2>
@@ -37,12 +37,12 @@ const ImagineAPlace = () => {
                     </span>
                 </div>
                 <div className='voice-channels-home-image'>
-                    <img src={voiceChannelImg} alt=''/>
+                    <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671038884/voice-channel-img_umaobg.svg' alt='lol' />
                 </div>
             </div>
             <div className='members-section-container'>
                 <div className='members-home-image'>
-                    <img src={membersHomeImg} alt=''/>
+                    <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671038805/members-home-img_n7oomh.svg' alt='rgdg' />
                 </div>
                 <div className='members-home-text'>
                     <h2 id='members-home-h2'>From few to a fandom</h2>
@@ -59,7 +59,7 @@ const ImagineAPlace = () => {
                     </span>
                 </div>
                 <div className='voice-call-home-image'>
-                    <img src={voiceCallImg} alt=''/>
+                    <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671037592/voice-call-img_e0hjeu.svg' alt='drg' />
                 </div>
             </div>
         </main>
