@@ -35,6 +35,7 @@ export const fetchChannels = (serverId) => async (dispatch) => {
 
     const data = await response.json()
     dispatch(loadChannels(data));
+    return data
   }
 };
 
@@ -47,6 +48,7 @@ export const fetchOneChannel = channelId => async (dispatch) => {
   if (response.ok) {
     const data = await response.json()
     dispatch(loadChannels(data))
+    return data
   }
 }
 
@@ -87,13 +89,13 @@ export const updateChannel = (channel) => async (dispatch) => {
 }
 
 
-export const removeChannel = (channelId) => async (dispatch) => {
-  const response = await fetch(`/api/channels/${channelId}`, {
+export const removeChannel = (channel) => async (dispatch) => {
+  const response = await fetch(`/api/channels/${channel.id}`, {
     method: "DELETE"
   })
 
   if (response.ok) {
-    dispatch(deleteChannel(channelId))
+    dispatch(deleteChannel(channel.id))
     return response
   }
 
@@ -101,12 +103,12 @@ export const removeChannel = (channelId) => async (dispatch) => {
 }
 
 
-// --- Initial State --- //
+// --- INITIAL STATE --- //
 
 const initialState = { channels: {}, channelList: [], channel: {} }
 
 
-// --- Reducer --- //
+// --- REDUCER --- //
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -116,11 +118,11 @@ export default function reducer(state = initialState, action) {
       return loadChannels;
 
     case ADD_CHANNEL:
-      if (!state.channelList[action.channel.id]) {
+      if (!state.channels[action.channel.id]) {
         const addChannel = {
           ...state,
           channels: { ...state.channels, [action.channel.id]: action.channel },
-          channelList: [...state.channels, ...action.channel],
+          channelList: [...state.channelList, action.channel],
           channel: { ...state.channel }
         }
         addChannel.channel = action.channel
@@ -130,7 +132,7 @@ export default function reducer(state = initialState, action) {
       const updateChannel = {
         ...state,
         channels: { ...state.channels, [action.channel.id]: { ...state.channels[action.channel.id], ...action.channel } },
-        channelList: [...state.channels],
+        channelList: [...state.channelList],
         channel: { ...state.channel, ...action.channel }
       }
       return updateChannel
