@@ -34,7 +34,7 @@ function ServersList() {
 
     return (
       <div className="listItem" key={server.id}>
-        {hoveredId === server.id &&
+        {/* {hoveredId === server.id && */}
         <span className='hiddenItems'>
           <span className='whiteNub'></span>
           <span className='textBox'>
@@ -43,7 +43,7 @@ function ServersList() {
               {server.name}</span>
           </span>
         </span>
-        }
+        {/* } */}
         <span className='serverIcon'
           onMouseOut={hideServerName}
           onMouseOver={() => displayServerName(server.id)}>
@@ -54,12 +54,13 @@ function ServersList() {
   });
 
   return (
-    <>
-      <h1>Servers List: </h1>
       <div className='bg'>
+        <div className='dm'>DM</div>
+        <div className='line'></div>
+        <div className='list'>
         {serverComponents}
+        </div>
       </div>
-    </>
   );
 }
 
