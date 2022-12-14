@@ -134,7 +134,8 @@ export default function reducer(state = initialState, action) {
         ...state,
         channel: { ...state.channel }
       }
-      addChannel.channel = action.channel
+      addChannel.channel = action.channel.channel
+      console.log(addChannel, 'ADD CHANNEL!')
       return addChannel
 
     case UPDATE_CHANNEL:

@@ -20,6 +20,7 @@ def one_channel_index(id):
     one_channel_messages = Message.query.filter(Message.channel_id == id).order_by(Message.created_at.asc()).all()
 
     channel_messages = [message.to_dict() for message in one_channel_messages]
+    print('------ messages from channel', channel_messages, '------ MESSAGES FROM CHANNEL')
     message_with_user = []
     for m in channel_messages:
         user = User.query.get(m['userId']).to_dict()

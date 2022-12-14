@@ -21,7 +21,7 @@ function Channel() {
   const [chatInput, setChatInput] = useState("");
   const { channelId } = useParams();
 
-  const currChannel = useSelector(state => state.channel.channel)
+  const currChannel = useSelector(state => state.channel)
   console.log(currChannel, 'CURRENT CHANNEL!!')
 
   useEffect(() => {
@@ -29,14 +29,14 @@ function Channel() {
     (async () => {
       const response = await fetch(`/api/channels/${channelId}`);
       const responseData = await response.json();
-
+      // dispatch()
 
       setChannel(responseData.channel)
       setMessages([...responseData.messages])
 
     })();
 
-    dispatch(fetchOneChannel(channelId))
+    // dispatch(fetchOneChannel(channelId))
 
     socket = io();
     socket.emit('join', { "user": user, 'room': channelId })
@@ -48,14 +48,18 @@ function Channel() {
 
 
     })
-
-
     return (() => {
       socket.disconnect()
 
     })
 
   }, [])
+  useEffect(() => {
+    if (!channelId) {
+      return
+    }
+    dispatch(fetchOneChannel(+channelId))
+  }, [dispatch])
 
   //
 
@@ -69,10 +73,7 @@ function Channel() {
 
   const sendChat = (e) => {
     e.preventDefault()
-
     socket.emit("chat", { user: user, message: chatInput, room: channelId });
-
-
     setChatInput("")
   }
 
@@ -81,32 +82,36 @@ function Channel() {
   // }
 
   return (
-    <>
-      <ul>
-        <li>
-          <strong>Channel Id</strong> {channel?.id}
-        </li>
-        <li>
-          <strong>Channel Name</strong> {channel?.name}
-        </li>
-      </ul>
-
-      <div>
-        <strong>Messages</strong>
+    <div className='channel-container'>
+      <div className='channel-header-container'>
+          <span className='channel-hash'>
+            <strong>#</strong>
+            </span>
+            <span className='channel-name'>
+             {channel?.name}
+            </span>
+      </div>
+      <div className='channel-messages-container'>
         {messages?.map((message, i) => (
-          <li key={i}>
-            {message?.user?.username} | &nbsp;{message?.message}
-          </li>
+          <div key={i} className='single-message-container'>
+            <div className='single-message-user-info'>
+              {message?.user?.username} | "(timestamp)"
+            </div>
+            <div className='single-message-message-info'>
+              {message?.message}
+            </div>
+          </div>
         ))}
       </div>
-      <form onSubmit={sendChat}>
-        <input
-          value={chatInput}
-          onChange={updateChatInput}
-        />
-        <button type="submit">Send</button>
-      </form>
-    </>
+      <div className='message-form-container'>
+        <form onSubmit={sendChat}>
+          <input
+            value={chatInput}
+            onChange={updateChatInput}
+          />
+        </form>
+      </div>
+    </div>
   );
 }
 export default Channel;
