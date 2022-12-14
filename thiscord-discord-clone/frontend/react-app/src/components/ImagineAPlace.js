@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/ImagineAPlace.css'
+import channelsHomeSvg from '../css/images/thiscord-channel-img.svg'
 
 
 const ImagineAPlace = () => {
@@ -14,6 +15,18 @@ const ImagineAPlace = () => {
                     </div>
                 </div>
             </div>
+            <div className='channels-section-container'>
+                <div className='channels-home-image'>
+                    <img src={channelsHomeSvg} alt='something in there' />
+                </div>
+                <div className='channels-home-text'>
+                    <h3 id='channels-home-h3'>Create an invite-only place where you belong</h3>
+                    <span className='channels-home-body-text'>
+                    Discord servers are organized into topic-based channels where you can collaborate, share, and just talk about your day without clogging up a group chat.
+                    </span>
+                </div>
+            </div>
+
         </main>
     )
 }

@@ -1,5 +1,5 @@
-/* .home-navbar {
-    background-color: #5865f2;
+.home-navbar {
+    background-color: #404eed;
     display: flex;
     position: absolute;
     justify-content: space-evenly;
@@ -8,4 +8,19 @@
     align-items: center;
     vertical-align: middle;
     z-index: 2;
-} */
+}
+
+.thiscord-home-btn {
+    color: white;
+    text-decoration: none;
+    font-family: 'Antique Olive';
+    font-weight: 900;
+    font-size: 24px;
+}
+
+#thiscord-logo {
+    width: 30px;
+    vertical-align: middle;
+    border: none;
+    margin: 10px;
+}

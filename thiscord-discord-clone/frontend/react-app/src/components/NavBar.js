@@ -8,8 +8,9 @@ const NavBar = () => {
   return (
     <nav>
       <div className="home-navbar">
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Thiscord
+          <NavLink className="thiscord-home-btn" to='/' exact={true} activeClassName='active'>
+            <img id='thiscord-logo' alt='' src='https://pnggrid.com/wp-content/uploads/2021/05/Black-and-white-Discord-Logo.png'></img>
+            This.cord
           </NavLink>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
