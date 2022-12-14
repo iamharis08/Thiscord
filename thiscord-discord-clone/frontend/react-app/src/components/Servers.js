@@ -16,9 +16,9 @@ function ServersList() {
     async function fetchData() {
       const response = await fetch('/api/servers/');
       const responseData = await response.json();
-      dispatch(fetchServers(user.id))
+      dispatch(fetchServers(user?.id))
       console.log("IN USEEFFECT, loading servers -----", responseData.servers)
-      setServers(responseData.servers);
+      // setServers(responseData.servers);
     }
     fetchData();
   }, [dispatch]);

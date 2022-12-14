@@ -7,14 +7,12 @@ let socket;
 
 const LiveChat = () => {
     const user = useSelector(state => state.session.user);
-    // const dispatch = useDispatch();
     const [messages, setMessages] = useState([])
     // use state for controlled form input
     const [chatInput, setChatInput] = useState("");
 
     useEffect(() => {
 
-        // create websocket/connect
         socket = io();
 
         // listen for chat events
@@ -23,10 +21,6 @@ const LiveChat = () => {
             setMessages(messages => [...messages, chat])
         })
 
-        // when component unmounts, disconnect
-        // return (() => {
-            // socket.disconnect()
-        // })
     }, [])
 
     const updateChatInput = (e) => {
