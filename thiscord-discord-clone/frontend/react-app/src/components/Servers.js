@@ -23,27 +23,29 @@ function ServersList() {
     fetchData();
   }, [dispatch]);
 
-  const serverComponents = Object.values(serverArr.servers).map((server) => {
-    const displayServerName = (serverId) => {
-      setHoveredId(serverId);
-    };
+  const displayServerName = (serverId) => {
+    setHoveredId(serverId);
+  };
 
-    const hideServerName = () => {
-      setHoveredId(-1);
-    };
+  const hideServerName = () => {
+    setHoveredId(-1);
+  };
+
+  const serverComponents = Object.values(serverArr.servers).map((server) => {
 
     return (
       <div className="listItem" key={server.id}>
-        {/* {hoveredId === server.id && */}
-        <span className='hiddenItems'>
-          <span className='whiteNub'></span>
-          <span className='textBox'>
-            <span className='triangle'></span>
-            <span className='serverNames'>
-              {server.name}</span>
+        {hoveredId === server.id &&
+          <span className='hiddenItems'>
+            <span className='whiteNub'></span>
+            <span className='textBox'>
+              <span className='triangle'></span>
+              <span className='serverNames'>
+                {server.name}
+              </span>
+            </span>
           </span>
-        </span>
-        {/* } */}
+        }
         <span className='serverIcon'
           onMouseOut={hideServerName}
           onMouseOver={() => displayServerName(server.id)}>
@@ -54,13 +56,28 @@ function ServersList() {
   });
 
   return (
-      <div className='bg'>
-        <div className='dm'>DM</div>
-        <div className='line'></div>
-        <div className='list'>
+    <div className='bg'>
+      {hoveredId === 1000000 &&
+        <span className='dmHiddenItems'>
+          <span className='dmWhiteNub'></span>
+          <span className='dmtTextBox'>
+            <span className='dmTriangle'></span>
+            <span className='dmServerNames'>
+              Direct Messages
+            </span>
+          </span>
+        </span>
+      }
+      <span className='dm'
+        onMouseOut={hideServerName}
+        onMouseOver={() => displayServerName(1000000)}>
+        DM
+      </span>
+      <div className='line'></div>
+      <div className='list'>
         {serverComponents}
-        </div>
       </div>
+    </div>
   );
 }
 

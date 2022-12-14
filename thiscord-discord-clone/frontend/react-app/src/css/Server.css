@@ -12,8 +12,9 @@ body {
 
 .dm {
     position: relative;
-    top: 35px;
-    margin: auto;
+    top: 37px;
+    /* margin: auto; */
+    margin: 0px auto 0px auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,18 +24,31 @@ body {
     color: rgb(255, 255, 255);
     font-size: 22px;
     font-family: sans-serif;
-    background-color: rgb(255, 196, 17);
+    background-color: rgb(46, 49, 54);
     /* border: 2px red solid; */
     border-radius: 45px;
 }
 
+.dm:hover {
+    /* position: absolute; */
+    /* margin: none; */
+
+    background-color: rgb(64, 78, 237);
+    border-radius: 20px;
+    transition-delay: .19s;
+    /* margin: none; */
+}
+
 .line {
-    padding-top: 90px;
-    border-bottom: 1px solid rgba(198, 198, 198, 0.645);
+    padding-top: 46px;
+    border-bottom: 2px solid rgba(75, 75, 75, 0.645);
+    width: 34px;
+    margin: auto;
+
 }
 
 .list {
-    margin-top: 48px;
+    margin-top: 4px;
 }
 
 .listItem {
@@ -77,12 +91,43 @@ body {
     border-radius: 45px;
 }
 
-/* .hiddenItems {
-    border: 1px rgb(55, 255, 0) solid;
-    overflow: hidden;
-    margin: 0;
-    box-sizing: border-box;
-} */
+.dmHiddenItems {
+    /* margin-left: 3px; */
+    position: relative;
+    bottom: 15px;
+    /* margin-top: 10px; */
+    /* border: 20px rgb(55, 255, 0) solid; */
+    /* overflow: hidden;
+    box-sizing: border-box; */
+}
+
+.HiddenItems {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* margin-left: 3px; */
+    /* position: relative; */
+    /* margin-top: 10px; */
+    /* border: 20px rgb(55, 255, 0) solid; */
+    /* overflow: hidden; */
+    /* box-sizing: border-box; */
+}
+
+.dmWhiteNub {
+    /* margin: 0;
+    box-sizing: border-box; */
+    height: 20px;
+    width: 10px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20%;
+    color: rgb(255, 255, 255);
+    right: -4px;
+    top: 70px;
+    /* border: 1px blue solid; */
+    /* margin-left: -9px;
+    margin-top: 72px; */
+    position: absolute;
+}
 
 .whiteNub {
     /* margin: 0;
@@ -94,8 +139,26 @@ body {
     color: rgb(255, 255, 255);
     /* border: 1px blue solid; */
     margin-left: -9px;
-    margin-top: 21px;
+    margin-top: 20px;
     position: absolute;
+}
+
+/* .dmTextBox {
+    border: 100px blue solid;
+} */
+
+.dmTriangle {
+    position: absolute;
+    /* width: 0;
+    height: 0; */
+    /* margin-left: 82px;
+    margin-top: 74.5px; */
+    left: 85px;
+    top: 73px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid rgb(24, 24, 24);
+    /* border-right: 5px solid rgb(251, 54, 54); */
 }
 
 .triangle {
@@ -103,14 +166,38 @@ body {
     /* width: 0;
 	height: 0; */
     margin-left: 82px;
-    margin-top: 22px;
+    margin-top: 23px;
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
     border-right: 5px solid rgb(24, 24, 24);
 }
 
+.dmServerNames {
+    padding-top: 10px;
+    min-width: 135px;
+    padding-bottom: 10px;
+    padding-right: 12px;
+    padding-left: 12px;
+    border-radius: 5px;
+    list-style: none;
+    font-family: sans-serif;
+    font-size: large;
+    color: rgb(231, 231, 231);
+    background-color: rgb(24, 24, 24);
+    position: absolute;
+    left: 90px;
+    top: 58.5px;
+    /* align-items: center;
+    justify-content: center; */
+    /* margin-left: 87px;
+    margin-top: 58.6px; */
+    /* border: 2px red solid; */
+    box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.507);
+}
+
 .serverNames {
     padding-top: 10px;
+    max-width: 186px;
     padding-bottom: 10px;
     padding-right: 12px;
     padding-left: 12px;
@@ -124,7 +211,6 @@ body {
     /* align-items: center;
     justify-content: center; */
     margin-left: 87px;
-    /* ----was 20px---- */
     margin-top: 6.6px;
     /* border: 2px red solid; */
     box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.507);
