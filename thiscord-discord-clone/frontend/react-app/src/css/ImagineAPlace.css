@@ -1,8 +1,11 @@
+html, body {
+    margin: 0;
+    box-sizing: border-box;
+}
+
 .hero-container {
     display: flex;
     justify-content: center;
-    /* padding-top: 120px; */
-    padding-bottom: 120px;
     width: 100%;
 }
 
@@ -11,7 +14,7 @@
     color: white;
     position: absolute;
     z-index: 99;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     width: 40%;
@@ -21,33 +24,145 @@
 
 .hero-h1-text {
     font-size: 56px;
-    font-weight: bolder;
-    font-family: 'Antique Olive';
-    font-stretch: ultra-expanded;
+    font-weight: 900;
+    font-family: 'Unbounded';
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    /* position: absolute; */
-    /* z-index: 99; */
-
 }
 
 .hero-body-text {
     display: flex;
-    /* flex-direction: column; */
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
     justify-content: center;
     align-items: center;
     margin-top: 40px;
-    /* z-index: 90; */
-    /* position: absolute; */
+    line-height: 1.625;
 }
 
 
 #hero-image {
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
-    height: 550px;
-    /* z-index: 1; */
+    height: 600px;
+    top: 0;
+}
+
+.channels-section-container {
+    /* margin-top: 110px; */
+    padding-top: 120px;
+    padding-bottom: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.channels-home-text {
+    width: 24%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#channels-home-h2 {
+    font-size: 48px;
+}
+
+.channels-home-body-text {
+    font-size: 20px;
+}
+
+.voice-channels-section-container {
+    background-color: #F6f6f6;
+    padding-top: 120px;
+    padding-left: 15px;
+    padding-right: 15px;
+    /* margin-top: 110px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-bottom: 120px;
+}
+
+.voice-channels-home-text {
+    width: 25%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#voice-channels-home-h2 {
+    font-size: 48px;
+}
+
+.voice-channels-home-body-text {
+    font-size: 20px;
+}
+
+.members-section-container {
+    padding-top: 120px;
+    /* margin-top: 110px; */
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-bottom: 120px;
+}
+
+.members-home-text {
+    width: 25%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#members-home-h2 {
+    font-size: 48px;
+}
+
+.members-home-body-text {
+    font-size: 20px;
+}
+
+.voice-call-section-container {
+    background-color: #F6f6f6;
+    padding-top: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 120px;
+}
+
+.voice-call-home-text {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* flex-wrap: wrap; */
+    align-items: center;
+}
+
+#voice-call-home-h2 {
+    font-size: 40px;
+    font-family: 'Unbounded';
+    text-align: center;
+}
+
+.voice-call-home-body-text {
+    font-size: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
 }

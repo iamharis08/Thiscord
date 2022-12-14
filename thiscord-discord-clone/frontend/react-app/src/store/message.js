@@ -16,6 +16,10 @@ const deleteMessage = messageId => ({
 
 
 // --- THUNKS --- //
+// const deleteMessage = messageId => ({
+//   type: DELETE,
+//   messageId
+// });
 
 export const fetchMessages = (channelId) => async (dispatch) => {
   const response = await fetch(`/api/channels/${channelId}`,{
