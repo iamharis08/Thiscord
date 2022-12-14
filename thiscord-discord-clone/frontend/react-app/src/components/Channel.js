@@ -6,6 +6,8 @@ import { fetchMessages } from '../store/message';
 // import {socket} from '../components/socketInstance.js'
 
 import { fetchOneChannel } from '../store/channel';
+import '../css/Channel.css'
+
 
 
 let socket;

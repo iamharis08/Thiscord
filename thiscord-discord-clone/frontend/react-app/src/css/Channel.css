@@ -1,0 +1,26 @@
+html,
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.channel-container {
+  display: flex;
+  width: 100%;
+  background-color: rgb(54, 57, 63)
+}
+
+.channel-header-container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.channel-hash {
+  display: flex;
+  color: rgb(142, 146, 151)
+}
+
+.channel-name {
+  color: white;
+}
