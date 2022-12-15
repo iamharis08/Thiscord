@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { useParams, NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-import { fetchOneServer } from '../store/server';
-import '../css/SingleServer.css'
+import { fetchOneServer } from "../store/server";
+import "../css/SingleServer.css";
 
 function Server() {
   // const [server, setServer] = useState({});
   const [users, setUsers] = useState([]);
-  const [channels, setChannels] = useState([])
+  const [channels, setChannels] = useState([]);
   const { serverId } = useParams();
 
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.session.user)
-  const serverInfo = useSelector(state => state.server.server)
-  const server = serverInfo.server
-  console.log('THE SERVER', server)
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
+  const serverInfo = useSelector((state) => state.server.server);
+  const server = serverInfo.server;
+  console.log("THE SERVER", server);
   // console.log('users!', server.users)
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function Server() {
       return;
     }
 
-    dispatch(fetchOneServer(serverId))
+    dispatch(fetchOneServer(serverId));
     // .catch(async res => {
     // const data = await res.json()
     // console.log(data, 'data in FETCH ASYNC!!')
@@ -39,7 +39,6 @@ function Server() {
     // setUsers(responseData.users)
     // setChannels(responseData.channels)
 
-
     // })();
   }, [serverId, dispatch]);
 
@@ -50,32 +49,37 @@ function Server() {
   return (
     <>
       <div>
-        <ul>
-          <li>
-            <strong>Server Id</strong> {serverId}
-          </li>
-          <li>
-            <strong>Server Name</strong> {server?.name}
-          </li>
-        </ul>
-        <div className='channels-members-container'>
-            <div className='channels-list'>
-              <strong>Channels</strong>
-              {serverInfo?.channels?.map(channel => (
-                <li key={channel?.id}>
-                  <NavLink to={`/channels/${channel.id}`}> {channel?.name}</NavLink>
-                </li>
-              ))}
+      <div className='title-container'>
+            <div className='title-text'>
+                {server.name}
             </div>
-            <div className='members-list'>
-              <strong>Members -</strong>
-              {serverInfo?.users?.map(user => (
-                <p id='one-member' key={user?.id}>
-                  <img id='member-profile' src='https://www.svgrepo.com/show/331368/discord-v2.svg' alt=''></img>
-                  {user?.username}
-                </p>
-              ))}
-            </div>
+        </div>
+
+        <div className="channels-members-container">
+          <div className="channels-list">
+            <strong>Channels</strong>
+            {serverInfo?.channels?.map((channel) => (
+              <li key={channel?.id}>
+                <NavLink to={`/channels/${channel.id}`}>
+                  {" "}
+                  {channel?.name}
+                </NavLink>
+              </li>
+            ))}
+          </div>
+          <div className="members-list">
+            <strong>Members -</strong>
+            {serverInfo?.users?.map((user) => (
+              <p id="one-member" key={user?.id}>
+                <img
+                  id="member-profile"
+                  src="https://www.svgrepo.com/show/331368/discord-v2.svg"
+                  alt=""
+                ></img>
+                {user?.username}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
     </>

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 // import '../css/UsersList.css'
 
-function UsersList() {
+function UsersList({serverInfo}) {
   const [users, setUsers] = useState([]);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -22,8 +23,15 @@ function UsersList() {
 
   return (
     <>
-      <h1>User List: </h1>
-      <ul>{userComponents}</ul>
+      <div className='members-list'>
+              <strong>Members -</strong>
+              {serverInfo?.users?.map(user => (
+                <p id='one-member' key={user?.id}>
+                  <img id='member-profile' src='https://www.svgrepo.com/show/331368/discord-v2.svg' alt=''></img>
+                  {user?.username}
+                </p>
+              ))}
+            </div>
     </>
   );
 }

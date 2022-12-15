@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchServers } from '../store/server';
+import { fetchOneServer, fetchServers } from '../store/server';
 import { fetchChannels } from '../store/channel';
 
 
@@ -9,6 +9,7 @@ import { fetchChannels } from '../store/channel';
 function GeneralBar() {
   const dispatch = useDispatch()
   const user = useSelector(state => state.session.user)
+  const server = useSelector(state => state.server.server)
   const channels = useSelector(state => state.channel.channels)
   const serverArr = useSelector(state => state.server)
   const { serverId } = useParams();
@@ -18,71 +19,15 @@ function GeneralBar() {
 
   }, [dispatch]);
 
-
-  const serverComponents = Object.values(serverArr.servers).map((server) => {
-
-    return (
-      <div className="listItem" key={server.id}>
-        {hoveredId === server.id &&
-          <span className='hiddenItems'>
-            <span className='whiteNub'></span>
-            <span className='textBox'>
-              <span className='triangle'></span>
-              <span className='serverNames'>
+  return(
+    <div className="general-bar">
+        <div className='title-container'>
+            <div className='title-text'>
                 {server.name}
-              </span>
-            </span>
-          </span>
-        }
-        <span className='serverIcon'
-          onMouseOut={hideServerName}
-          onMouseOver={() => displayServerName(server.id)}>
-          <NavLink className='link' to={`/servers/${server.id}`}>{abbreviate(server.name)}</NavLink>
-        </span>
-      </div>
-    );
-  });
-
-  return (
-    <div className='bg'>
-      {hoveredId === 1000000 &&
-        <span className='dmHiddenItems'>
-          <span className='dmWhiteNub'></span>
-          <span className='dmtTextBox'>
-            <span className='dmTriangle'></span>
-            <span className='dmServerNames'>
-              Direct Messages
-            </span>
-          </span>
-        </span>
-      }
-      <span className='dm'
-        onMouseOut={hideServerName}
-        onMouseOver={() => displayServerName(1000000)}>
-      </span>
-      <div className='line'></div>
-      <div className='list'>
-        {serverComponents}
-      </div>
-      {hoveredId === 10000000 &&
-        <span className='dmHiddenItems'>
-          <span className='textBox'>
-            <span className='addServerTriangle'></span>
-            <span className='addServerText'>
-              Add a Server
-            </span>
-          </span>
-        </span>
-      }
-      <span className='addServerIcon'
-        onMouseOut={hideServerName}
-        onMouseOver={() => displayServerName(10000000)}>
-        <div className='plus'>
-          +
+            </div>
         </div>
-      </span>
     </div>
-  );
-}
+  )
 
-export default ServersList;
+}
+export default GeneralBar;
