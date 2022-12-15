@@ -13,7 +13,7 @@ body {
 .dm {
     cursor: pointer;
     position: relative;
-    background-image: url(images/dm-icon.svg);
+    background-image: url(images/dm-icon-dark.svg);
     background-size: contain;
     background-repeat: no-repeat;
     top: 12px;
@@ -30,15 +30,17 @@ body {
     /* background-color: rgb(46, 49, 54); */
     /* border: 2px red solid; */
     border-radius: 45px;
+    transition: all .26s;
+    /* transition: background-image .34s; */
 }
 
 .dm:hover {
     /* position: absolute; */
     /* margin: none; */
-
+    background-image: url(images/dm-icon.svg);
     background-color: rgb(64, 78, 237);
     border-radius: 20px;
-    transition-delay: .19s;
+    transition-delay: .02s;
     /* margin: none; */
 }
 
@@ -73,14 +75,16 @@ body {
     justify-content: center;
     align-items: center;
     margin: auto;
-    background-color: rgb(99, 112, 244);
+    background-color: rgb(46, 49, 54);
     /* border: 2px red solid; */
     border-radius: 45px;
+    transition: all .26s;
 }
 
 .serverIcon:hover {
+    background-color: rgb(99, 112, 244);
     border-radius: 20px;
-    transition-delay: .19s;
+    transition-delay: .02s;
 }
 
 .link {
@@ -230,6 +234,8 @@ body {
     background-color: rgb(46, 49, 54);
     /* border: 2px red solid; */
     border-radius: 45px;
+    transition: all .26s;
+    /* transition: background-color .4s; */
 }
 
 .addServerIcon:hover {
@@ -238,7 +244,7 @@ body {
     color: rgb(255, 255, 255);
     background-color: rgb(59, 165, 94);
     border-radius: 20px;
-    transition-delay: .19s;
+    transition-delay: .02s;
     /* margin: none; */
 }
 
