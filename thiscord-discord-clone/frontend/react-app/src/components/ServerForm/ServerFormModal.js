@@ -18,13 +18,14 @@ function ServerFormModal({ setShowModal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(createServer({ serverName }))
-      .then(() => setShowModal(false))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data) setErrors(Object.values(data));
-        else return (<Redirect to="/servers" />);
-      });
+    return dispatch(createServer({ name: serverName }))
+      .then(() => { setShowModal(false)})
+      // .catch(async (res) => {
+      //   const data = await res.json();
+      //   console.log("THE DATA OF THE NEW SERVER", data)
+      //   if (data) setErrors(Object.values(data));
+      //   else return (<Redirect to={'/servers'} />);
+      // });
   }
 
   return (
@@ -51,6 +52,11 @@ function ServerFormModal({ setShowModal }) {
               <div className='signupLogInButtonDiv'>
                 <button className='submitForm' type="submit">
                   Create
+                </button>
+              </div>
+              <div className='signupLogInButtonDiv'>
+                <button className='submitForm' type="submit" onClick={() => setShowModal(false)} >
+                  Back
                 </button>
               </div>
             </div>

@@ -57,6 +57,7 @@ export const fetchOneServer = (serverId) => async (dispatch) => {
 
 
 export const createServer = (server) => async (dispatch) => {
+  console.log("IN THE CREATE SERVER THUNK ", server, " WHAT IS THIS?")
   const response = await fetch(`/api/servers/`, {
     method: "POST",
     headers: {
@@ -66,9 +67,11 @@ export const createServer = (server) => async (dispatch) => {
   })
 
   if (response.ok) {
+    // console.log("RESPONSE WAS OK IN CREATE SERVER")
     const newServer = await response.json()
 
     dispatch(addServer(newServer))
+    console.log("THE NEW SERVER IS ALIVE ", newServer)
     return newServer
   }
 }
@@ -126,7 +129,9 @@ export default function reducer(state = initialState, action) {
         ...state,
         server: { ...state.server }
       }
-      addServer.server = action.server
+      console.log("ADDSERVER VARIBLE", addServer)
+      console.log("AACTION AACTION AACITON", action)
+      addServer.servers[action.server.server.id] = action.server.server
       return addServer
 
     case UPDATE_SERVER: {
@@ -134,7 +139,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         server: { ...state.server, ...action.server }
       }
-
+      updateServer.servers[action.server.server.id] = action.server.server
       return updateServer
     }
 

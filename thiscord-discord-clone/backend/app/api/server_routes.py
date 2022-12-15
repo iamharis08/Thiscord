@@ -77,12 +77,16 @@ def delete_server(id):
 @login_required
 def create_server():
     form = ServerForm()
+    print("THE FORM---------------", form)
+    print("THE DATA===------------------", form.data)
     owner = current_user.to_dict()
     form['csrf_token'].data = request.cookies['csrf_token']
     new_server = Server(name=form.name.data,
     owner_id=owner['id'],
      private=False
     )
+    print("***************************** A NEW SERVER", new_server)
+    print("***************************** A NEW SERVER", new_server.to_dict())
     current_user.servers.append(new_server)
     db.session.add(new_server)
     db.session.commit()

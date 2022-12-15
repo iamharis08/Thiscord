@@ -12,10 +12,11 @@ function ServersList() {
   const [showModal, setShowModal] = useState(false);
 
   const user = useSelector(state => state.session.user)
-  const serverArr = useSelector(state => state.server)
+  const serverObj = useSelector(state => state.server.servers)
 
-  // console.log(serverArr, 'HERE IS THE SERVERARR!!!!')
   // console.log('HERE IS USER in SERVERSLIST!!!', user)
+
+  const serverArr = Object.values(serverObj)
 
   useEffect(() => {
     async function fetchData() {
@@ -26,7 +27,9 @@ function ServersList() {
       // setServers(responseData.servers);
     }
     fetchData();
-  }, [dispatch]);
+  }, [dispatch, serverArr.length]);
+
+  console.log(serverObj, 'HERE IS THE SERVEROOOOBJJJJJJ!!!!')
 
   const displayServerName = (serverId) => {
     setHoveredId(serverId);
@@ -46,7 +49,7 @@ function ServersList() {
     return initials.length <= 5 ? initials.join("") : initials.slice(0, 5)
   }
 
-  const serverComponents = Object.values(serverArr.servers).map((server) => {
+  const serverComponents = Object.values(serverObj).map((server) => {
 
     return (
       <div className="listItem" key={server.id}>
