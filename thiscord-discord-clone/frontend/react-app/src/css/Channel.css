@@ -13,8 +13,8 @@ body {
   flex-direction: column;
   /* padding: 0 1rem; */
   /* margin: 0 1rem; */
-  height: 100vh;
-  margin-bottom: 5rem;
+  height: 50vh;
+  margin-bottom: 68px;
 }
 
 .channel-header-container {
@@ -44,7 +44,8 @@ body {
   background-color: rgb(54, 57, 63);
   flex-direction: column;
   margin-top: 5rem;
-  margin-bottom: 10vh;
+  /* margin-bottom: 68px; */
+  padding-bottom: 68px;
 }
 
 
@@ -101,7 +102,7 @@ body {
   display: flex;
   position: fixed;
   bottom: 0;
-  height: 10vh;
+  height: 68px;
   width: 100%;
   justify-content: center;
   align-items: center;

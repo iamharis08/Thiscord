@@ -182,6 +182,7 @@ function Channel() {
               )}
           </div>
         ))}
+        <div ref={messageEnd} />
       </div>
       <div className='message-form-container'>
         <form onSubmit={sendChat} className='message-form-form'>
@@ -193,7 +194,6 @@ function Channel() {
           />
         </form>
       </div>
-      <div ref={messageEnd} />
     </div>
   );
 }
