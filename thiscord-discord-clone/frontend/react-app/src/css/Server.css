@@ -11,6 +11,7 @@ body {
 }
 
 .dm {
+    cursor: pointer;
     position: relative;
     background-image: url(images/dm-icon.svg);
     background-size: contain;
@@ -65,6 +66,7 @@ body {
 }
 
 .serverIcon {
+    cursor: pointer;
     display: flex;
     width: 55px;
     height: 55px;
@@ -213,6 +215,7 @@ body {
 }
 
 .addServerIcon {
+    cursor: pointer;
     position: relative;
     top: 5px;
     margin: 0px auto 0px auto;
