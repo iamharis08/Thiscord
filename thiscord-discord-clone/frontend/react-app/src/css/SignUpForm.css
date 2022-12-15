@@ -58,7 +58,7 @@
 .login-link:hover{
     text-decoration: underline;
 }
-a:visited{
+.login-link:visited{
     text-decoration: none;
     color: #00AFF4;
 }
