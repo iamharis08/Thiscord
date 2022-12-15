@@ -180,7 +180,6 @@ function Channel() {
                   </div>
                 </>
               )}
-            <div ref={messageEnd} />
           </div>
         ))}
       </div>
@@ -194,6 +193,7 @@ function Channel() {
           />
         </form>
       </div>
+      <div ref={messageEnd} />
     </div>
   );
 }
