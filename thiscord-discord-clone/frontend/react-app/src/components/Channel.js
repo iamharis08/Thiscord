@@ -46,56 +46,11 @@ function Channel() {
     // let yesterday2 = new Date(Date.now() - 86400000)
     // console.log(yesterday2, 'YESTERDAY 2')
 
-    let yesterday3 = new Date();
-    yesterday3.setDate(yesterday3.getDate() - 1)
+    // let yesterday3 = new Date(date.setDate(date.getDate() -1))
+    console.log()
 
-    console.log(yesterday3.toString().split('G')[0], 'YESTERDAY')
-    const now = Date(date).toString().split('G')[0]
 
-    console.log(now, "TODAY")
-    // console.log("yest", yesterday3)
-
-    // console.log(Date(yesterday3), '<-- yesterday', new Date(new Date().setDate(now.getDate() - 1), "<--- today")
-    // yesterday3 = Date(yesterday3).toString().split(' ')[0]
-
-    // console.log(date.toString().split('-')[0], 'DATE!!', yesterday3, 'YESTERDAY!')
-
-    // let check = new Date();
-    // // console.log('CHECK!', check.(new Date().setDate(new Date().getDate() - 1)))
-    // let yest = (check.setDate((check.getDate() - 1)))
-    // console.log('yest', Date(yest))
-    // console.log('setting', Date(check.setDate(check.getDate() - 1)))
-    // check = check.setDate((check.getDate() - 1))
-    // console.log(Date((check.setDate((check.getDate() - 1))))
-    //   .split(' ').splice(0, 4).join(' ')
-    //   , 'HERE IS OUR CHECK')
-    // check = check.setDate(check.getDate() - 1)
-    // console.log('DAAAAATEEEEE', dateO  bj)
-    // check = Date(check).split('-')[0]
-    // let dateCheck = Date(check).split('')[0]
-    // console.log(dateObj, 'OUR DATE IN OBJ')
-
-    // console.log(Date(date).split('-')[0], 'test test test!!!')
-
-    // console.log(date, 'HERE IS CHECK!!!!', dateCheck, 'HERE IS DATE!!!!')
-    // console.log(date, 'HERE IS DATE!!!!')
-
-    // if (check.toDateString() === date.toDateString()) {
-    //   return `Today at ${date.toLocaleDateString(date, { hour: 'numeric', minute: 'numeric' })}`
-    // }
-    // else if (date.toDateString() - check.toDateString() === 1) {
-    //   return `Yesterday at ${date.toLocaleDateString(date, { hour: 'numeric', minute: 'numeric' })}`
-    // }
-    // else {
-    //   let year = date.getFullYear()
-    //   let month = date.getMonth()
-    //   let day = date.getDate()
-    //   let time = date.toLocaleTimeString()
-    //   console.log('FRESH YEAR!!!! OLD YEAR!!!', `${day}/${month}/${year} at ${time}`)
-    //   return `${day}/${month}/${year} at ${time}`
-    // }
-
-    return ''
+    return date
   }
 
 
@@ -124,17 +79,20 @@ function Channel() {
       // setMessageTime(chat.timestamp)
 
 
-      const currDate = new Date()
+      const currDate = Date(chat.timestamp)
+      console.log(currDate, 'CUR DATE')
 
 
 
 
-      // console.log(currDate, 'HERE IS CURRDATE')
+      console.log(Date(chat.timestamp), 'HERE IS CHAT')
 
 
 
       // const options = { weekday: 'short', }
-      const dateStamp = currDate.toDateString().split('-')[0]
+      const dateStamp = currDate.toString().split('-')[0]
+      // testing formatting
+      // const dateStamp = currDate.toString()
       console.log(dateStamp, 'HERE IS OUR DATESTAMP!!')
       // console.log(dateStamp, 'SPLIT!')
       const res = { channelId: +chat.room, createdAt: dateStamp, message: chat.message, user: { ...chat.user } }
@@ -173,7 +131,8 @@ function Channel() {
 
   const sendChat = (e) => {
     e.preventDefault()
-    socket.emit("chat", { user: user, message: chatInput, room: channelId, timestamp: Date.now() });
+    // console.log('SENDING:::', { user: user, message: chatInput, room: channelId, timestamp: new Date() })
+    socket.emit("chat", { user: user, message: chatInput, room: channelId, timestamp: new Date() });
     setChatInput("")
   }
 
@@ -194,6 +153,7 @@ function Channel() {
       <div className='channel-messages-container'>
         {messages?.map((message, i) => (
           <div key={i} className='single-message-container'>
+            {/* {console.log(message, 'IN JSX!!')} */}
             {message && messages[i - 1]?.user?.id !== messages[i]?.user?.id ? (
               <>
                 <div className='single-message-user-info'>
@@ -208,10 +168,10 @@ function Channel() {
               : (
                 <>
                   <div className='single-message-user-info'>
-                    <span className='single-message-timestamp'>{message?.createdAt}</span>
-                    <div>
+                    <span className='single-message-timestamp'>{dateFormatter(message?.createdAt)}</span>
+                    {/* <div>
                       {dateFormatter(message?.createdAt)}
-                    </div>
+                    </div> */}
                   </div>
                   <div className='single-message-message-info'>
                     {message?.message}

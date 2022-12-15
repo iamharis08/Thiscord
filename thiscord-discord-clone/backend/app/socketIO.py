@@ -22,7 +22,6 @@ socketio = SocketIO(cors_allowed_origins=origins)
 def handle_chat(data):
     # now = datetime.now()
 
-    # print(now, 'HERE IS NOW!!!')
 
     print((data['timestamp']), 'DATA WITH CREATED AT', "HERE IS NOW!")
     # test_str = str(data['timestamp'])
@@ -33,7 +32,7 @@ def handle_chat(data):
         user_id=current_user.id,
         channel_id=int(data['room']),
         message=data['message'],
-        # created_at=datetime.now()
+        created_at=datetime.now()
     )
     # print('--------BACKENDDATA', message.to_dict())
     db.session.add(message)
@@ -42,12 +41,7 @@ def handle_chat(data):
 
 
     if data['room']:
-        # print('!!!!! -----IN ROOM, DATA HERE!!!', message.to_dict(), "!!!!! ------- !!!!!")
-        # test = json.dumps(datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ'))
-        # test = json.dumps(datetime.now().isoformat())
-        # data['timestamp'] = test
-        # data['message'] = message.to_dict()
-        # print(data, '!!!!! JSON DUMPS!@!!!!!!!!')
+
         room = data['room']
         emit("chat", data, broadcast=True, to=room)
 
