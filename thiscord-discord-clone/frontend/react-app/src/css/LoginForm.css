@@ -29,7 +29,7 @@ html,body{
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 344px;
+    height: 428px;
     /* border: solid white; */
     padding: 32px;
     background-color: #36393F;
@@ -51,6 +51,8 @@ html,body{
     width: 414px;
     /* border: solid white; */
 }
+
+
 
 .top-header{
     font-weight: 500;
@@ -126,6 +128,7 @@ input[name="password"]{
     transition: background-color 0.3s ease-in-out;
 
 }
+
 .submit-button:hover{
     background-color: #4756f8;
 
@@ -141,4 +144,46 @@ input[name="password"]{
 .register{
     margin: 4px 0px 20px;
     font-size: 14px;
+}
+
+.right-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+}
+.qr-code-box{
+    width: 176px;
+    height: 176px;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 32px;
+}
+.qr-header-text{
+    font-size: 24px;
+    font-weight: 500;
+    color: white;
+    margin: 0px 0px 8px;
+    line-height: 30px;
+    letter-spacing: -0.5px;
+
+}
+
+.qr-sub-header{
+    color: #B9BBBE;
+    text-align: center;
+    letter-spacing: -0.5px;
+    font-size: 16px;
+    font-weight: lighter;
+}
+
+.qr-sub-header > span{
+    font-weight: 600;
+}
+
+#qr-image{
+    width: 100%;
+    /* height: 156px; */
+
 }

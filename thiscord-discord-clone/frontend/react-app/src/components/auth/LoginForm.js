@@ -4,6 +4,8 @@ import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 // import loginFormImage from "./images/loginformbackground.svg"
 import "../../css/LoginForm.css"
+import qrImage from "../../css/images/thiscordQrCode.png"
+
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
@@ -17,9 +19,19 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      console.log(data)
+
       setErrors(data);
     }
+  };
+
+  const demoOneLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo@aa.io", "password"));
+  };
+
+  const demoTwoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo2@aa.io", "password"));
   };
 
   const updateEmail = (e) => {
@@ -103,7 +115,9 @@ const LoginForm = () => {
                 onChange={updatePassword}
               />
               <div className="forgot-password">Forgot your password</div>
-              <button type="submit" className="submit-button">Login</button>
+              <button type="submit" className="submit-button">Log in</button>
+              <button onClick={demoOneLogin} className="submit-button demo">Demo user 1</button>
+              <button onClick={demoTwoLogin} className="submit-button">Demo user 2</button>
               <div className="register"><span id="need-account">Need an account?</span> <span id="register-link">Register</span></div>
             </div>
           </form>
@@ -111,7 +125,11 @@ const LoginForm = () => {
 
           </div>
           <div className="right-form">
-            Log in with QR Code
+            <div className="qr-code-box">
+            <img id='qr-image' src={qrImage} alt='qrlogin' />
+            </div>
+            <div className="qr-header-text">Log in with QR Code</div>
+            <div className="qr-sub-header">Scan this with the <span>Discord mobile app</span> to log in instantly.</div>
           </div>
 
         </div>
