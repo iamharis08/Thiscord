@@ -8,6 +8,8 @@ import { fetchMessages } from '../store/message';
 import { fetchOneChannel } from '../store/channel';
 import '../css/Channel.css'
 
+import '../css/Channel.css'
+
 
 let socket;
 

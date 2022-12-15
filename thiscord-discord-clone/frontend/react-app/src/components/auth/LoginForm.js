@@ -4,9 +4,13 @@ import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 // import loginFormImage from "./images/loginformbackground.svg"
 import "../../css/LoginForm.css"
+import qrImage from "../../css/images/thiscordQrCode.png"
+
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
+  // const [emailErr, setEmailErr] = useState([]);
+  // const [passErr, setPassErr] = useState([]);
   const [password, setPassword] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
@@ -15,8 +19,19 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
+
       setErrors(data);
     }
+  };
+
+  const demoOneLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo@aa.io", "password"));
+  };
+
+  const demoTwoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo2@aa.io", "password"));
   };
 
   const updateEmail = (e) => {
@@ -27,15 +42,36 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to="/" />;
+
+
+  const formErrors = (inputField) => {
+    console.log(errors[0].split(' : ')[0])
+    console.log("hittt")
+    if(!errors.length) {
+      return false
+    }
+    // let passwordErrors = []
+    let errorObj = {}
+
+    errors.forEach((err) => {
+      if (err.split(' : ')[0] === "password"){
+        errorObj['password'] = err.split(' : ')[1]
+        console.log("INSIDE")
+      }
+      if (err.split(' : ')[0] === "email"){
+        errorObj['email'] = err.split(' : ')[1]
+      }
+    })
+
+
+
+    return errorObj
+
   }
 
-  const formErrors = () => {
-    const errorsList = errors.map((error, ind) => (
-      <div key={ind}>{error}</div>
-    ))
 
+  if (user) {
+    return <Redirect to="/servers" />;
   }
   return (
     <div className="login-form-page">
@@ -57,7 +93,7 @@ const LoginForm = () => {
                 <div key={ind}>{error}</div>
               ))}
             </div> */}
-            <div className={errors.length >= 1 ? "error-input-text": "input-text"}>EMAIL OR PHONE NUMBER{!errors.length ? (<span className="asterik"> *</span>) : (<span className="errors"> - {errors[0]}</span>)}</div>
+            <div className={errors.length && formErrors("email")['email'] ? "error-input-text": "input-text"}>EMAIL OR PHONE NUMBER{errors.length && formErrors("email")['email'] ?  (<span className="errors"> - {formErrors("email")['email']}</span>) : (<span className="asterik"> *</span>)}</div>
             <div>
               <label htmlFor="email"></label>
               <input
@@ -68,7 +104,7 @@ const LoginForm = () => {
                 onChange={updateEmail}
               />
             </div>
-            <div className={errors.length > 1 ? "error-password-text": "input-text password-text"}>PASSWORD{!errors.length > 1 ?  (<span className="errors"> - {errors[1]}</span>) :(<span className="asterik"> *</span>)}</div>
+            <div className={errors.length && formErrors("password")['password'] ? "error-password-text": "input-text password-text"}>PASSWORD{errors.length && formErrors("password")['password'] ? (<span className="errors"> - {formErrors("password")['password']}</span>) :(<span className="asterik"> *</span>)}</div>
             <div>
               <label htmlFor="password"></label>
               <input
@@ -79,7 +115,9 @@ const LoginForm = () => {
                 onChange={updatePassword}
               />
               <div className="forgot-password">Forgot your password</div>
-              <button type="submit" className="submit-button">Login</button>
+              <button type="submit" className="submit-button">Log in</button>
+              <button onClick={demoOneLogin} className="submit-button demo">Demo user 1</button>
+              <button onClick={demoTwoLogin} className="submit-button">Demo user 2</button>
               <div className="register"><span id="need-account">Need an account?</span> <span id="register-link">Register</span></div>
             </div>
           </form>
@@ -87,7 +125,11 @@ const LoginForm = () => {
 
           </div>
           <div className="right-form">
-            Log in with QR Code
+            <div className="qr-code-box">
+            <img id='qr-image' src={qrImage} alt='qrlogin' />
+            </div>
+            <div className="qr-header-text">Log in with QR Code</div>
+            <div className="qr-sub-header">Scan this with the <span>Discord mobile app</span> to log in instantly.</div>
           </div>
 
         </div>

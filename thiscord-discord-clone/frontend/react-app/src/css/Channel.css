@@ -19,14 +19,8 @@ body {
 
 .channel-header-container {
   display: flex;
-  position: fixed;
   justify-content: left;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  height: 5rem;
-  width: 100%;
-  background-color: rgb(54, 57, 63);
-
 }
 
 .channel-hash {

@@ -1,16 +1,13 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 import '../css/ImagineAPlace.css'
-import channelsHomeSvg from '../css/images/thiscord-channel-img.svg'
-import voiceChannelImg from '../css/images/voice-channel-img.svg'
-import membersHomeImg from '../css/images/members-home-img.svg'
-import voiceCallImg from '../css/images/voice-call-img.svg'
 
 
 const ImagineAPlace = () => {
     return (
         <main>
             <div className='hero-container'>
-                <img id='hero-image' src='https://theme.zdassets.com/theme_assets/678183/b7e9dce75f9edb23504e13b4699e208f204e5015.png' alt=''></img>
+                <img id='hero-image' src='https://theme.zdassets.com/theme_assets/678183/b7e9dce75f9edb23504e13b4699e208f204e5015.png' alt='' />
                 <div className='hero-text'>
                     <h1 className='hero-h1-text'>IMAGINE A PLACE...</h1>
                     <div className='hero-body-text'>
@@ -20,7 +17,7 @@ const ImagineAPlace = () => {
             </div>
             <div className='channels-section-container'>
                 <div className='channels-home-image'>
-                    <img src={channelsHomeSvg} alt='something in there' />
+                    <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671038950/thiscord-channel-img_rjweka.svg' alt='something in there' />
                 </div>
                 <div className='channels-home-text'>
                     <h2 id='channels-home-h2'>Create an invite-only place where you belong</h2>
@@ -37,12 +34,12 @@ const ImagineAPlace = () => {
                     </span>
                 </div>
                 <div className='voice-channels-home-image'>
-                    <img src={voiceChannelImg} alt=''/>
+                    <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671038884/voice-channel-img_umaobg.svg' alt=''/>
                 </div>
             </div>
             <div className='members-section-container'>
                 <div className='members-home-image'>
-                    <img src={membersHomeImg} alt=''/>
+                    <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671038805/members-home-img_n7oomh.svg' alt=''/>
                 </div>
                 <div className='members-home-text'>
                     <h2 id='members-home-h2'>From few to a fandom</h2>
@@ -59,7 +56,73 @@ const ImagineAPlace = () => {
                     </span>
                 </div>
                 <div className='voice-call-home-image'>
-                    <img src={voiceCallImg} alt=''/>
+                    <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671037592/voice-call-img_e0hjeu.svg' alt=''/>
+                </div>
+            </div>
+            <div className='journey-container'>
+                <div className='sparkles'>
+                    <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671057856/sprakles-home-img_ymbgaa.svg' alt=''></img>
+                </div>
+                    <i className="fa-regular fa-arrow-down-to-bracket"></i>
+                <div className='start-your-journey-text'>
+                    Ready to start your journey?
+                </div>
+                <NavLink to='/login'>
+                    <button className='download-btn'>
+                        <img alt='' src='https://res.cloudinary.com/drybvuzux/image/upload/v1671061757/download-btn-img_1_l8p4b0.svg'></img>
+                        Download for Windows
+                    </button>
+                </NavLink>
+            </div>
+            <div className='footer-container'>
+                <div className='imagine-a-place-footer'>
+                    <h4 className='imagine-text'>
+                        IMAGINE A PLACE
+                    </h4>
+                    <span className='language-footer'>
+                        <img id='usa-footer-img' alt='' src='https://res.cloudinary.com/drybvuzux/image/upload/v1671077047/Screenshot_2022-12-14_220217_i21w2w.png'></img>
+                        English, USA
+                    </span>
+                </div>
+                <div className='jacob-developer-footer'>
+                    <a href='https://github.com/jacoblauxman'>
+                        <img id='github-logo' src='https://www.shareicon.net/data/2015/09/15/101512_logo_512x512.png' alt=''></img>
+                        Jacob Lauxman
+                    </a>
+                </div>
+                <div className='tyler-developer-footer'>
+                    <a href='https://github.com/Cahzzm'>
+                    <img id='github-logo' src='https://www.shareicon.net/data/2015/09/15/101512_logo_512x512.png' alt=''></img>
+                        Tyler Short
+                    </a>
+                </div>
+                <div className='trevor-developer-footer'>
+                    <a href='https://github.com/Trevor-Walton-Moore'>
+                    <img id='github-logo' src='https://www.shareicon.net/data/2015/09/15/101512_logo_512x512.png' alt=''></img>
+                        Trevor Moore
+                    </a>
+                </div>
+                <div className='haris-developer-footer'>
+                    <a href='https://github.com/iamharis08'>
+                    <img id='github-logo' src='https://www.shareicon.net/data/2015/09/15/101512_logo_512x512.png' alt=''></img>
+                        Haris Ahmed
+                    </a>
+                </div>
+            </div>
+            <div className='logo-signup-container'>
+                <div className='footer-line-seperator'></div>
+                <div id='logo-signup'>
+                    <NavLink to='/'>
+                        <div className='logo-footer'>
+                            <img id='thiscord-logo-footer' alt='' src='https://pnggrid.com/wp-content/uploads/2021/05/Black-and-white-Discord-Logo.png'></img>
+                            This.cord
+                        </div>
+                    </NavLink>
+                    <NavLink to='/sign-up'>
+                        <button className='signup-footer'>
+                            Signup
+                        </button>
+                    </NavLink>
                 </div>
             </div>
         </main>
