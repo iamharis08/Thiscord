@@ -29,7 +29,48 @@ function Channel() {
   const currChannel = useSelector(state => state.channel)
   // console.log(currChannel, 'CURRENT CHANNEL!!')
 
-  console.log(messageTime, 'HERE IS MESSAGE TIME!')
+  // const currDate = Date()
+  // let dayCheck = new Date()
+  // let day = 'Today'
+  // dayCheck = dayCheck.setDate(dayCheck.getDate() - 1)
+  // if (dayCheck.Check.toDateString() === currdate.toDateString()) {
+
+  // }
+
+  const dateFormatter = (date) => {
+    let check = new Date();
+    let dateObj = new Date(date)
+    check = check.setDate(check.getDate() - 1)
+    // console.log(check, 'HERE IS OUR CHECK')
+    check = Date(check)
+    let dateCheck = Date(check).split('-')[0]
+    // console.log(dateObj, 'OUR DATE IN OBJ')
+
+    console.log(Date(date).split('-')[0], 'test test test!!!')
+
+    // console.log(date, 'HERE IS CHECK!!!!', dateCheck, 'HERE IS DATE!!!!')
+    // console.log(date, 'HERE IS DATE!!!!')
+
+    // if (check.toDateString() === date.toDateString()) {
+    //   return `Today at ${date.toLocaleDateString(date, { hour: 'numeric', minute: 'numeric' })}`
+    // }
+    // else if (date.toDateString() - check.toDateString() === 1) {
+    //   return `Yesterday at ${date.toLocaleDateString(date, { hour: 'numeric', minute: 'numeric' })}`
+    // }
+    // else {
+    //   let year = date.getFullYear()
+    //   let month = date.getMonth()
+    //   let day = date.getDate()
+    //   let time = date.toLocaleTimeString()
+    //   console.log('FRESH YEAR!!!! OLD YEAR!!!', `${day}/${month}/${year} at ${time}`)
+    //   return `${day}/${month}/${year} at ${time}`
+    // }
+
+    return ''
+  }
+
+
+
   useEffect(() => {
     // listen for chat events
     (async () => {
@@ -53,12 +94,21 @@ function Channel() {
 
       console.log(chat, "HERE IS OUR CHAT OBJ")
       // outputChat(chat)
-      console.log(user, 'OUR USER')
+      // console.log(user, 'OUR USER')
       setMessageTime(chat.timestamp)
-      console.log(messages, 'HERE ARE MESSAGES IN ON!!')
+      // console.log(messages, 'HERE ARE MESSAGES IN ON!!')
       const currDate = Date()
+      console.log(currDate, 'CURRENTDATE in USE')
+      // let dayCheck = new Date()
+      // let day = 'Today'
+      // dayCheck = dayCheck.setDate(dayCheck.getDate() - 1)
+      // if (dayCheck.Check.toDateString() === currDate.toDateString()) {
+      // }
+
+      // const options = { weekday: 'short', }
       const dateStamp = currDate.split('-')[0]
-      console.log(dateStamp, 'SPLIT!')
+      console.log(dateStamp, 'HERE IS OUR DATESTAMP!!')
+      // console.log(dateStamp, 'SPLIT!')
       const res = { channelId: +chat.room, createdAt: dateStamp, message: chat.message, user: { ...chat.user } }
       console.log(res, "RES RES RES RES RES")
 
@@ -84,21 +134,6 @@ function Channel() {
   //
 
 
-  // const outputChat = (chat) => {
-  //   console.log('in OUTPUT CHATT!', chat)
-  //   return (
-  //     <>
-  //       <>
-  //         <div className='single-message-user-info'>
-  //           <span className='single-message-username'> {chat?.user?.username} </span> {" "} <span className='single-message-user-timestamp'> {chat?.timestamp} </span>
-  //         </div>
-  //         <div className='single-message-message-info'>
-  //           {chat?.message}
-  //         </div>
-  //       </>
-  //     </>
-  //   )
-  // }
 
 
   const updateChatInput = (e) => {
@@ -132,7 +167,8 @@ function Channel() {
             {message && messages[i - 1]?.user?.id !== messages[i]?.user?.id ? (
               <>
                 <div className='single-message-user-info'>
-                  <span className='single-message-username'> {message?.user?.username} </span> <span className='single-message-user-timestamp'> {message?.createdAt} </span>
+                  <span className='single-message-username'> {message?.user?.username} </span>
+                  <span className='single-message-user-timestamp'> {message?.createdAt} </span>
                 </div>
                 <div className='single-message-message-info'>
                   {message?.message}
@@ -151,9 +187,6 @@ function Channel() {
               )}
           </div>
         ))}
-        <div>
-          {/* {outputChat} */}
-        </div>
       </div>
       <div className='message-form-container'>
         <form onSubmit={sendChat} className='message-form-form'>
