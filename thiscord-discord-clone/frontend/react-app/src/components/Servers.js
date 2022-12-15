@@ -23,7 +23,6 @@ function ServersList() {
     fetchData();
   }, [dispatch]);
 
-  const serverComponents = Object.values(serverArr.servers).map((server) => {
   const displayServerName = (serverId) => {
     setHoveredId(serverId);
   };
@@ -32,30 +31,70 @@ function ServersList() {
     setHoveredId(-1);
   };
 
+  const serverComponents = Object.values(serverArr.servers).map((server) => {
+
     return (
       <div className="listItem" key={server.id}>
+        {hoveredId === server.id &&
+          <span className='hiddenItems'>
+            <span className='whiteNub'></span>
+            <span className='textBox'>
+              <span className='triangle'></span>
+              <span className='serverNames'>
+                {server.name}
+              </span>
+            </span>
+          </span>
+        }
         <span className='serverIcon'
           onMouseOut={hideServerName}
           onMouseOver={() => displayServerName(server.id)}>
           <NavLink className='link' to={`/servers/${server.id}`}>{server.id}</NavLink>
         </span>
-        {hoveredId === server.id &&
-          <span>
-            <span className='whiteBud'></span>
-            <span className='serverNames'>{server.name}</span>
-          </span>
-          }
       </div>
     );
   });
 
   return (
-    <>
-      <h1>Servers List: </h1>
-      <div className='bg'>
+    <div className='bg'>
+      {hoveredId === 1000000 &&
+        <span className='dmHiddenItems'>
+          <span className='dmWhiteNub'></span>
+          <span className='dmtTextBox'>
+            <span className='dmTriangle'></span>
+            <span className='dmServerNames'>
+              Direct Messages
+            </span>
+          </span>
+        </span>
+      }
+      <span className='dm'
+        onMouseOut={hideServerName}
+        onMouseOver={() => displayServerName(1000000)}>
+        DM
+      </span>
+      <div className='line'></div>
+      <div className='list'>
         {serverComponents}
       </div>
-    </>
+      {hoveredId === 10000000 &&
+        <span className='dmHiddenItems'>
+          <span className='textBox'>
+            <span className='addServerTriangle'></span>
+            <span className='addServerText'>
+              Add a Server
+            </span>
+          </span>
+        </span>
+      }
+      <span className='addServerIcon'
+        onMouseOut={hideServerName}
+        onMouseOver={() => displayServerName(10000000)}>
+        <div className='plus'>
+          +
+        </div>
+      </span>
+    </div>
   );
 }
 
