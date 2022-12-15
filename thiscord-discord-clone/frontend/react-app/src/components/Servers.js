@@ -71,7 +71,7 @@ function ServersList() {
   });
 
   return (
-    <>
+    <div>
       <div className='bg'>
         {hoveredId === 1000000 &&
           <span className='dmHiddenItems'>
@@ -113,14 +113,13 @@ function ServersList() {
         </span>
       </div>
       {showModal && (
-        <>
-          <div>DIIIIIIVVVVEEEEEEEEE</div>
+
           <Modal onClose={() => setShowModal(false)}>
             <ServerFormModal setShowModal={setShowModal} showModal={showModal} />
           </Modal>
-        </>
+
       )}
-    </>
+    </ div>
   );
 }
 

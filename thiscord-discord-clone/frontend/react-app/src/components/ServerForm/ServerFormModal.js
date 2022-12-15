@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import "./ServerForm.css"
 // import '../button.css';
 
-function ServerFormModal({ setShowModal, showModal }) {
+function ServerFormModal({ setShowModal}) {
   // const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ function ServerFormModal({ setShowModal, showModal }) {
       });
   }
 
-  useEffect(() => {}, [showModal]);
+  // useEffect(() => {}, [showModal]);
 
   return (
     <>
