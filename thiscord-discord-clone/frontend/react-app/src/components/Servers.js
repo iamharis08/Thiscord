@@ -71,7 +71,6 @@ function ServersList() {
       <span className='dm'
         onMouseOut={hideServerName}
         onMouseOver={() => displayServerName(1000000)}>
-        DM
       </span>
       <div className='line'></div>
       <div className='list'>

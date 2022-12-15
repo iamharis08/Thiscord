@@ -12,7 +12,10 @@ body {
 
 .dm {
     position: relative;
-    top: 37px;
+    background-image: url(images/dm-icon.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 12px;
     /* margin: auto; */
     margin: 0px auto 0px auto;
     display: flex;
@@ -21,9 +24,9 @@ body {
     width: 55px;
     height: 55px;
     font-family: sans-serif;
-    color: rgb(255, 255, 255);
+    /* color: rgb(255, 255, 255); */
     font-size: 22px;
-    background-color: rgb(46, 49, 54);
+    /* background-color: rgb(46, 49, 54); */
     /* border: 2px red solid; */
     border-radius: 45px;
 }
@@ -39,7 +42,7 @@ body {
 }
 
 .line {
-    padding-top: 46px;
+    padding-top: 20px;
     border-bottom: 2px solid rgba(75, 75, 75, 0.645);
     width: 34px;
     margin: auto;
@@ -121,7 +124,7 @@ body {
     border-radius: 20%;
     color: rgb(255, 255, 255);
     right: -4px;
-    top: 70px;
+    top: 45px;
     /* border: 1px blue solid; */
     /* margin-left: -9px;
     margin-top: 72px; */
@@ -153,7 +156,7 @@ body {
     /* margin-left: 82px;
     margin-top: 74.5px; */
     left: 85px;
-    top: 73px;
+    top: 48.5px;
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
     border-right: 5px solid rgb(24, 24, 24);
@@ -182,7 +185,7 @@ body {
     background-color: rgb(24, 24, 24);
     position: absolute;
     left: 90px;
-    top: 58.5px;
+    top: 33.5px;
     /* align-items: center;
     justify-content: center; */
     /* margin-left: 87px;
@@ -236,21 +239,23 @@ body {
     /* margin: none; */
 }
 
-/* .plus {
-    padding: 15px
-} */
+.plus {
+    display: flex;
+    height: 45px;
+    text-align: center;
+}
 
 .addServerTriangle {
     position: absolute;
     left: 85px;
-    top: 40px;
+    top: 43.5px;
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
     border-right: 5px solid rgb(24, 24, 24);
 }
 
 .addServerText {
-    min-width: 186px;
+    min-width: 106px;
     padding: 10px 12px 10px 12px;
     border-radius: 5px;
     list-style: none;
@@ -260,7 +265,7 @@ body {
     background-color: rgb(24, 24, 24);
     position: absolute;
     left: 90px;
-    top: 25px;
+    top: 28.5px;
     /* align-items: center;
     justify-content: center; */
     /* margin-left: 87px;
