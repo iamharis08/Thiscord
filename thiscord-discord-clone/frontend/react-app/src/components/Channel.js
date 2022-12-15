@@ -39,19 +39,35 @@ function Channel() {
 
   const dateFormatter = (date) => {
     // let dateObj = new Date(date)
-    let check = new Date();
-    console.log('CHECK!', check.getDate() - 1)
-    let yest = (check.setDate((check.getDate() - 1)))
-    console.log('yest', Date(yest))
-    console.log('setting', Date(check.setDate(yest)))
+
+    // let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+    // console.log(`Yesterday (oneliner)\n${yesterday}`);
+
+
+    // let yesterday2 = new Date(Date.now() - 86400000)
+    // console.log(yesterday2, 'YESTERDAY 2')
+
+    let yesterday3 = new Date();
+    yesterday3.setDate(yesterday3.getDate() - 1)
+    console.log(yesterday3, 'THIRD YESTERDAY')
+
+    yesterday3 = yesterday3.toDateString().split(' ')[0]
+
+    console.log(date.toString().split('-')[0], 'DATE!!', yesterday3, 'YESTERDAY!')
+
+    // let check = new Date();
+    // // console.log('CHECK!', check.(new Date().setDate(new Date().getDate() - 1)))
+    // let yest = (check.setDate((check.getDate() - 1)))
+    // console.log('yest', Date(yest))
+    // console.log('setting', Date(check.setDate(check.getDate() - 1)))
     // check = check.setDate((check.getDate() - 1))
-    console.log(Date((check.setDate((check.getDate() - 1))))
-      .split(' ').splice(0, 4).join(' ')
-      , 'HERE IS OUR CHECK')
+    // console.log(Date((check.setDate((check.getDate() - 1))))
+    //   .split(' ').splice(0, 4).join(' ')
+    //   , 'HERE IS OUR CHECK')
     // check = check.setDate(check.getDate() - 1)
     // console.log('DAAAAATEEEEE', dateO  bj)
-    check = Date(check).split('-')[0]
-    let dateCheck = Date(check).split('')[0]
+    // check = Date(check).split('-')[0]
+    // let dateCheck = Date(check).split('')[0]
     // console.log(dateObj, 'OUR DATE IN OBJ')
 
     console.log(Date(date).split('-')[0], 'test test test!!!')
