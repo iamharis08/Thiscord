@@ -1,0 +1,6 @@
+.create-server-form {
+    width: 500px;
+    height: 500px;
+    background-color: aquamarine;
+    z-index: 100;
+}
