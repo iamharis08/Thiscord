@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+// import '../css/UsersList.css'
 
 function UsersList() {
   const [users, setUsers] = useState([]);
@@ -15,9 +16,7 @@ function UsersList() {
 
   const userComponents = users.map((user) => {
     return (
-      <li key={user.id}>
         <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
-      </li>
     );
   });
 
