@@ -31,6 +31,16 @@ function ServersList() {
     setHoveredId(-1);
   };
 
+  const abbreviate = (serverName) => {
+    let initials = [serverName[0]]
+
+    for (let i = 0; i < serverName.length; i++) {
+      serverName[i-1] === " " && initials.push(serverName[i])
+    }
+
+    return initials.length <= 5 ? initials.join("") : initials.slice(0, 5)
+  }
+
   const serverComponents = Object.values(serverArr.servers).map((server) => {
 
     return (
@@ -49,7 +59,7 @@ function ServersList() {
         <span className='serverIcon'
           onMouseOut={hideServerName}
           onMouseOver={() => displayServerName(server.id)}>
-          <NavLink className='link' to={`/servers/${server.id}`}>{server.id}</NavLink>
+          <NavLink className='link' to={`/servers/${server.id}`}>{abbreviate(server.name)}</NavLink>
         </span>
       </div>
     );
