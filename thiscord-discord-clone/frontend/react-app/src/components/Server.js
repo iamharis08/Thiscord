@@ -3,6 +3,7 @@ import { useParams, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchOneServer } from '../store/server';
+import '../css/SingleServer.css'
 
 function Server() {
   // const [server, setServer] = useState({});
@@ -48,30 +49,34 @@ function Server() {
 
   return (
     <>
-      <ul>
-        <li>
-          <strong>Server Id</strong> {serverId}
-        </li>
-        <li>
-          <strong>Server Name</strong> {server?.name}
-        </li>
-      </ul>
       <div>
-        <strong>Users</strong>
-        {serverInfo?.users?.map(user => (
-          <li key={user?.id}>
-            {user?.username}
+        <ul>
+          <li>
+            <strong>Server Id</strong> {serverId}
           </li>
-        ))}
-      </div>
-      <div>
-        <strong>Channels</strong>
-        {serverInfo?.channels?.map(channel => (
-          <li key={channel?.id}>
-            <NavLink to={`/channels/${channel.id}`}> {channel?.name}</NavLink>
-
+          <li>
+            <strong>Server Name</strong> {server?.name}
           </li>
-        ))}
+        </ul>
+        <div className='channels-members-container'>
+            <div className='channels-list'>
+              <strong>Channels</strong>
+              {serverInfo?.channels?.map(channel => (
+                <li key={channel?.id}>
+                  <NavLink to={`/channels/${channel.id}`}> {channel?.name}</NavLink>
+                </li>
+              ))}
+            </div>
+            <div className='members-list'>
+              <strong>Members -</strong>
+              {serverInfo?.users?.map(user => (
+                <p id='one-member' key={user?.id}>
+                  <img id='member-profile' src='https://www.svgrepo.com/show/331368/discord-v2.svg' alt=''></img>
+                  {user?.username}
+                </p>
+              ))}
+            </div>
+        </div>
       </div>
     </>
   );
