@@ -2,6 +2,8 @@ from flask_socketio import SocketIO, send, emit, join_room, leave_room
 from app.models import db, Message
 from flask_login import login_required, current_user
 import os
+from datetime import datetime
+import json
 
 if os.environ.get("FLASK_ENV") == "production":
     origins = [
@@ -18,17 +20,34 @@ socketio = SocketIO(cors_allowed_origins=origins)
 # handle chat messages
 @socketio.on("chat")
 def handle_chat(data):
+    # now = datetime.now()
+
+    # print(now, 'HERE IS NOW!!!')
+
+    print((data['timestamp']), 'DATA WITH CREATED AT', "HERE IS NOW!")
+    # test_str = str(data['timestamp'])
+    # print(test_str, "!!!!!! -------- HERE IS STR of TIMESTRING --------")
+
+
     message = Message(
         user_id=current_user.id,
         channel_id=int(data['room']),
-        message=data['message']
+        message=data['message'],
+        # created_at=datetime.now()
     )
-    print('--------BACKENDDATA', message.to_dict())
+    # print('--------BACKENDDATA', message.to_dict())
     db.session.add(message)
     db.session.commit()
+    # new_message_date = datetime.now()
+
 
     if data['room']:
-        print('-----INROOMBACKEND', data)
+        # print('!!!!! -----IN ROOM, DATA HERE!!!', message.to_dict(), "!!!!! ------- !!!!!")
+        # test = json.dumps(datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ'))
+        # test = json.dumps(datetime.now().isoformat())
+        # data['timestamp'] = test
+        # data['message'] = message.to_dict()
+        # print(data, '!!!!! JSON DUMPS!@!!!!!!!!')
         room = data['room']
         emit("chat", data, broadcast=True, to=room)
 
@@ -36,7 +55,7 @@ def handle_chat(data):
 
 @socketio.on('join')
 def on_join(data):
-    print('------USERDATASOCKET', data)
+    # print('------USERDATASOCKET', data)
     username = data['user']['username']
     room = data['room']
     join_room(room)

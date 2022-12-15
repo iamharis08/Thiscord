@@ -25,5 +25,6 @@ class Message(db.Model, TimestampMixin):
             'id': self.id,
             'userId': self.user_id,
             'channelId': self.channel_id,
-            'message':self.message
+            'message':self.message,
+            'createdAt': self.created_at
         }
