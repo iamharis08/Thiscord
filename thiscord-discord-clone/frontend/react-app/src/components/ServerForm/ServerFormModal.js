@@ -6,12 +6,13 @@ import { useSelector } from 'react-redux';
 import "./ServerForm.css"
 // import '../button.css';
 
-function ServerFormModal({ setShowModal}) {
-  // const [showModal, setShowModal] = useState(false);
+function ServerFormModal({ setShowModal }) {
 
   const dispatch = useDispatch();
+
   const user = useSelector(state => state.session.user);
-  const [serverName, setServerName] = useState('');
+
+  const [serverName, setServerName] = useState(`${user.username}'s server`);
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
@@ -26,8 +27,6 @@ function ServerFormModal({ setShowModal}) {
       });
   }
 
-  // useEffect(() => {}, [showModal]);
-
   return (
     <>
       <div className='create-server-form'>
@@ -40,7 +39,7 @@ function ServerFormModal({ setShowModal}) {
               <label>
                 <input
                   className="input top"
-                  placeholder={`${user.userName}'s server`}
+                  // placeholder={`${user.username}'s server`}
                   type="text"
                   value={serverName}
                   onChange={(e) => setServerName(e.target.value)}
