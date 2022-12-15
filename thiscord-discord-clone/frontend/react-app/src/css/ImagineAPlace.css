@@ -168,3 +168,155 @@ html, body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     text-align: center;
 }
+
+.journey-container {
+    background-color: #F6f6f6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-your-journey-text {
+    margin-top: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.sparkles {
+    position: absolute;
+    margin-bottom: 200px;
+}
+
+.download-btn {
+    margin-top: 40px;
+    border: none;
+    border-radius: 28px;
+    font-size: 20px;
+    padding: 16px 32px;
+    background-color: #5865f2;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 120px;
+}
+
+.download-btn:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 20%);
+    cursor: pointer;
+    background-color: #9099f1;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #23272a;
+    color: white;
+    padding-bottom: 80px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.imagine-a-place-footer {
+    display: flex;
+    /* font-family: ; */
+    flex-direction: column;
+}
+
+#usa-footer-img {
+    width: 25px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.imagine-text {
+    font-family: 'Unbounded';
+    font-size: 32px;
+}
+
+.language-footer {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.jacob-developer-footer {
+    padding-top: 100px;
+    vertical-align: middle;
+}
+
+.tyler-developer-footer {
+    padding-top: 100px;
+}
+
+.trevor-developer-footer {
+    padding-top: 100px;
+}
+
+.haris-developer-footer {
+    padding-top: 100px;
+}
+
+.logo-signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #23272a;
+    padding-bottom: 70px;
+}
+
+.footer-line-seperator {
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    height: 1px;
+    background-color: #5865f2;
+    margin-bottom: 32px;
+}
+
+#thiscord-logo-footer {
+    width: 30px;
+    vertical-align: middle;
+    border: none;
+    margin: 10px;
+}
+
+#logo-signup {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+}
+
+.logo-footer {
+    color: white;
+    font-family: 'Unbounded';
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.signup-footer {
+    border:none;
+    color: white;
+    background-color: #5865f2;
+    border-radius: 40px;
+    font-size: 14px;
+    padding: 7px 16px;
+}
+
+.signup-footer:hover {
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 20%);
+    background-color: #9099f1;
+}
+
+#github-logo {
+    width: 28px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
