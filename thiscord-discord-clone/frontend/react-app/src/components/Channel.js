@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
@@ -7,7 +7,6 @@ import { fetchMessages } from '../store/message';
 
 import { fetchOneChannel } from '../store/channel';
 import '../css/Channel.css'
-
 
 
 let socket;
@@ -29,21 +28,30 @@ function Channel() {
   const currChannel = useSelector(state => state.channel)
   // console.log(currChannel, 'CURRENT CHANNEL!!')
 
-  // const currDate = Date()
-  // let dayCheck = new Date()
-  // let day = 'Today'
-  // dayCheck = dayCheck.setDate(dayCheck.getDate() - 1)
-  // if (dayCheck.Check.toDateString() === currdate.toDateString()) {
 
-  // }
+  const messageEnd = useRef(null);
+
+
+  const messageScroll = () => {
+    messageEnd.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
 
   const dateFormatter = (date) => {
+    // let dateObj = new Date(date)
     let check = new Date();
-    let dateObj = new Date(date)
-    check = check.setDate(check.getDate() - 1)
-    // console.log(check, 'HERE IS OUR CHECK')
-    check = Date(check)
-    let dateCheck = Date(check).split('-')[0]
+    console.log('CHECK!', check.getDate() - 1)
+    let yest = (check.setDate((check.getDate() - 1)))
+    console.log('yest', Date(yest))
+    console.log('setting', Date(check.setDate(yest)))
+    // check = check.setDate((check.getDate() - 1))
+    console.log(Date((check.setDate((check.getDate() - 1))))
+      .split(' ').splice(0, 4).join(' ')
+      , 'HERE IS OUR CHECK')
+    // check = check.setDate(check.getDate() - 1)
+    // console.log('DAAAAATEEEEE', dateO  bj)
+    check = Date(check).split('-')[0]
+    let dateCheck = Date(check).split('')[0]
     // console.log(dateObj, 'OUR DATE IN OBJ')
 
     console.log(Date(date).split('-')[0], 'test test test!!!')
@@ -92,21 +100,20 @@ function Channel() {
 
     socket.on("chat", (chat) => {
 
-      console.log(chat, "HERE IS OUR CHAT OBJ")
-      // outputChat(chat)
-      // console.log(user, 'OUR USER')
-      setMessageTime(chat.timestamp)
-      // console.log(messages, 'HERE ARE MESSAGES IN ON!!')
-      const currDate = Date()
-      console.log(currDate, 'CURRENTDATE in USE')
-      // let dayCheck = new Date()
-      // let day = 'Today'
-      // dayCheck = dayCheck.setDate(dayCheck.getDate() - 1)
-      // if (dayCheck.Check.toDateString() === currDate.toDateString()) {
-      // }
+      // setMessageTime(chat.timestamp)
+
+
+      const currDate = new Date()
+
+
+
+
+      // console.log(currDate, 'HERE IS CURRDATE')
+
+
 
       // const options = { weekday: 'short', }
-      const dateStamp = currDate.split('-')[0]
+      const dateStamp = currDate.toDateString().split('-')[0]
       console.log(dateStamp, 'HERE IS OUR DATESTAMP!!')
       // console.log(dateStamp, 'SPLIT!')
       const res = { channelId: +chat.room, createdAt: dateStamp, message: chat.message, user: { ...chat.user } }
@@ -133,7 +140,9 @@ function Channel() {
 
   //
 
-
+  useEffect(() => {
+    messageEnd.current?.scrollIntoView({ behavior: "smooth" })
+  }, [messages])
 
 
   const updateChatInput = (e) => {
@@ -179,12 +188,16 @@ function Channel() {
                 <>
                   <div className='single-message-user-info'>
                     <span className='single-message-timestamp'>{message?.createdAt}</span>
+                    <div>
+                      {dateFormatter(message?.createdAt)}
+                    </div>
                   </div>
                   <div className='single-message-message-info'>
                     {message?.message}
                   </div>
                 </>
               )}
+            <div ref={messageEnd} />
           </div>
         ))}
       </div>
