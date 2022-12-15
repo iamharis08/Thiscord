@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 import '../css/ImagineAPlace.css'
 
 
@@ -56,6 +57,72 @@ const ImagineAPlace = () => {
                 </div>
                 <div className='voice-call-home-image'>
                     <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671037592/voice-call-img_e0hjeu.svg' alt=''/>
+                </div>
+            </div>
+            <div className='journey-container'>
+                <div className='sparkles'>
+                    <img src='https://res.cloudinary.com/drybvuzux/image/upload/v1671057856/sprakles-home-img_ymbgaa.svg' alt=''></img>
+                </div>
+                    <i className="fa-regular fa-arrow-down-to-bracket"></i>
+                <div className='start-your-journey-text'>
+                    Ready to start your journey?
+                </div>
+                <NavLink to='/login'>
+                    <button className='download-btn'>
+                        <img alt='' src='https://res.cloudinary.com/drybvuzux/image/upload/v1671061757/download-btn-img_1_l8p4b0.svg'></img>
+                        Download for Windows
+                    </button>
+                </NavLink>
+            </div>
+            <div className='footer-container'>
+                <div className='imagine-a-place-footer'>
+                    <h4 className='imagine-text'>
+                        IMAGINE A PLACE
+                    </h4>
+                    <span className='language-footer'>
+                        <img id='usa-footer-img' alt='' src='https://res.cloudinary.com/drybvuzux/image/upload/v1671077047/Screenshot_2022-12-14_220217_i21w2w.png'></img>
+                        English, USA
+                    </span>
+                </div>
+                <div className='jacob-developer-footer'>
+                    <a href='https://github.com/jacoblauxman'>
+                        <img id='github-logo' src='https://www.shareicon.net/data/2015/09/15/101512_logo_512x512.png' alt=''></img>
+                        Jacob Lauxman
+                    </a>
+                </div>
+                <div className='tyler-developer-footer'>
+                    <a href='https://github.com/Cahzzm'>
+                    <img id='github-logo' src='https://www.shareicon.net/data/2015/09/15/101512_logo_512x512.png' alt=''></img>
+                        Tyler Short
+                    </a>
+                </div>
+                <div className='trevor-developer-footer'>
+                    <a href='https://github.com/Trevor-Walton-Moore'>
+                    <img id='github-logo' src='https://www.shareicon.net/data/2015/09/15/101512_logo_512x512.png' alt=''></img>
+                        Trevor Moore
+                    </a>
+                </div>
+                <div className='haris-developer-footer'>
+                    <a href='https://github.com/iamharis08'>
+                    <img id='github-logo' src='https://www.shareicon.net/data/2015/09/15/101512_logo_512x512.png' alt=''></img>
+                        Haris Ahmed
+                    </a>
+                </div>
+            </div>
+            <div className='logo-signup-container'>
+                <div className='footer-line-seperator'></div>
+                <div id='logo-signup'>
+                    <NavLink to='/'>
+                        <div className='logo-footer'>
+                            <img id='thiscord-logo-footer' alt='' src='https://pnggrid.com/wp-content/uploads/2021/05/Black-and-white-Discord-Logo.png'></img>
+                            This.cord
+                        </div>
+                    </NavLink>
+                    <NavLink to='/sign-up'>
+                        <button className='signup-footer'>
+                            Signup
+                        </button>
+                    </NavLink>
                 </div>
             </div>
         </main>

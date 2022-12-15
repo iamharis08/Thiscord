@@ -34,6 +34,7 @@ function App() {
       <Switch>
         <Route path='/' exact={true}>
           <NavBar />
+          <ImagineAPlace />
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -47,9 +48,6 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/' exact={true} >
-          <ImagineAPlace />
-        </Route>
         <Route path='/livechat' exact={true}>
           <LiveChat />
         </Route>
