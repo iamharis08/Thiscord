@@ -2,22 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchServers } from '../store/server';
+import ServerForm from './ServerForm/ServerForm';
+import { Modal } from './Modal/Modal';
 import "../css/Server.css"
 
 function ServersList() {
   const dispatch = useDispatch()
   const [hoveredId, setHoveredId] = useState(-1);
+  const [showModal, setShowModal] = useState(false);
+
   const user = useSelector(state => state.session.user)
   const serverArr = useSelector(state => state.server)
-  console.log(serverArr, 'HERE IS THE SERVERARR!!!!')
-  console.log('HERE IS USER in SERVERSLIST!!!', user)
+
+  // console.log(serverArr, 'HERE IS THE SERVERARR!!!!')
+  // console.log('HERE IS USER in SERVERSLIST!!!', user)
 
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('/api/servers/');
       const responseData = await response.json();
       dispatch(fetchServers(user?.id))
-      console.log("IN USEEFFECT, loading servers -----", responseData.servers)
+      // console.log("IN USEEFFECT, loading servers -----", responseData.servers)
       // setServers(responseData.servers);
     }
     fetchData();
@@ -35,7 +40,7 @@ function ServersList() {
     let initials = [serverName[0]]
 
     for (let i = 0; i < serverName.length; i++) {
-      serverName[i-1] === " " && initials.push(serverName[i])
+      serverName[i - 1] === " " && initials.push(serverName[i])
     }
 
     return initials.length <= 5 ? initials.join("") : initials.slice(0, 5)
@@ -99,9 +104,15 @@ function ServersList() {
       <span className='addServerIcon'
         onMouseOut={hideServerName}
         onMouseOver={() => displayServerName(10000000)}>
-        <div className='plus'>
+        <div className='plus' onClick={() => {
+          setShowModal(true)
+        }
+        }>
           +
         </div>
+        {showModal && <Modal onClose={() => setShowModal(false)}>
+          <ServerForm setShowModal={setShowModal} />
+        </Modal>}
       </span>
     </div>
   );

@@ -1,0 +1,45 @@
+#modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* max-width: 500px; */
+  }
+
+  #modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  #modal-content {
+    position: absolute;
+    background-color: white;
+    /* max-width: 800px;
+      min-width: 600px; */
+    width: 57%;
+    max-width: 565px;
+    border-radius: 10px;
+    overflow: scroll;
+  }
+
+  .signUpLogInTop {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px rgba(206, 206, 206, 0.587) solid;
+  }
+
+  .welcome {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    padding: 24px;
+  }
