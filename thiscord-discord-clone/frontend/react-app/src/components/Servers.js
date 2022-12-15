@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchServers } from '../store/server';
-import ServerForm from './ServerForm/ServerForm';
-import { Modal } from './Modal/Modal';
+import { Modal } from './context/Modal.js';
 import "../css/Server.css"
+import ServerFormModal from './ServerForm/ServerFormModal';
 
 function ServersList() {
   const dispatch = useDispatch()
@@ -71,50 +71,56 @@ function ServersList() {
   });
 
   return (
-    <div className='bg'>
-      {hoveredId === 1000000 &&
-        <span className='dmHiddenItems'>
-          <span className='dmWhiteNub'></span>
-          <span className='dmtTextBox'>
-            <span className='dmTriangle'></span>
-            <span className='dmServerNames'>
-              Direct Messages
+    <>
+      <div className='bg'>
+        {hoveredId === 1000000 &&
+          <span className='dmHiddenItems'>
+            <span className='dmWhiteNub'></span>
+            <span className='dmtTextBox'>
+              <span className='dmTriangle'></span>
+              <span className='dmServerNames'>
+                Direct Messages
+              </span>
             </span>
           </span>
-        </span>
-      }
-      <span className='dm'
-        onMouseOut={hideServerName}
-        onMouseOver={() => displayServerName(1000000)}>
-      </span>
-      <div className='line'></div>
-      <div className='list'>
-        {serverComponents}
-      </div>
-      {hoveredId === 10000000 &&
-        <span className='dmHiddenItems'>
-          <span className='textBox'>
-            <span className='addServerTriangle'></span>
-            <span className='addServerText'>
-              Add a Server
-            </span>
-          </span>
-        </span>
-      }
-      <span className='addServerIcon'
-        onMouseOut={hideServerName}
-        onMouseOver={() => displayServerName(10000000)}>
-        <div className='plus' onClick={() => {
-          setShowModal(true)
         }
-        }>
-          +
+        <span className='dm'
+          onMouseOut={hideServerName}
+          onMouseOver={() => displayServerName(1000000)}>
+        </span>
+        <div className='line'></div>
+        <div className='list'>
+          {serverComponents}
         </div>
-        {showModal && <Modal onClose={() => setShowModal(false)}>
-          <ServerForm setShowModal={setShowModal} />
-        </Modal>}
-      </span>
-    </div>
+        {hoveredId === 10000000 &&
+          <span className='dmHiddenItems'>
+            <span className='textBox'>
+              <span className='addServerTriangle'></span>
+              <span className='addServerText'>
+                Add a Server
+              </span>
+            </span>
+          </span>
+        }
+        <span className='addServerIcon' onClick={() => {
+          setShowModal(true)
+        }}
+          onMouseOut={hideServerName}
+          onMouseOver={() => displayServerName(10000000)}>
+          <div className='plus'>
+            +
+          </div>
+        </span>
+      </div>
+      {showModal && (
+        <>
+          <div>DIIIIIIVVVVEEEEEEEEE</div>
+          <Modal onClose={() => setShowModal(false)}>
+            <ServerFormModal setShowModal={setShowModal} showModal={showModal} />
+          </Modal>
+        </>
+      )}
+    </>
   );
 }
 
