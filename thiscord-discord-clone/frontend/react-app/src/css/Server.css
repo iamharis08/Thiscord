@@ -23,7 +23,6 @@ body {
     font-family: sans-serif;
     color: rgb(255, 255, 255);
     font-size: 22px;
-    font-family: sans-serif;
     background-color: rgb(46, 49, 54);
     /* border: 2px red solid; */
     border-radius: 45px;
@@ -173,11 +172,8 @@ body {
 }
 
 .dmServerNames {
-    padding-top: 10px;
     min-width: 135px;
-    padding-bottom: 10px;
-    padding-right: 12px;
-    padding-left: 12px;
+    padding: 10px 12px 10px 12px;
     border-radius: 5px;
     list-style: none;
     font-family: sans-serif;
@@ -196,11 +192,8 @@ body {
 }
 
 .serverNames {
-    padding-top: 10px;
     max-width: 186px;
-    padding-bottom: 10px;
-    padding-right: 12px;
-    padding-left: 12px;
+    padding: 10px 12px 10px 12px;
     border-radius: 5px;
     list-style: none;
     font-family: sans-serif;
@@ -211,7 +204,67 @@ body {
     /* align-items: center;
     justify-content: center; */
     margin-left: 87px;
-    margin-top: 6.6px;
+    margin-top: 8px;
+    /* border: 2px red solid; */
+    box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.507);
+}
+
+.addServerIcon {
+    position: relative;
+    top: 5px;
+    margin: 0px auto 0px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55px;
+    height: 55px;
+    font-family: sans-serif;
+    color: rgb(59, 165, 94);
+    font-size: 35px;
+    background-color: rgb(46, 49, 54);
+    /* border: 2px red solid; */
+    border-radius: 45px;
+}
+
+.addServerIcon:hover {
+    /* position: absolute; */
+    /* margin: none; */
+    color: rgb(255, 255, 255);
+    background-color: rgb(59, 165, 94);
+    border-radius: 20px;
+    transition-delay: .19s;
+    /* margin: none; */
+}
+
+/* .plus {
+    padding: 15px
+} */
+
+.addServerTriangle {
+    position: absolute;
+    left: 85px;
+    top: 40px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid rgb(24, 24, 24);
+}
+
+.addServerText {
+    min-width: 186px;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    list-style: none;
+    font-family: sans-serif;
+    font-size: large;
+    color: rgb(231, 231, 231);
+    background-color: rgb(24, 24, 24);
+    position: absolute;
+    left: 90px;
+    top: 25px;
+    /* align-items: center;
+    justify-content: center; */
+    /* margin-left: 87px;
+    margin-top: 6.6px; */
     /* border: 2px red solid; */
     box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.507);
 }

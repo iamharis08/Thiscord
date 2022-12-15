@@ -77,6 +77,23 @@ function ServersList() {
       <div className='list'>
         {serverComponents}
       </div>
+      {hoveredId === 10000000 &&
+        <span className='dmHiddenItems'>
+          <span className='textBox'>
+            <span className='addServerTriangle'></span>
+            <span className='addServerText'>
+              Add a Server
+            </span>
+          </span>
+        </span>
+      }
+      <span className='addServerIcon'
+        onMouseOut={hideServerName}
+        onMouseOver={() => displayServerName(10000000)}>
+        <div className='plus'>
+          +
+        </div>
+      </span>
     </div>
   );
 }
