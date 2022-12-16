@@ -90,10 +90,35 @@ def create_server():
     return {"server": new_server.to_dict()}, 201
 
 # Get Current User Servers
+# @server_routes.route("/")
+# @login_required
+# def users_server():
+#     id = current_user.id
+#     joined_servers = Server.query.filter(Server.users.any(id=id)).all()
+#     servers = {'servers': [server.to_dict() for server in joined_servers]}
+#     return servers, 200
+
 @server_routes.route("/")
 @login_required
 def users_server():
+    # id = current_user.id
+    # joined_servers = Server.query.filter(Server.users.any(id=id)).all()
+    # servers = {'servers': [server.to_dict() for server in joined_servers]}
+    # return servers, 200
+
     id = current_user.id
     joined_servers = Server.query.filter(Server.users.any(id=id)).all()
-    servers = {'servers': [server.to_dict() for server in joined_servers]}
-    return servers, 200
+    res = []
+    for s in joined_servers:
+        print(s.to_dict(), 'BEFORE JOIN??')
+        channels = Channel.query.filter(Channel.server_id==id).all()
+        print([c.to_dict() for c in channels], 'CHANNELS!')
+        server_channels = [c.to_dict() for c in channels]
+        server = s.to_dict()
+        server.update(channels=server_channels)
+        print(server, 'TRYING TO JOIN!!')
+        # print({})
+        res.append(server)
+        servers = {'servers': [server.to_dict() for server in joined_servers]}
+        print(res, 'HERE IS JOINED SERVERS!!')
+    return {'servers': res}, 200

@@ -12,7 +12,7 @@ function Server() {
   const history = useHistory()
   const [users, setUsers] = useState([]);
   const [channels, setChannels] = useState([]);
-  const [channelId, setChannelId] = useState();
+  const [channelId, setChannelId] = useState("");
   const [click, setClicks] = useState(false);
   const { serverId } = useParams();
 
@@ -28,8 +28,9 @@ function Server() {
     // setChannelId(channelIds)
     console.log(channelId, "SUUUUUUUUUIIIIIIII")
     dispatch(fetchOneServer(serverId))
-    // .then(() => {if(!click && serverInfo?.channels){
-    //   setChannelId(serverInfo?.channels[0]?.id)}})
+    .then(() => {if(!click && serverInfo?.channels){
+      setChannelId(serverInfo?.channels[0]?.id)}})
+    
     // .then(() => {
       // if(!click && channelIds){
       //   history.push(`/channels/${channelIds}`)
@@ -59,14 +60,14 @@ function Server() {
     // })();
   }, [dispatch, serverId]);
 
-  // useEffect(() => {
-  //   console.log("CHANELLLL ID", channelId)
-  //   if(channelId && serverInfo?.channels){
-  //     console.log("CHANELLLLLLINHSITORY", channelId)
-  //     history.push(`/channels/${channelId}`)
+  useEffect(() => {
+    console.log("CHANELLLL ID", channelId)
+    if(channelId && serverInfo?.channels){
+      console.log("CHANELLLLLLINHSITORY", channelId)
+      history.push(`/channels/${channelId}`)
 
-  //   }
-  // }, [channelId])
+    }
+  }, [channelId])
 
 
   if (!server) {
