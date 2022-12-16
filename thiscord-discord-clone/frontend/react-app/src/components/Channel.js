@@ -109,7 +109,7 @@ function Channel() {
 
     })
 
-  }, [])
+  }, [channelId])
 
   // dispatching for new channel
   useEffect(() => {
@@ -144,6 +144,7 @@ function Channel() {
 
   return (
     <div className='channel-container'>
+
       <div className='channel-header-container'>
         <span className='channel-hash'>
           <strong># {" "}</strong>

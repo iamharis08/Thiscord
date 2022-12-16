@@ -1,0 +1,17 @@
+.app-container {
+  display: flex;
+  width: 100vw;
+  box-sizing: border-box;
+  background-color: rgb(54, 57, 63);
+}
+
+.servers-app-container {
+  /* float: left; */
+  flex-grow: 0;
+  width: 322px;
+}
+
+.channel-app-container {
+  flex-grow: 1;
+  background-color: rgb(54, 57, 63);
+}

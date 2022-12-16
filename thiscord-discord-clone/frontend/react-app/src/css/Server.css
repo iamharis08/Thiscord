@@ -2,9 +2,25 @@ html,
 body {
     /* margin: auto; */
     box-sizing: border-box;
+    /* position: relative; */
+}
+.main{
+    position: absolute;
+    height: 100vh;
+    width: 322px;
+    z-index: 100;
+}
+.general-bar{
+    position: absolute;
+    width: 240px;
+    height: 100%;
+    top: 0%;
+    left: 82px;
+    background-color: #2F3136;
 }
 
 .bg {
+    position: absolute;
     background-color: rgb(32, 34, 37);
     width: 82px;
     min-height: 100vh;

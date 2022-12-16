@@ -1,28 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchServers } from "../store/server";
+import { fetchOneServer, fetchServers } from "../store/server";
 import "../css/Server.css";
-import Server from "./Server";
+import Server from "./Server.js";
+import { fetchOneChannel } from "../store/channel";
 
 function ServersList() {
   const dispatch = useDispatch();
-  const [hoveredId, setHoveredId] = useState(-1);
   const user = useSelector((state) => state.session.user);
   const serverArr = useSelector((state) => state.server);
+  const serverObj2 = useSelector((state) => state.server.server);
+  const [clicked, setClick] = useState(false);
+  const [hoveredId, setHoveredId] = useState(-1);
+  const [serverId, setServerId] = useState("")
+  const [channelId, setChannelId] = useState("");
   console.log(serverArr, "HERE IS THE SERVERARR!!!!");
   console.log("HERE IS USER in SERVERSLIST!!!", user);
 
+
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch("/api/servers/");
-      const responseData = await response.json();
-      dispatch(fetchServers(user?.id));
-      console.log("IN USEEFFECT, loading servers -----", responseData.servers);
-      // setServers(responseData.servers);
-    }
-    fetchData();
-  }, [dispatch]);
+    dispatch(fetchServers(user?.id))
+    .then(() => {
+      if(!clicked){
+        setServerId(Object.values(serverArr.servers)[0]?.id)
+      }})
+    // async function fetchData() {
+    //   const response = await fetch("/api/servers/");
+    //   const responseData = await response.json();
+
+    //   console.log("IN USEEFFECT, loading servers -----", responseData.servers);
+      console.log("HERE IS USER in SERVERSIDDDDDDDDDD!!!", serverId);
+    //   // setServers(responseData.servers);
+    // }
+    // fetchData();
+  }, [dispatch, serverId]);
+
+  // useEffect(() => {
+  //   setServerId(Object.values(serverArr.servers)[0]?.id)
+  // }, [])
 
   const displayServerName = (serverId) => {
     setHoveredId(serverId);
@@ -56,10 +72,16 @@ function ServersList() {
         )}
         <span
           className="serverIcon"
+
           onMouseOut={hideServerName}
           onMouseOver={() => displayServerName(server.id)}
         >
-          <NavLink className="link" to={`/servers/${server.id}`}>
+          <NavLink  onClick={() => {
+            setClick(true)
+            setServerId(server.id)
+          }
+          } className="link" to={`/servers/${server?.id}`}>
+
             {abbreviate(server.name)}
           </NavLink>
         </span>
