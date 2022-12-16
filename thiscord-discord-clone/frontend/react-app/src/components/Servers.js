@@ -19,6 +19,7 @@ function ServersList() {
   const [serverId, setServerId] = useState("");
   const [channelId, setChannelId] = useState("");
   const [showModal, setShowModal] = useState(false);
+
   // console.log(serverArr, "HERE IS THE SERVERARR!!!!");
   console.log("HERE IS USER in SERVERSLIST!!!", user);
 
@@ -39,7 +40,7 @@ function ServersList() {
     //   // setServers(responseData.servers);
     // }
     // fetchData();
-  }, [dispatch, serverArr.length]);
+  }, [dispatch, serverObj, serverArr.length]);
 
   // useEffect(() => {
   //   setServerId(Object.values(serverArr.servers)[0]?.id)

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import EditServerModal from "./ServerForm/EditServerModal.js"
+import ServerDeleteModal from "./ServerDelete/ServerDeleteModal"
 import { Modal } from "./context/Modal";
-import { fetchOneServer } from "../store/server";
+import { fetchOneServer, fetchServers } from "../store/server";
 import "../css/SingleServer.css";
 import Channel from './Channel'
 
@@ -17,12 +18,16 @@ function Server() {
   const [click, setClicks] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [updateServers, setUpdateServers] = useState("false");
+
   const serverObj = useSelector((state) => state.server.servers);
   const { serverId } = useParams();
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const serverInfo = useSelector((state) => state.server.server);
+  // const serverObj = useSelector((state) => state.server.servers);
   console.log(serverInfo, "SERVERINFOOOO")
   const server = serverInfo?.server;
   // console.log("THE SERVER", server);
@@ -33,12 +38,14 @@ function Server() {
     // setChannelId(channelIds)
 
     dispatch(fetchOneServer(serverId))
-    .then(() => {
-      if (!click && serverInfo?.channels) {
-        setChannelId(serverInfo?.channels[0]?.id)
-      }
-      // console.log(serverObj[serverId].ownerId, "OWNER ID")
-    })
+      .then(() => {
+        if (!click && serverInfo?.channels) {
+          setChannelId(serverInfo?.channels[0]?.id)
+        }
+        // console.log(serverObj[serverId].ownerId, "OWNER ID")
+      })
+
+      dispatch(fetchServers(user?.id))
 
     // .then(() => {
     // if(!click && channelIds){
@@ -67,7 +74,7 @@ function Server() {
     // setChannels(responseData.channels)
 
     // })();
-  }, [dispatch, serverId]);
+  }, [dispatch, updateServers, serverId]);
 
   useEffect(() => {
     console.log("CHANELLLL ID", channelId)
@@ -87,7 +94,7 @@ function Server() {
     <div className="main-container">
       <div className="server">
         {/* {serverObj[serverId] === user.id && */}
-           <div className='server-title-container' onClick={() => setIsHidden(!isHidden)}>
+        <div className='server-title-container' onClick={() => setIsHidden(!isHidden)}>
           <span className='title-text'>
             {server.name}
           </span>
@@ -104,7 +111,10 @@ function Server() {
               setShowModal(true)
             }}>
               Edit Server</button>
-            <button>Delete Server</button>
+            <button onClick={() => {
+              setShowDeleteModal(true)
+            }}>
+              Delete Server</button>
           </div>
         )}
         {showModal && (
@@ -116,7 +126,15 @@ function Server() {
             />
           </Modal>
         )}
-
+        {showDeleteModal && (
+          <Modal onClose={() => setShowDeleteModal(false)}>
+            <ServerDeleteModal
+              setShowDeleteModal={setShowDeleteModal}
+              showDeleteModal={showDeleteModal}
+              setUpdateServers={setUpdateServers}
+            />
+          </Modal>
+        )}
         <div className="channels-members-container">
           <div className="channels-list">
             <strong>Channels</strong>

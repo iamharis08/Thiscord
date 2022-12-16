@@ -38,6 +38,8 @@ export const fetchServers = (userId) => async (dispatch) => {
   if (response.ok) {
 
     const data = await response.json()
+    console.log("HERE IS FETCHHHHHSERVERS", data);
+    console.log(data, "DATAAAAAAAAAAAAAAAA")
     dispatch(loadServers(data));
     return data
   }
@@ -60,7 +62,7 @@ export const fetchOneServer = (serverId) => async (dispatch) => {
 
 
 export const createServer = (server) => async (dispatch) => {
-  // console.log("IN THE CREATE SERVER THUNK ", server, " WHAT IS THIS?")
+  console.log("IN THE CREATE SERVER THUNK ", server, " WHAT IS THIS?")
   const response = await fetch(`/api/servers/`, {
     method: "POST",
     headers: {
@@ -72,19 +74,18 @@ export const createServer = (server) => async (dispatch) => {
   if (response.ok) {
     // console.log("RESPONSE WAS OK IN CREATE SERVER")
     const newServer = await response.json()
-    // console.log(newServer, "NEWWWWWWWWWWWWWWWWWWWWW")
+    console.log(newServer, "NEWWWWWWWWWWWWWWWWWWWWW")
     dispatch(addServer(newServer))
     const newChannelObj = {
       name: "general"
     }
     dispatch(createChannel(newChannelObj, newServer.server.id))
-    // console.log("THE NEW SERVER IS ALIVE ", newServer)
+    console.log("THE NEW SERVER IS ALIVE ", newServer)
     return newServer
   }
 }
 
 export const fetchUpdateServer = (server) => async (dispatch) => {
-  console.log("IN THE UPDATE SERVER THUNK ", server, " WHAT IS THIS?")
   const response = await fetch(`/api/servers/${server.id}`, {
     method: "PUT",
     headers: {
@@ -95,7 +96,7 @@ export const fetchUpdateServer = (server) => async (dispatch) => {
 
   if (response.ok) {
     const updatedServer = await response.json()
-    console.log(updatedServer, "UPDATEDDDDDDDDDDDDDDDD")
+
     dispatch(updateServer(updatedServer))
     return updatedServer
   }
@@ -108,13 +109,22 @@ export const removeServer = (server) => async (dispatch) => {
   })
 
   if (response.ok) {
+      console.log("HERE IS in DELETEEEEEEFETCHHH",server.id);
+
     dispatch(deleteServer(server.id))
     return server
   }
 }
 
-// --- INITIAL STATE --- //
 
+// --- INITIAL STATE --- //
+const normalize = (arr) => {
+    let newObj = {}
+    arr.forEach((ele) => {
+      newObj[ele.id]=ele
+    })
+    return newObj
+}
 
 const initialState = { servers: {}, server: {} }
 
@@ -125,12 +135,13 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
 
     case LOAD_SERVERS:
-      const loadServers = {
-        ...state, servers: { ...state.servers },
-        server: { ...state.server }
-      }
-      action.servers.servers.forEach((server) => (loadServers.servers[server.id] = server))
-      return loadServers
+      let normalizedServers = normalize(action.servers.servers)
+      // const normalizedServers = action.servers.servers.forEach((server) => (loadServers.servers[server.id] = server))
+      // const loadServers = {
+      //   ...state, servers: { ...normalizedServers},
+      //   server: { ...state.server }
+      // }
+      return {...state, servers: {...normalizedServers} }
 
     case ADD_SERVER:
       const addServer = {
