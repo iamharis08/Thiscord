@@ -22,7 +22,7 @@ function ServersList() {
   // console.log(serverArr, "HERE IS THE SERVERARR!!!!");
   console.log("HERE IS USER in SERVERSLIST!!!", user);
 
-  const serverArr = Object.values(serverObj)
+  const serverArr = Object.values(serverObj);
 
   useEffect(() => {
     dispatch(fetchServers(user?.id)).then(() => {
@@ -75,22 +75,18 @@ function ServersList() {
             </span>
           </span>
         )}
-        <span
+        <NavLink
+          to={`/servers/${server?.id}`}
+          onClick={() => {
+            setClick(true);
+            setServerId(server.id);
+          }}
           className="serverIcon"
           onMouseOut={hideServerName}
           onMouseOver={() => displayServerName(server.id)}
         >
-          <NavLink
-            onClick={() => {
-              setClick(true);
-              setServerId(server.id);
-            }}
-            className="link"
-            to={`/servers/${server?.id}`}
-          >
-            {abbreviate(server.name)}
-          </NavLink>
-        </span>
+          <div className="link">{abbreviate(server.name)}</div>
+        </NavLink>
       </div>
     );
   });
@@ -122,8 +118,9 @@ function ServersList() {
             </span>
           </span>
         )}
-        <span onClick={() => {
-            setShowModal(true)
+        <span
+          onClick={() => {
+            setShowModal(true);
           }}
           className="addServerIcon"
           onMouseOut={hideServerName}
