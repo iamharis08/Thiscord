@@ -9,13 +9,13 @@ import { fetchOneChannel } from "../store/channel";
 function ServersList() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const serverArr = useSelector((state) => state.server);
+  const serverObj = useSelector((state) => state.server.servers);
   const serverObj2 = useSelector((state) => state.server.server);
   const [clicked, setClick] = useState(false);
   const [hoveredId, setHoveredId] = useState(-1);
   const [serverId, setServerId] = useState("")
   const [channelId, setChannelId] = useState("");
-  console.log(serverArr, "HERE IS THE SERVERARR!!!!");
+  // console.log(serverArr, "HERE IS THE SERVERARR!!!!");
   console.log("HERE IS USER in SERVERSLIST!!!", user);
 
 
@@ -23,7 +23,7 @@ function ServersList() {
     dispatch(fetchServers(user?.id))
     .then(() => {
       if(!clicked){
-        setServerId(Object.values(serverArr.servers)[0]?.id)
+        setServerId(Object.values(serverObj)[0]?.id)
       }})
     // async function fetchData() {
     //   const response = await fetch("/api/servers/");
@@ -58,7 +58,7 @@ function ServersList() {
     return initials.length <= 5 ? initials.join("") : initials.slice(0, 5);
   };
 
-  const serverComponents = Object.values(serverArr.servers).map((server) => {
+  const serverComponents = Object.values(serverObj).map((server) => {
     return (
       <div className="listItem" key={server.id}>
         {hoveredId === server.id && (
@@ -70,21 +70,21 @@ function ServersList() {
             </span>
           </span>
         )}
-        <span
+        <NavLink to={`/servers/${server?.id}`}
           className="serverIcon"
-
-          onMouseOut={hideServerName}
-          onMouseOver={() => displayServerName(server.id)}
-        >
-          <NavLink  onClick={() => {
+          onClick={() => {
             setClick(true)
             setServerId(server.id)
           }
-          } className="link" to={`/servers/${server?.id}`}>
+          }
+          onMouseOut={hideServerName}
+          onMouseOver={() => displayServerName(server.id)}
+        >
+          <div className="link" >
 
             {abbreviate(server.name)}
-          </NavLink>
-        </span>
+          </div>
+        </NavLink>
       </div>
     );
   });
