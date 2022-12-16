@@ -11,7 +11,7 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [firstChannel, setFirstChannel] = useState("");
-  const channels = useSelector(state => state.server.servers[0].channels)
+  // const channels = useSelector(state => state.server.servers[0].channels)
   // const [emailErr, setEmailErr] = useState([]);
   // const [passErr, setPassErr] = useState([]);
   const [password, setPassword] = useState("");
@@ -27,14 +27,14 @@ const LoginForm = () => {
     }
   };
 
-  useEffect(() => {
-    async () => { response = await fetch(`/api/servers/`)
-    servers = await response.json()
-    firstServer = servers.servers[0]
-    firstChannel = firstServer.channels[0]
-    setFirstChannel(firstChannel.id)
-  }
-  })
+  // useEffect(() => {
+  //   async () => { response = await fetch(`/api/servers/`)
+  //   servers = await response.json()
+  //   firstServer = servers.servers[0]
+  //   firstChannel = firstServer.channels[0]
+  //   setFirstChannel(firstChannel.id)
+  // }
+  // })
 
   const demoOneLogin = async (e) => {
     e.preventDefault();
@@ -85,7 +85,7 @@ const LoginForm = () => {
   if (user) {
 
 
-    return <Redirect to={`/channels/${firstChannel.id}`} />;
+    return <Redirect to={`/servers`} />;
   }
   return (
     <div className="login-form-page">
