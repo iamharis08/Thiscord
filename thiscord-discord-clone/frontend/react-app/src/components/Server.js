@@ -20,9 +20,9 @@ function Server() {
   const user = useSelector((state) => state.session.user);
   const serverInfo = useSelector((state) => state.server.server);
   const server = serverInfo?.server;
-  console.log("THE SERVER", server);
+  // console.log("THE SERVER", server);
   // console.log('users!', server.users)
-  console.log(serverInfo, "SUUUUUUUUUIIIIIIII")
+  // console.log(serverInfo, "SUUUUUUUUUIIIIIIII")
   useEffect(() => {
 
     // setChannelId(channelIds)
