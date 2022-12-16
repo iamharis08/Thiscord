@@ -27,14 +27,14 @@ const LoginForm = () => {
     }
   };
 
-  useEffect(() => {
-    async () => { response = await fetch(`/api/servers/`)
-    servers = await response.json()
-    firstServer = servers.servers[0]
-    firstChannel = firstServer.channels[0]
-    setFirstChannel(firstChannel.id)
-  }
-  })
+  // useEffect(() => {
+  //   async () => { response = await fetch(`/api/servers/`)
+  //   servers = await response.json()
+  //   firstServer = servers.servers[0]
+  //   firstChannel = firstServer.channels[0]
+  //   setFirstChannel(firstChannel.id)
+  // }
+  // })
 
   const demoOneLogin = async (e) => {
     e.preventDefault();
