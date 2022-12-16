@@ -75,22 +75,19 @@ function ServersList() {
             </span>
           </span>
         )}
-        <span
+        <NavLink
+          to={`/servers/${server?.id}`}
+          onClick={() => {
+            setClick(true);
+            setServerId(server.id);
+          }}
           className="serverIcon"
           onMouseOut={hideServerName}
           onMouseOver={() => displayServerName(server.id)}
         >
-          <NavLink
-            onClick={() => {
-              setClick(true);
-              setServerId(server.id);
-            }}
-            className="link"
-            to={`/servers/${server?.id}`}
-          >
-            {abbreviate(server.name)}
-          </NavLink>
-        </span>
+          <div className="link">{abbreviate(server.name)}</div>
+        </NavLink>
+
       </div>
     );
   });
