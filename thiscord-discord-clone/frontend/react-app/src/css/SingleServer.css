@@ -25,9 +25,28 @@
     cursor: pointer;
 }
 
-.settings-button {
+.channel-list-item {
+    /* border: red 1px solid; */
+    height: 30px;
+    width: 234px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.server-settings-button {
+    font-size: 24px;
     transform: rotate(90deg);
 }
+
+.channel-settings-button {
+    font-size: 44px;
+    display: flex;
+    cursor: pointer;
+    /* flex-direction: row; */
+    /* justify-self: end; */
+}
+
 .channels-members-container {
     display: flex;
     justify-content: space-between;

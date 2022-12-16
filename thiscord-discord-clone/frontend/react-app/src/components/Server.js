@@ -91,7 +91,7 @@ function Server() {
           <span className='title-text'>
             {server.name}
           </span>
-          <span className='settings-button'>
+          <span className='server-settings-button'>
             >
           </span>
         </div>
@@ -121,13 +121,16 @@ function Server() {
           <div className="channels-list">
             <strong>Channels</strong>
             {serverInfo?.channels?.map((channel) => (
-              <div key={channel?.id} >
+              <div key={channel?.id} className="channel-list-item">
                 {console.log("CHANEEL LIKS", channel.id)}
                 <NavLink
                   to={`/channels/${channel.id}`}>
 
                   {channel?.name}
                 </NavLink>
+                <span className="channel-settings-button">
+                  *
+                </span>
               </div>
             ))}
           </div>
