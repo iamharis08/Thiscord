@@ -61,3 +61,18 @@ def on_leave(data):
     room = data['room']
     leave_room(room)
     send(username + ' has left the room.', to=room)
+
+@socketio.on('delete')
+def on_delete(target, messagesArr):
+    user_id=current_user.id,
+    channel_id=int(data['room']),
+    message=data['message'],
+    created_at=data['createdAt']
+#
+
+#you need which message in the array the user wants to delete
+#first get the array of messages send it backend
+#iterate to find the message that you need to delete and delte it in the backend
+#query the message
+#destroy the message
+#then take the array and remove the message from it and emit it back to the users

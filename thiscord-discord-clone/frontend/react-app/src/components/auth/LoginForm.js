@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 // import loginFormImage from "./images/loginformbackground.svg"
 import "../../css/LoginForm.css"
 import qrImage from "../../css/images/thiscordQrCode.png"
+import { fetchServers } from "../../store/server";
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
+  const [firstChannel, setFirstChannel] = useState("");
+  // const channels = useSelector(state => state.server.servers[0].channels)
   // const [emailErr, setEmailErr] = useState([]);
   // const [passErr, setPassErr] = useState([]);
   const [password, setPassword] = useState("");
@@ -23,6 +26,15 @@ const LoginForm = () => {
       setErrors(data);
     }
   };
+
+  // useEffect(() => {
+  //   async () => { response = await fetch(`/api/servers/`)
+  //   servers = await response.json()
+  //   firstServer = servers.servers[0]
+  //   firstChannel = firstServer.channels[0]
+  //   setFirstChannel(firstChannel.id)
+  // }
+  // })
 
   const demoOneLogin = async (e) => {
     e.preventDefault();
@@ -71,7 +83,9 @@ const LoginForm = () => {
 
 
   if (user) {
-    return <Redirect to="/servers" />;
+
+
+    return <Redirect to={`/servers`} />;
   }
   return (
     <div className="login-form-page">

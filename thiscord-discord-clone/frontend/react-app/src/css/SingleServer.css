@@ -1,8 +1,26 @@
+.main-container{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    z-index: 100;
+}
+
+.channel-bar-container{
+    position: absolute;
+    width: 90vw;
+    /* height: 100vh; */
+    height: 100%;
+    top: 0%;
+    left: 0%;
+
+}
 .channels-members-container {
     display: flex;
     justify-content: space-between;
     color: #8c989d;
 }
+
+
 
 .members-list {
     width: 220px;

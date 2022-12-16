@@ -3,18 +3,26 @@ body {
   box-sizing: border-box;
   /* background-color: rgb(54, 57, 63); */
   /* overflow-y: hidden; */
-
+  /* position: relative; */
+  /* overflow-x: hidden;
+  overflow-y: hidden; */
 }
 
 .channel-container {
   display: flex;
   width: 100%;
+  box-sizing: border-box;
   background-color: rgb(54, 57, 63);
   flex-direction: column;
   /* padding: 0 1rem; */
   /* margin: 0 1rem; */
   height: 100vh;
-  margin-bottom: 68px;
+  /* margin-bottom: 68px; */
+  /* padding-left: 322px; */
+  /* position: absolute; */
+  /* margin-left: 322px; */
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .channel-header-container {
@@ -32,7 +40,6 @@ body {
   color: rgb(142, 146, 151);
   font-size: 3rem;
   font-weight: 100;
-
 }
 
 .channel-name {
@@ -52,13 +59,13 @@ body {
   padding-bottom: 68px;
 }
 
-
 .single-message-container {
   display: flex;
+  width: inherit;
   justify-content: left;
-  padding: .5rem;
+  padding: 0.5rem;
   flex-direction: column;
-  margin: .2rem 0;
+  margin: 0.2rem 0;
 }
 
 .single-message-container:hover {
@@ -98,9 +105,8 @@ body {
 .single-message-message-info {
   display: flex;
   align-items: center;
-  color: rgb(220, 221, 222)
+  color: rgb(220, 221, 222);
 }
-
 
 .message-form-container {
   display: flex;
@@ -111,7 +117,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: rgb(54, 57, 63);
-  /* padding: 0.3rem; */
+  padding: 0 10px;
 
   /* margin-top: .5rem 0; */
 }
@@ -120,8 +126,7 @@ body {
   display: flex;
   width: 100%;
   justify-content: center;
-  height: 66%;
-
+  height: 68pxgit;
 }
 
 .message-form-input-container {
@@ -130,13 +135,13 @@ body {
   display: flex;
   justify-content: center;
   color: white;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
   border: none;
-  padding: .75rem;
+  padding: 0.75rem;
 }
 
 .message-form-input-container::placeholder {
-  color: rgb(113, 117, 124)
+  color: rgb(113, 117, 124);
 }
 
 .message-form-input-container:focus {

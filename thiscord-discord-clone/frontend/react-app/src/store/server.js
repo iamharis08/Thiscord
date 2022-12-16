@@ -1,3 +1,4 @@
+import { createChannel } from "./channel"
 const LOAD_SERVERS = 'server/LOAD_SERVERS'
 const ADD_SERVER = 'server/ADD_SERVER'
 const UPDATE_SERVER = 'server/UPDATE_SERVER'
@@ -44,12 +45,14 @@ export const fetchServers = (userId) => async (dispatch) => {
 
 
 export const fetchOneServer = (serverId) => async (dispatch) => {
+
   const response = await fetch(`/api/servers/${serverId}`, {
     method: "GET"
   });
 
   if (response.ok) {
     const server = await response.json()
+    console.log("SERVEERBACKEND", server)
     dispatch(addServer(server))
     return server
   }
@@ -69,8 +72,15 @@ export const createServer = (server) => async (dispatch) => {
   if (response.ok) {
     // console.log("RESPONSE WAS OK IN CREATE SERVER")
     const newServer = await response.json()
-
+    console.log(newServer, "NEWWWWWWWWWWWWWWWWWWWWW")
     dispatch(addServer(newServer))
+<<<<<<< HEAD
+=======
+    const newChannelObj = {
+      name: "general"
+    }
+    dispatch(createChannel(newChannelObj, newServer.server.id))
+>>>>>>> 5f29250247b9f34273ddd196697afe70e1a58464
     console.log("THE NEW SERVER IS ALIVE ", newServer)
     return newServer
   }
@@ -127,7 +137,7 @@ export default function reducer(state = initialState, action) {
     case ADD_SERVER:
       const addServer = {
         ...state,
-        server: { ...state.server }
+        server: { ...action.server }
       }
       console.log("ADDSERVER VARIBLE", addServer)
       console.log("AACTION AACTION AACITON", action)
