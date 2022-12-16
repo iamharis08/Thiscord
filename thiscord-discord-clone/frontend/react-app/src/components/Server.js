@@ -22,15 +22,15 @@ function Server() {
   const server = serverInfo?.server;
   console.log("THE SERVER", server);
   // console.log('users!', server.users)
-
+  console.log(serverInfo, "SUUUUUUUUUIIIIIIII")
   useEffect(() => {
 
     // setChannelId(channelIds)
-    console.log(channelId, "SUUUUUUUUUIIIIIIII")
+
     dispatch(fetchOneServer(serverId))
     .then(() => {if(!click && serverInfo?.channels){
       setChannelId(serverInfo?.channels[0]?.id)}})
-    
+
     // .then(() => {
       // if(!click && channelIds){
       //   history.push(`/channels/${channelIds}`)

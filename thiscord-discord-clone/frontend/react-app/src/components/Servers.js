@@ -6,35 +6,40 @@ import "../css/Server.css";
 import Server from "./Server.js";
 import { fetchOneChannel } from "../store/channel";
 
+import { Modal } from "./context/Modal.js";
+import ServerFormModal from "./ServerForm/ServerFormModal";
+
 function ServersList() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const serverArr = useSelector((state) => state.server);
+  const serverObj = useSelector((state) => state.server.servers);
   const serverObj2 = useSelector((state) => state.server.server);
   const [clicked, setClick] = useState(false);
   const [hoveredId, setHoveredId] = useState(-1);
-  const [serverId, setServerId] = useState("")
+  const [serverId, setServerId] = useState("");
   const [channelId, setChannelId] = useState("");
-  console.log(serverArr, "HERE IS THE SERVERARR!!!!");
+  const [showModal, setShowModal] = useState(false);
+  // console.log(serverArr, "HERE IS THE SERVERARR!!!!");
   console.log("HERE IS USER in SERVERSLIST!!!", user);
 
+  const serverArr = Object.values(serverObj)
 
   useEffect(() => {
-    dispatch(fetchServers(user?.id))
-    .then(() => {
-      if(!clicked){
-        setServerId(Object.values(serverArr.servers)[0]?.id)
-      }})
+    dispatch(fetchServers(user?.id)).then(() => {
+      if (!clicked) {
+        setServerId(Object.values(serverObj)[0]?.id);
+      }
+    });
     // async function fetchData() {
     //   const response = await fetch("/api/servers/");
     //   const responseData = await response.json();
 
     //   console.log("IN USEEFFECT, loading servers -----", responseData.servers);
-      console.log("HERE IS USER in SERVERSIDDDDDDDDDD!!!", serverId);
+    console.log("HERE IS USER in SERVERSIDDDDDDDDDD!!!", serverId);
     //   // setServers(responseData.servers);
     // }
     // fetchData();
-  }, [dispatch, serverId]);
+  }, [dispatch, serverArr.length]);
 
   // useEffect(() => {
   //   setServerId(Object.values(serverArr.servers)[0]?.id)
@@ -58,7 +63,7 @@ function ServersList() {
     return initials.length <= 5 ? initials.join("") : initials.slice(0, 5);
   };
 
-  const serverComponents = Object.values(serverArr.servers).map((server) => {
+  const serverComponents = Object.values(serverObj).map((server) => {
     return (
       <div className="listItem" key={server.id}>
         {hoveredId === server.id && (
@@ -72,16 +77,17 @@ function ServersList() {
         )}
         <span
           className="serverIcon"
-
           onMouseOut={hideServerName}
           onMouseOver={() => displayServerName(server.id)}
         >
-          <NavLink  onClick={() => {
-            setClick(true)
-            setServerId(server.id)
-          }
-          } className="link" to={`/servers/${server?.id}`}>
-
+          <NavLink
+            onClick={() => {
+              setClick(true);
+              setServerId(server.id);
+            }}
+            className="link"
+            to={`/servers/${server?.id}`}
+          >
             {abbreviate(server.name)}
           </NavLink>
         </span>
@@ -116,16 +122,26 @@ function ServersList() {
             </span>
           </span>
         )}
-        <span
+        <span onClick={() => {
+            setShowModal(true)
+          }}
           className="addServerIcon"
           onMouseOut={hideServerName}
           onMouseOver={() => displayServerName(10000000)}
         >
           <div className="plus">+</div>
         </span>
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)}>
+            <ServerFormModal
+              setShowModal={setShowModal}
+              showModal={showModal}
+            />
+          </Modal>
+        )}
       </div>
       <div className="general-bar">
-      <Server />
+        <Server />
       </div>
     </div>
   );
