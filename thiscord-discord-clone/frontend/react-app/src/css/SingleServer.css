@@ -14,13 +14,25 @@
     left: 0%;
 
 }
+
+.server-title-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.settings-button {
+    transform: rotate(90deg);
+}
 .channels-members-container {
     display: flex;
     justify-content: space-between;
     color: #8c989d;
 }
-
-
 
 .members-list {
     width: 220px;

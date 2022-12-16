@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
+import EditServerModal from "./ServerForm/EditServerModal.js"
+import { Modal } from "./context/Modal";
 import { fetchOneServer } from "../store/server";
 import "../css/SingleServer.css";
 import Channel from './Channel'
@@ -14,11 +15,15 @@ function Server() {
   const [channels, setChannels] = useState([]);
   const [channelId, setChannelId] = useState("");
   const [click, setClicks] = useState(false);
+  const [isHidden, setIsHidden] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const serverObj = useSelector((state) => state.server.servers);
   const { serverId } = useParams();
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const serverInfo = useSelector((state) => state.server.server);
+  console.log(serverInfo, "SERVERINFOOOO")
   const server = serverInfo?.server;
   // console.log("THE SERVER", server);
   // console.log('users!', server.users)
@@ -28,18 +33,22 @@ function Server() {
     // setChannelId(channelIds)
 
     dispatch(fetchOneServer(serverId))
-    .then(() => {if(!click && serverInfo?.channels){
-      setChannelId(serverInfo?.channels[0]?.id)}})
+    .then(() => {
+      if (!click && serverInfo?.channels) {
+        setChannelId(serverInfo?.channels[0]?.id)
+      }
+      // console.log(serverObj[serverId].ownerId, "OWNER ID")
+    })
 
     // .then(() => {
-      // if(!click && channelIds){
-      //   history.push(`/channels/${channelIds}`)
+    // if(!click && channelIds){
+    //   history.push(`/channels/${channelIds}`)
 
-      // }else{history.push(`/channels/${serverInfo?.channels[0]?.id}`)}
-      // else if(channelIds && clickedServer){
-      //   // setChannelId(channelIds)
-      //   history.push(`/channels/${channelIds}`)
-      // }
+    // }else{history.push(`/channels/${serverInfo?.channels[0]?.id}`)}
+    // else if(channelIds && clickedServer){
+    //   // setChannelId(channelIds)
+    //   history.push(`/channels/${channelIds}`)
+    // }
     // })
 
     // .catch(async res => {
@@ -62,7 +71,7 @@ function Server() {
 
   useEffect(() => {
     console.log("CHANELLLL ID", channelId)
-    if(channelId && serverInfo?.channels){
+    if (channelId && serverInfo?.channels) {
       console.log("CHANELLLLLLINHSITORY", channelId)
       history.push(`/channels/${channelId}`)
 
@@ -77,20 +86,45 @@ function Server() {
   return (
     <div className="main-container">
       <div className="server">
-      <div className='title-container'>
-            <div className='title-text'>
-                {server.name}
-            </div>
+        {/* {serverObj[serverId] === user.id && */}
+           <div className='server-title-container' onClick={() => setIsHidden(!isHidden)}>
+          <span className='title-text'>
+            {server.name}
+          </span>
+          <span className='settings-button'>
+            >
+          </span>
         </div>
+        {/* } */}
+
+
+        {!isHidden && (
+          <div>
+            <button onClick={() => {
+              setShowModal(true)
+            }}>
+              Edit Server</button>
+            <button>Delete Server</button>
+          </div>
+        )}
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)}>
+            <EditServerModal
+              setShowModal={setShowModal}
+              setIsHidden={setIsHidden}
+              showModal={showModal}
+            />
+          </Modal>
+        )}
 
         <div className="channels-members-container">
           <div className="channels-list">
             <strong>Channels</strong>
             {serverInfo?.channels?.map((channel) => (
               <div key={channel?.id} >
-                {console.log("CHANEEL LIKS",channel.id)}
+                {console.log("CHANEEL LIKS", channel.id)}
                 <NavLink
-           to={`/channels/${channel.id}`}>
+                  to={`/channels/${channel.id}`}>
 
                   {channel?.name}
                 </NavLink>
@@ -117,7 +151,7 @@ function Server() {
           <Channel />
         </div>
         </div> */}
-      </div>
+    </div>
   );
 }
 export default Server;
