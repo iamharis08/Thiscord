@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import "./ServerForm.css"
+import { fetchOneServer } from '../../store/server';
 
 function ServerFormModal({ setShowModal }) {
 
@@ -18,6 +19,7 @@ function ServerFormModal({ setShowModal }) {
     e.preventDefault();
     setErrors([]);
     return dispatch(createServer({ name: serverName }))
+    .then((newServer) => {dispatch(fetchOneServer(newServer.server.id))})
       .then(() => { setShowModal(false) })
     // .catch(async (res) => {
     //   const data = await res.json();

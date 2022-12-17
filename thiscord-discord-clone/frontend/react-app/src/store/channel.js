@@ -40,6 +40,7 @@ export const fetchChannels = (serverId) => async (dispatch) => {
   if (response.ok) {
 
     const data = await response.json()
+
     dispatch(loadChannels(data));
     return data
   }
@@ -54,6 +55,7 @@ export const fetchOneChannel = channelId => async (dispatch) => {
   if (response.ok) {
     const data = await response.json()
     console.log('data in THUNK OK', data)
+
     dispatch(addChannel(data))
     return data
   }

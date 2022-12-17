@@ -132,8 +132,8 @@ function Channel() {
     const searchRes = await search.json()
     const foundRes = searchRes?.messages
     setSearchResults(foundRes, 'foundRes')
-
     setShowSearchResults(true)
+    setSearchInput("")
     return ''
   }
 

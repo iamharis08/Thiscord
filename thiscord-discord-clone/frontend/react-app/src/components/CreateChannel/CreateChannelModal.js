@@ -11,7 +11,7 @@ function CreateChannelModal({ setShowCreateChannelModal }) {
 
   const user = useSelector((state) => state.session.user);
   const server = useSelector((state) => state.server.server.server);
-  const [channelName, setChannelName] = useState(`${user.username}'s server`);
+  const [channelName, setChannelName] = useState("");
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
@@ -47,7 +47,7 @@ function CreateChannelModal({ setShowCreateChannelModal }) {
                   <div>
                     <input
                       className="input"
-                      // placeholder={`${user.username}'s server`}
+                      placeholder={`new-channel`}
                       type="text"
                       value={channelName}
                       onChange={(e) => setChannelName(e.target.value)}

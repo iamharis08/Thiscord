@@ -27,23 +27,27 @@ def handle_chat(data):
     # test_str = str(data['timestamp'])
     # print(test_str, "!!!!!! -------- HERE IS STR of TIMESTRING --------")
 
-
-    message = Message(
+    if len(data['message']) > 0 and len(data['message']) <= 2000:
+        message = Message(
         user_id=current_user.id,
         channel_id=int(data['room']),
         message=data['message'],
         created_at=datetime.now()
     )
-    # print('--------BACKENDDATA', message.to_dict())
-    db.session.add(message)
-    db.session.commit()
-    # new_message_date = datetime.now()
+        # print('--------BACKENDDATA', message.to_dict())
+        db.session.add(message)
+        db.session.commit()
+        # new_message_date = datetime.now()
+        if data['room']:
+            room = data['room']
+            emit("chat", data, broadcast=True, to=room)
 
 
-    if data['room']:
 
-        room = data['room']
-        emit("chat", data, broadcast=True, to=room)
+
+
+
+
 
 
 

@@ -47,14 +47,19 @@ function Server({serverId}) {
     // setChannelId(channelIds)
 
     dispatch(fetchOneServer(serverId))
-      .then(() => {
-        if (!click && serverInfo?.channels) {
-          setChannelId(serverInfo?.channels[0]?.id)
+      .then((server) => {
+        if (!click && server?.channels) {
+          setChannelId(server?.channels[0]?.id)
+          console.log(server?.channels[0]?.id, "CHANEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEL")
+          return server?.channels[0]?.id
         }
         // console.log(serverObj[serverId].ownerId, "OWNER ID")
-      })
+      }).then((channelid) => {dispatch(fetchServers(user?.id))
+                        return channelid}
+      ).then((channelid) => {if (channelid) {
+        // console.log("CHANELLLLLLINHSITORY", channelId)
+        history.push(`/channels/${channelid}`)}})
 
-    dispatch(fetchServers(user?.id))
 
     // .then(() => {
     // if(!click && channelIds){
@@ -83,7 +88,7 @@ function Server({serverId}) {
     // setChannels(responseData.channels)
 
     // })();
-  }, [updateServers, serverId]);
+  }, [dispatch, updateServers, serverId]);
 
   useEffect(() => {
     // console.log("CHANELLLL ID", channelId)
