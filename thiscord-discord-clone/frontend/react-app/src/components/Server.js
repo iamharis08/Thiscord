@@ -5,10 +5,12 @@ import EditServerModal from "./ServerForm/EditServerModal.js"
 import ServerDeleteModal from "./ServerDelete/ServerDeleteModal"
 import EditChannelModal from "./ChannelForm/EditChannelModal.js"
 import ChannelDeleteModal from "./ChannelDelete/ChannelDeleteModal.js"
+import LogoutButton from "./auth/LogoutButton"
 import { Modal } from "./context/Modal";
 import { fetchOneServer, fetchServers } from "../store/server";
 import "../css/SingleServer.css";
 import Channel from './Channel'
+import CreateChannelModal from "./CreateChannel/CreateChannelModal.js";
 
 
 function Server() {
@@ -26,6 +28,7 @@ function Server() {
   const [showDeleteChannelModal, setShowDeleteChannelModal] = useState(false);
   const [updateServers, setUpdateServers] = useState("false");
   const [updateChannels, setUpdateChannels] = useState(false);
+  const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
 
   const serverObj = useSelector((state) => state.server.servers);
   const { serverId } = useParams();
@@ -34,11 +37,11 @@ function Server() {
   const user = useSelector((state) => state.session.user);
   const serverInfo = useSelector((state) => state.server.server);
   // const serverObj = useSelector((state) => state.server.servers);
-  console.log(serverInfo, "SERVERINFOOOO")
+  // console.log(serverId, "SERVER IDDDDDD")
   const server = serverInfo?.server;
   // console.log("THE SERVER", server);
   // console.log('users!', server.users)
-  // console.log(serverInfo, "SUUUUUUUUUIIIIIIII")
+  // console.log(serverInfo.server.id, "SUUUUUUUUUIIIIIIII")
   useEffect(() => {
 
     // setChannelId(channelIds)
@@ -100,14 +103,22 @@ function Server() {
     <div className="main-container">
       <div className="server">
         {/* {serverObj[serverId] === user.id && */}
-        <div className='server-title-container' onClick={() => setIsHidden(!isHidden)}>
-          <span className='title-text'>
-            {server.name}
-          </span>
-          <span className='server-settings-button'>
+        {serverInfo.server.ownerId === user.id ?
+          <div className='server-title-container' onClick={() => setIsHidden(!isHidden)}>
+            <span className='title-text'>
+              {server.name}
+            </span>
+            <span className='server-settings-button'>
             >
-          </span>
-        </div>
+            </span>
+          </div>
+          :
+          <div className='server-title-container-no-click'>
+            <span className='title-text'>
+              {server.name}
+            </span>
+          </div>
+        }
         {/* } */}
 
 
@@ -143,11 +154,23 @@ function Server() {
         )}
         <div className="channels-members-container">
           <div className="channels-list">
-            <strong>Channels</strong>
+
+            <div className="channel-list-title">
+              <strong>Channels</strong>
+              {user.id === serverInfo.server.ownerId ? (
+                <div
+                  className="add-channel-button"
+                  onClick={() => setShowCreateChannelModal(true)}
+                >
+                  +
+                </div>
+              ) : null}
+            </div>
             {serverInfo?.channels?.map((channel) => (
               <div key={channel?.id} className="channel-list-item">
                 {/* {console.log("CHANEEL LIKS", channel.id)} */}
                 <div
+                className="channel-name"
                   onClick={() => {
                     // console.log("NAVLINK CHANNEL ID", channel.id)
                     setChannelId(channel.id)
@@ -158,15 +181,32 @@ function Server() {
                 >
                   {channel?.name}
                 </div>
-                <span className="channel-settings-button"
-                  onClick={() => {
-                    setChannelId(channel.id)
-                    setChannelIsHidden(!channelIsHidden)
-                  }}>
-                  *
-                </span>
+                {serverInfo.server.id === user.id &&
+                  <span className="channel-settings-button"
+                    onClick={() => {
+                      setChannelId(channel.id)
+                      setChannelIsHidden(!channelIsHidden)
+                    }}>
+                    *
+                  </span>
+                }
               </div>
             ))}
+
+
+            <div className='logout-user-container'>
+              <div className="general-bar-user">
+                <img
+                  id="member-profile"
+                  src="https://www.svgrepo.com/show/331368/discord-v2.svg"
+                  alt=""
+                ></img>
+                {user.username}
+              </div>
+              <div className="logout-button">
+                <LogoutButton />
+              </div>
+            </div>
 
             {!channelIsHidden && (
               <div>
@@ -224,6 +264,13 @@ function Server() {
           <Channel />
         </div>
         </div> */}
+      {showCreateChannelModal && (
+        <Modal onClose={() => setShowCreateChannelModal(false)}>
+          <CreateChannelModal
+            setShowCreateChannelModal={setShowCreateChannelModal}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

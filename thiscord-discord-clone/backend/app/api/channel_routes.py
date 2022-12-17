@@ -6,7 +6,7 @@ from app.forms import ChannelForm
 from sqlalchemy.orm import joinedload
 
 from app.models import Channel
-from app.forms import ServerForm
+from app.forms import ServerForm, SearchForm
 
 channel_routes = Blueprint("channel", __name__)
 
@@ -67,3 +67,30 @@ def delete_channel(id):
         return {"message": "Channel successfully deleted!"}, 200
 
     return "Can't Delete a Channel in a Server You Don't Own!", 401
+
+@channel_routes.route("/<int:id>/messages", methods=['POST', 'GET'])
+@login_required
+def search_messages(id):
+    form = SearchForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    search = form.search.data
+    print(search, '---HERE IS THE SEARCH!---')
+    search = f"%{search}%"
+
+    channel = Channel.query.get(id)
+    channel_messages = channel.messages
+    messages = Message.query.filter(Message.channel_id==id).filter(
+        Message.message.ilike(f"%{search}%")
+    ).all()
+
+    # print([m.message for m in messages], 'CHAINING QUERIES!!!')
+    ans = [m.to_dict() for m in messages]
+    # print(ans, '--- ANS IN BACKEND FOR SEARCH ---')
+
+    for m in channel_messages:
+        print(m, 'HERE IS M --------!!!!!!')
+        user = User.query.get(m.user_id)
+        print(user.to_dict(), '--- USER OBJ TO ADD')
+        test = [m for m in channel_messages]
+
+    return {"messages": ans}

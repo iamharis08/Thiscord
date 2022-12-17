@@ -1,0 +1,88 @@
+.search-result-container {
+    display: flex;
+    background-color: rgb(54, 57, 63);
+    flex-direction: column;
+    /* margin-top: 5rem; */
+    /* margin-bottom: 68px; */
+    /* padding-bottom: 68px; */
+    min-width: 440px;
+    max-width: 100%;
+  }
+
+  .single-message-container {
+    display: flex;
+    width: inherit;
+    justify-content: left;
+    padding: 0.5rem;
+    flex-direction: column;
+    margin: 0.2rem 0;
+  }
+
+  .single-message-container:hover {
+    background-color: rgb(51, 54, 59);
+  }
+
+  .single-message-user-info {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+  }
+
+  .single-message-username {
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 0.25rem 0;
+  }
+
+  .single-message-user-timestamp {
+    display: flex;
+    align-items: center;
+    color: rgb(142, 146, 151);
+    font-weight: 400;
+    font-size: 0.66rem;
+  }
+
+  .single-message-timestamp {
+    display: flex;
+    align-items: center;
+    color: rgb(142, 146, 151);
+    font-weight: 400;
+    font-size: 0.66rem;
+  }
+
+  .single-message-message-info {
+    display: flex;
+    align-items: center;
+    color: rgb(220, 221, 222);
+  }
+
+
+  .no-results-found {
+    display: flex;
+    width: inherit;
+    justify-content: center;
+    padding: 0.5rem;
+    flex-direction: column;
+    margin: 0.2rem 0;
+    color: white;
+  }
+
+  .no-results-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    width: 100%;
+  }
+
+  .no-results-subheader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(113, 117, 124);
+    font-size: .8rem;
+    width: 100%;
+
+  }
