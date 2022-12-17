@@ -7,7 +7,8 @@ import Server from "./Server.js";
 import { fetchOneChannel } from "../store/channel";
 
 import { Modal } from "./context/Modal.js";
-import ServerFormModal from "./ServerForm/ServerFormModal";
+// import ServerFormModal from "./ServerForm/ServerFormModal";
+import ServerDeleteModal from "./ServerDelete/ServerDeleteModal";
 
 function ServersList() {
   const dispatch = useDispatch();
@@ -18,18 +19,21 @@ function ServersList() {
   const [hoveredId, setHoveredId] = useState(-1);
   const [serverId, setServerId] = useState("");
   const [channelId, setChannelId] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  // console.log(serverArr, "HERE IS THE SERVERARR!!!!");
-  console.log("HERE IS USER in SERVERSLIST!!!", user);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [updateServers, setUpdateServers] = useState("false");
 
+  // console.log(serverArr, "HERE IS THE SERVERARR!!!!");
+  console.log("HERE IS UPDATESERVERS in SERVERSLIST!!!", updateServers);
+  console.log("HERE IS SHOWDELTETEMODALSERVERSLIST!!!", showDeleteModal);
   const serverArr = Object.values(serverObj)
+  console.log("HcERE IS SERVERARR in SERVERSLIST!!!", serverArr);
 
   useEffect(() => {
     dispatch(fetchServers(user?.id)).then(() => {
       if (!clicked) {
         setServerId(Object.values(serverObj)[0]?.id);
       }
-    });
+    }).then(()=> {if(serverId) {dispatch(fetchOneServer(serverId))}})
     // async function fetchData() {
     //   const response = await fetch("/api/servers/");
     //   const responseData = await response.json();
@@ -39,7 +43,7 @@ function ServersList() {
     //   // setServers(responseData.servers);
     // }
     // fetchData();
-  }, [dispatch, serverArr.length]);
+  }, [dispatch, updateServers, showDeleteModal, serverArr.length]);
 
   // useEffect(() => {
   //   setServerId(Object.values(serverArr.servers)[0]?.id)
@@ -120,7 +124,7 @@ function ServersList() {
           </span>
         )}
         <span onClick={() => {
-            setShowModal(true)
+            setShowDeleteModal(true)
           }}
           className="addServerIcon"
           onMouseOut={hideServerName}
@@ -128,11 +132,12 @@ function ServersList() {
         >
           <div className="plus">+</div>
         </span>
-        {showModal && (
-          <Modal onClose={() => setShowModal(false)}>
-            <ServerFormModal
-              setShowModal={setShowModal}
-              showModal={showModal}
+        {showDeleteModal && (
+          <Modal onClose={() => setShowDeleteModal(false)}>
+            <ServerDeleteModal
+              setShowDeleteModal={setShowDeleteModal}
+              showDeleteModal={showDeleteModal}
+              setUpdateServers={setUpdateServers}
             />
           </Modal>
         )}

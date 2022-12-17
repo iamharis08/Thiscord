@@ -4,18 +4,19 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { fetchOneServer } from "../store/server";
 import "../css/SingleServer.css";
-import Channel from './Channel'
-
+import Channel from "./Channel";
+import { Modal } from "./context/Modal.js";
+import CreateChannelModal from "./CreateChannel/CreateChannelModal";
 
 function Server() {
   // const [server, setServer] = useState({});
-  const history = useHistory()
+  const history = useHistory();
   const [users, setUsers] = useState([]);
   const [channels, setChannels] = useState([]);
   const [channelId, setChannelId] = useState("");
   const [click, setClicks] = useState(false);
   const { serverId } = useParams();
-
+  const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const serverInfo = useSelector((state) => state.server.server);
@@ -24,22 +25,23 @@ function Server() {
   // console.log('users!', server.users)
   // console.log(serverInfo, "SUUUUUUUUUIIIIIIII")
   useEffect(() => {
-
     // setChannelId(channelIds)
 
-    dispatch(fetchOneServer(serverId))
-    .then(() => {if(!click && serverInfo?.channels){
-      setChannelId(serverInfo?.channels[0]?.id)}})
+    dispatch(fetchOneServer(serverId)).then(() => {
+      if (!click && serverInfo?.channels) {
+        setChannelId(serverInfo?.channels[0]?.id);
+      }
+    });
 
     // .then(() => {
-      // if(!click && channelIds){
-      //   history.push(`/channels/${channelIds}`)
+    // if(!click && channelIds){
+    //   history.push(`/channels/${channelIds}`)
 
-      // }else{history.push(`/channels/${serverInfo?.channels[0]?.id}`)}
-      // else if(channelIds && clickedServer){
-      //   // setChannelId(channelIds)
-      //   history.push(`/channels/${channelIds}`)
-      // }
+    // }else{history.push(`/channels/${serverInfo?.channels[0]?.id}`)}
+    // else if(channelIds && clickedServer){
+    //   // setChannelId(channelIds)
+    //   history.push(`/channels/${channelIds}`)
+    // }
     // })
 
     // .catch(async res => {
@@ -61,14 +63,12 @@ function Server() {
   }, [dispatch, serverId]);
 
   useEffect(() => {
-    console.log("CHANELLLL ID", channelId)
-    if(channelId && serverInfo?.channels){
-      console.log("CHANELLLLLLINHSITORY", channelId)
-      history.push(`/channels/${channelId}`)
-
+    console.log("CHANELLLL ID", channelId);
+    if (channelId && serverInfo?.channels) {
+      console.log("CHANELLLLLLINHSITORY", channelId);
+      history.push(`/channels/${channelId}`);
     }
-  }, [channelId])
-
+  }, [channelId]);
 
   if (!server) {
     return null;
@@ -77,21 +77,27 @@ function Server() {
   return (
     <div className="main-container">
       <div className="server">
-      <div className='title-container'>
-            <div className='title-text'>
-                {server.name}
-            </div>
+        <div className="title-container">
+          <div className="title-text">{server.name}</div>
         </div>
 
         <div className="channels-members-container">
           <div className="channels-list">
-            <strong>Channels</strong>
+            <div className="channel-list-title">
+              <strong>Channels</strong>
+              {user.id === serverInfo.server.ownerId ? (
+                <div
+                  className="add-channel-button"
+                  onClick={() => setShowCreateChannelModal(true)}
+                >
+                  +
+                </div>
+              ) : null}
+            </div>
             {serverInfo?.channels?.map((channel) => (
-              <div key={channel?.id} >
-                {console.log("CHANEEL LIKS",channel.id)}
-                <NavLink
-           to={`/channels/${channel.id}`}>
-
+              <div key={channel?.id}>
+                {console.log("CHANEEL LIKS", channel.id)}
+                <NavLink to={`/channels/${channel.id}`}>
                   {channel?.name}
                 </NavLink>
               </div>
@@ -117,7 +123,15 @@ function Server() {
           <Channel />
         </div>
         </div> */}
-      </div>
+
+      {showCreateChannelModal && (
+        <Modal onClose={() => setShowCreateChannelModal(false)}>
+          <CreateChannelModal
+            setShowCreateChannelModal={setShowCreateChannelModal}
+          />
+        </Modal>
+      )}
+    </div>
   );
 }
 export default Server;

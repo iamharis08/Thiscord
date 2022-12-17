@@ -38,6 +38,8 @@ export const fetchServers = (userId) => async (dispatch) => {
   if (response.ok) {
 
     const data = await response.json()
+    console.log("HERE IS FETCHHHHHSERVERS", data);
+    console.log(data, "DATAAAAAAAAAAAAAAAA")
     dispatch(loadServers(data));
     return data
   }
@@ -107,13 +109,22 @@ export const removeServer = (server) => async (dispatch) => {
   })
 
   if (response.ok) {
+      console.log("HERE IS in DELETEEEEEEFETCHHH",server.id);
+
     dispatch(deleteServer(server.id))
     return server
   }
 }
 
-// --- INITIAL STATE --- //
 
+// --- INITIAL STATE --- //
+const normalize = (arr) => {
+    let newObj = {}
+    arr.forEach((ele) => {
+      newObj[ele.id]=ele
+    })
+    return newObj
+}
 
 const initialState = { servers: {}, server: {} }
 
@@ -124,12 +135,13 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
 
     case LOAD_SERVERS:
-      const loadServers = {
-        ...state, servers: { ...state.servers },
-        server: { ...state.server }
-      }
-      action.servers.servers.forEach((server) => (loadServers.servers[server.id] = server))
-      return loadServers
+      let normalizedServers = normalize(action.servers.servers)
+      // const normalizedServers = action.servers.servers.forEach((server) => (loadServers.servers[server.id] = server))
+      // const loadServers = {
+      //   ...state, servers: { ...normalizedServers},
+      //   server: { ...state.server }
+      // }
+      return {...state, servers: {...normalizedServers} }
 
     case ADD_SERVER:
       const addServer = {
