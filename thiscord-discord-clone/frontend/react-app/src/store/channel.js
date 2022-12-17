@@ -79,6 +79,7 @@ export const createChannel = (channel, serverId) => async (dispatch) => {
 
 
 export const fetchUpdateChannel = (channel) => async (dispatch) => {
+  console.log("we got a channel update", channel)
   const response = await fetch(`/api/channels/${channel.id}`, {
     method: "PUT",
     headers: {
@@ -89,6 +90,7 @@ export const fetchUpdateChannel = (channel) => async (dispatch) => {
 
   if (response.ok) {
     const updatedChannel = await response.json()
+    console.log("WAS THE CHANNEL UPDATE OK?", updatedChannel)
 
     dispatch(updateChannel(updatedChannel))
     return updatedChannel

@@ -3,6 +3,7 @@ import { useParams, NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import EditServerModal from "./ServerForm/EditServerModal.js"
 import ServerDeleteModal from "./ServerDelete/ServerDeleteModal"
+import EditChannelModal from "./ChannelForm/EditChannelModal.js"
 import ChannelDeleteModal from "./ChannelDelete/ChannelDeleteModal.js"
 import { Modal } from "./context/Modal";
 import { fetchOneServer, fetchServers } from "../store/server";
@@ -82,9 +83,9 @@ function Server() {
   }, [dispatch, serverInfo, updateServers, serverId]);
 
   useEffect(() => {
-    console.log("CHANELLLL ID", channelId)
+    // console.log("CHANELLLL ID", channelId)
     if (channelId && serverInfo?.channels) {
-      console.log("CHANELLLLLLINHSITORY", channelId)
+      // console.log("CHANELLLLLLINHSITORY", channelId)
       history.push(`/channels/${channelId}`)
 
     }
@@ -148,9 +149,9 @@ function Server() {
                 {/* {console.log("CHANEEL LIKS", channel.id)} */}
                 <div
                   onClick={() => {
-                    console.log("NAVLINK CHANNEL ID", channel.id)
+                    // console.log("NAVLINK CHANNEL ID", channel.id)
                     setChannelId(channel.id)
-                    console.log("SET CHANNEL ID CHANNEL ID", channelId)
+                    // console.log("SET CHANNEL ID CHANNEL ID", channelId)
                     history.push(`/channels/${channel.id}`)
                   }
                   }
@@ -181,10 +182,13 @@ function Server() {
             )}
             {showChannelModal && (
               <Modal onClose={() => setShowChannelModal(false)}>
-                <EditServerModal
+                <EditChannelModal
                   setShowModal={setShowChannelModal}
                   setIsHidden={setChannelIsHidden}
+                  setUpdateChannels={setUpdateChannels}
+                  updateChannels={updateChannels}
                   showModal={showModal}
+                  channelId={channelId}
                 />
               </Modal>
             )}
