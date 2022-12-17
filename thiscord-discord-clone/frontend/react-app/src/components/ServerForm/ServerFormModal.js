@@ -55,7 +55,8 @@ function ServerFormModal({ setShowModal }) {
                       type="text"
                       value={serverName}
                       onChange={(e) => setServerName(e.target.value)}
-                      required />
+                      required
+                      autoFocus />
                   </div>
                 </label>
                 <div className='terms-and-highlight'>
@@ -68,7 +69,7 @@ function ServerFormModal({ setShowModal }) {
             </div>
             <div className='button-container'>
               <span className=''>
-                <button className='backButton' type="submit" onClick={() => setShowModal(false)} >
+                <button className='backButton' type="submit" >
                   Back
                 </button>
               </span>

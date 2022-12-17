@@ -1,3 +1,4 @@
+import { REMOVE_USER } from "./session";
 
 const LOAD_MESSAGES = 'message/LOAD_MESSAGES'
 const DELETE_MESSAGE = 'message/DELETE';
@@ -14,6 +15,10 @@ const deleteMessage = messageId => ({
   messageId
 });
 
+export const clearMessagesState = () => ({
+  type: REMOVE_USER,
+
+})
 
 // --- THUNKS --- //
 // const deleteMessage = messageId => ({
@@ -72,6 +77,10 @@ export default function reducer(state = initialState, action) {
         const deletedState = { ...state };
         delete deletedState.messages[action.messageId]
         return {...deletedState};
+
+      case REMOVE_USER: {
+        return initialState
+        }
       default:
         return state;
     }

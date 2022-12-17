@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect, useHistory, NavLink } from "react-router-dom";
 import { login } from "../../store/session";
 // import loginFormImage from "./images/loginformbackground.svg"
 import "../../css/LoginForm.css";
@@ -13,8 +13,8 @@ const LoginForm = () => {
   const [firstChannel, setFirstChannel] = useState("");
   const [serverId, setServerId] = useState("");
   // const channels = useSelector(state => state.server.servers[0].channels)
-  const servers = useSelector((state) => state.server.servers);
-  const server = useSelector((state) => state.server.server);
+  // const servers = useSelector((state) => state.server.servers);
+  // const server = useSelector((state) => state.server.server);
   // const [emailErr, setEmailErr] = useState([]);
   // const [passErr, setPassErr] = useState([]);
   const [password, setPassword] = useState("");
@@ -217,7 +217,7 @@ const LoginForm = () => {
                   </button>
                   <div className="register">
                     <span id="need-account">Need an account?</span>{" "}
-                    <span id="register-link">Register</span>
+                    <span id="register-link"><NavLink to='/sign-up'> Register</NavLink></span>
                   </div>
                 </div>
               </form>

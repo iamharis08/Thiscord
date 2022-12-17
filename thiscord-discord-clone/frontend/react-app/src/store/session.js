@@ -1,6 +1,10 @@
 // constants
+import { clearServersState } from "./server";
+import { clearMessagesState } from "./message";
+import { clearChannelsState } from "./channel";
+
 const SET_USER = 'session/SET_USER';
-const REMOVE_USER = 'session/REMOVE_USER';
+export const REMOVE_USER = 'session/REMOVE_USER';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -65,7 +69,13 @@ export const logout = () => async (dispatch) => {
   });
 
   if (response.ok) {
-    dispatch(removeUser());
+    dispatch(removeUser())
+    dispatch(clearServersState())
+    dispatch(clearChannelsState)
+    dispatch(clearMessagesState)
+
+    return
+
   }
 };
 

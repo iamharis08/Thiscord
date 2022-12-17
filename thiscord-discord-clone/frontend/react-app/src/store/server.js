@@ -1,9 +1,11 @@
 import { createChannel } from "./channel"
+// import { REMOVE_USER } from "./session"
+
 const LOAD_SERVERS = 'server/LOAD_SERVERS'
 const ADD_SERVER = 'server/ADD_SERVER'
 const UPDATE_SERVER = 'server/UPDATE_SERVER'
 const DELETE_SERVER = 'server/DELETE_SERVER'
-
+const REMOVE_SERVERS = 'server/REMOVE_SERVERS'
 
 // --- ACTIONS --- //
 
@@ -28,6 +30,10 @@ const deleteServer = (server) => ({
   server
 })
 
+export const clearServersState = () => ({
+  type: REMOVE_SERVERS,
+
+})
 // --- THUNKS --- //
 
 export const fetchServers = (userId) => async (dispatch) => {
@@ -126,8 +132,9 @@ const normalize = (arr) => {
     return newObj
 }
 
-const initialState = { servers: {}, server: {} }
 
+const clearedState = { servers: {}, server: {} }
+const initialState = { servers: {}, server: {} }
 
 // --- REDUCER --- //
 
@@ -141,7 +148,7 @@ export default function reducer(state = initialState, action) {
       //   ...state, servers: { ...normalizedServers},
       //   server: { ...state.server }
       // }
-      return {...state, servers: {...normalizedServers} }
+      return {...state, servers: normalizedServers }
 
     case ADD_SERVER:
       const addServer = {
@@ -173,6 +180,10 @@ export default function reducer(state = initialState, action) {
       return deleteServer
     }
 
+    case REMOVE_SERVERS: {
+      console.log("HITTTTTTTING THE CLEAR")
+      return clearedState
+    }
     default:
       return state;
   }

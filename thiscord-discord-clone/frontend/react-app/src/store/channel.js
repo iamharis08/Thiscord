@@ -1,3 +1,5 @@
+import { REMOVE_USER } from "./session"
+
 const LOAD_CHANNELS = 'channel/LOAD_CHANNELS'
 const ADD_CHANNEL = 'channel/ADD_CHANNEL'
 const UPDATE_CHANNEL = 'channel/UPDATE_CHANNEL'
@@ -30,6 +32,10 @@ const deleteChannel = (channelId) => {
   }
 }
 
+export const clearChannelsState = () => ({
+  type: REMOVE_USER,
+
+})
 // --- THUNKS --- //
 
 export const fetchChannels = (serverId) => async (dispatch) => {
@@ -159,6 +165,9 @@ export default function reducer(state = initialState, action) {
       deleteChannel.channel = {}
       return deleteChannel
 
+      case REMOVE_USER: {
+        return initialState
+      }
     default:
       return state;
   }

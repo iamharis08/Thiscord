@@ -6,8 +6,9 @@ import { useHistory, NavLink } from 'react-router-dom';
 const LogoutButton = () => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const onLogout = async (e) => {
-    await dispatch(logout());
+  const onLogout = (e) => {
+    e.preventDefault()
+    dispatch(logout());
     history.push("/")
   };
 
