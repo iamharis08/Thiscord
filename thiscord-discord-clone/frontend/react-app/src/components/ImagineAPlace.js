@@ -1,9 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 import '../css/ImagineAPlace.css'
 
 
 const ImagineAPlace = () => {
+    const user = useSelector(state => state.session.user)
+
     return (
         <main>
             <div className='hero-container'>

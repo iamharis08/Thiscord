@@ -3,6 +3,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchOneServer, fetchServers } from '../store/server';
 import { fetchChannels } from '../store/channel';
+import LogoutButton from './auth/LogoutButton';
 
 
 
@@ -17,7 +18,7 @@ function GeneralBar() {
   useEffect(() => {
    dispatch(fetchChannels(serverId))
 
-  }, [dispatch]);
+  }, [dispatch, serverId]);
 
   return(
     <div className="general-bar">

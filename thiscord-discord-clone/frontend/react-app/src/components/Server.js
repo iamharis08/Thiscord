@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchOneServer } from "../store/server";
 import "../css/SingleServer.css";
 import Channel from './Channel'
+import LogoutButton from "./auth/LogoutButton";
 
 
 function Server() {
@@ -96,6 +97,19 @@ function Server() {
                 </NavLink>
               </div>
             ))}
+          <div className='logout-user-container'>
+            <div className="general-bar-user">
+              <img
+                  id="member-profile"
+                  src="https://www.svgrepo.com/show/331368/discord-v2.svg"
+                  alt=""
+                ></img>
+              {user.username}
+            </div>
+            <div className="logout-button">
+              <LogoutButton />
+            </div>
+          </div>
           </div>
           {/* <div className="members-list">
             <strong>Members -</strong>
