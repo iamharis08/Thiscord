@@ -4,12 +4,12 @@ body {
     box-sizing: border-box;
     /* position: relative; */
 }
-.main{
+/* .main{
     position: absolute;
     height: 100vh;
     width: 322px;
     z-index: 100;
-}
+} */
 .general-bar{
     position: absolute;
     width: 240px;
@@ -20,9 +20,9 @@ body {
 }
 
 .bg {
-    position: absolute;
+    /* position: absolute; */
     background-color: rgb(32, 34, 37);
-    width: 82px;
+    width: 67px;
     min-height: 100vh;
 }
 
@@ -79,7 +79,7 @@ body {
     max-height: 58px;
     min-width: 58px;
     /* max-width: 58px; */
-    padding: 3px;
+    /* padding: 3px; */
     /* border: 2px rgb(60, 255, 0) solid; */
 }
 

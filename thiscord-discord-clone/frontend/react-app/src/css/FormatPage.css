@@ -1,0 +1,64 @@
+main {
+    display: flex;
+}
+
+.format-servers-list {
+    border: 1px red solid;
+    width: 82px;
+    height: 100vh;
+}
+
+.format-channels-bar {
+    border: 1px yellow solid;
+    width: 240px;
+}
+
+.format-body-container {
+    width: 100%;
+    border: 1px purple solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.format-channelsearch-bar {
+    display: flex;
+    justify-content:  space-between;
+    align-items: center;
+    width: 100%;
+    border: 1px lightgreen solid;
+    height: 48px;
+}
+
+.format-message-user-container {
+    border: 1px orangered solid;
+    height: calc(100% - 48px);
+    display: flex;
+}
+
+.format-messages-container {
+    border: 1px blue solid;
+    width: 100%;
+}
+
+.format-users-container {
+    border: 1px pink solid;
+    width: 220px;
+    padding: 10px 10px;
+    color: #8c989d;
+}
+
+.format-messages {
+    border: 1px red solid;
+    height: calc(100% - 68px);
+}
+
+.format-message-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px rgb(0, 238, 255) solid;
+    height: 68px;
+    /* padding: 10px; */
+    padding-left: 10px;
+    padding-right: 10px;
+}

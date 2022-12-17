@@ -138,9 +138,9 @@ function ServersList() {
           </Modal>
         )}
       </div>
-      <div className="general-bar">
+      {/* <div className="general-bar">
         <Server serverId={serverId}/>
-      </div>
+      </div> */}
     </div>
   );
 }

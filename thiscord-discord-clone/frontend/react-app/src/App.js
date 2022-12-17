@@ -13,6 +13,7 @@ import ImagineAPlace from './components/ImagineAPlace';
 import Servers from './components/Servers';
 import Server from './components/Server';
 import Channel from './components/Channel'
+import FormatPage from './components/FormatPage';
 import "./css/App.css"
 
 function App() {
@@ -68,6 +69,9 @@ function App() {
             </div>
           </div>
 
+        </Route>
+        <Route path='/formatpage'>
+          <FormatPage />
         </Route>
 
       </Switch>

@@ -162,9 +162,9 @@ function Channel() {
           {channel?.name}
         </span>
         <div className='search-form-container'>
-          <form onSubmit={sendSearch} className='message-form-form'>
+          <form onSubmit={sendSearch} className='search-message-form-form'>
             <input
-              className='message-form-input-container'
+              className='search-message-form-input-container'
               value={searchInput}
               onChange={updateSearchInput}
               placeholder={`Search`}
@@ -214,18 +214,17 @@ function Channel() {
               )}
           </div>
         ))}
-        <div ref={messageEnd} />
-      </div>
-      <div className='message-form-container'>
-        <form onSubmit={sendChat} className='message-form-form'>
-          <input
-            className='message-form-input-container'
-            value={chatInput}
-            onChange={updateChatInput}
-            placeholder={`Message #${channel.name}`}
-          />
-        </form>
-      </div>
+        <div ref={messageEnd} /></div>
+        <div className='message-form-container'>
+          <form onSubmit={sendChat} className='message-form-form'>
+            <input
+              className='message-form-input-container'
+              value={chatInput}
+              onChange={updateChatInput}
+              placeholder={`Message #${channel.name}`}
+            />
+          </form>
+        </div>
     </div>
   );
 }
