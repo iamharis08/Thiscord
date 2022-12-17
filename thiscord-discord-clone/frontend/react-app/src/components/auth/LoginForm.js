@@ -7,6 +7,7 @@ import "../../css/LoginForm.css";
 import qrImage from "../../css/images/thiscordQrCode.png";
 import { fetchOneServer, fetchServers } from "../../store/server";
 
+
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
@@ -118,11 +119,21 @@ const LoginForm = () => {
     return errorObj;
   };
 
-  // if (user) {
-  //   // .then(()=> {console.log(server, "LOGINNNNNNNSERVER")})
+  if (user) {
+    // .then(()=> {console.log(server, "LOGINNNNNNNSERVER")})
+    (async () => {
+      const response = await fetch(`/api/servers/`);
+      const data = await response.json();
+      const firstChannelResponse = await data?.servers[0]?.channels[0]?.id;
 
-  //   return <Redirect to={`/channels/${firstChannel}`} />;
-  // }
+      setFirstChannel(firstChannelResponse);
+      setServerId(data?.servers[0]?.id);
+      history.push(`/channels/${firstChannelResponse}`);
+      return firstChannelResponse
+    })().then((firstChannelResponse) => {
+      dispatch(fetchOneServer(firstChannelResponse));
+    })
+  }
   return (
     <div className="login-form-page">
       {/* <img src={loginFormImage} alt="loginForm" /> */}

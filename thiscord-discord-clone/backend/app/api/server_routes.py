@@ -111,6 +111,7 @@ def users_server():
     res = []
     for s in joined_servers:
         print(s.to_dict(), 'BEFORE JOIN??')
+        print(joined_servers, 'BEFORE JOIN??')
         channels = Channel.query.filter(Channel.server_id==id).all()
         print([c.to_dict() for c in channels], 'CHANNELS!')
         server_channels = [c.to_dict() for c in channels]
