@@ -3,6 +3,7 @@ import { useParams, NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import EditServerModal from "./ServerForm/EditServerModal.js"
 import ServerDeleteModal from "./ServerDelete/ServerDeleteModal"
+import ChannelDeleteModal from "./ChannelDelete/ChannelDeleteModal.js"
 import { Modal } from "./context/Modal";
 import { fetchOneServer, fetchServers } from "../store/server";
 import "../css/SingleServer.css";
@@ -17,9 +18,13 @@ function Server() {
   const [channelId, setChannelId] = useState("");
   const [click, setClicks] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
+  const [channelIsHidden, setChannelIsHidden] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showChannelModal, setShowChannelModal] = useState(false);
+  const [showDeleteChannelModal, setShowDeleteChannelModal] = useState(false);
   const [updateServers, setUpdateServers] = useState("false");
+  const [updateChannels, setUpdateChannels] = useState(false);
 
   const serverObj = useSelector((state) => state.server.servers);
   const { serverId } = useParams();
@@ -45,7 +50,7 @@ function Server() {
         // console.log(serverObj[serverId].ownerId, "OWNER ID")
       })
 
-      dispatch(fetchServers(user?.id))
+    dispatch(fetchServers(user?.id))
 
     // .then(() => {
     // if(!click && channelIds){
@@ -74,7 +79,7 @@ function Server() {
     // setChannels(responseData.channels)
 
     // })();
-  }, [dispatch, updateServers, serverId]);
+  }, [dispatch, serverInfo, updateServers, serverId]);
 
   useEffect(() => {
     console.log("CHANELLLL ID", channelId)
@@ -140,17 +145,60 @@ function Server() {
             <strong>Channels</strong>
             {serverInfo?.channels?.map((channel) => (
               <div key={channel?.id} className="channel-list-item">
-                {console.log("CHANEEL LIKS", channel.id)}
-                <NavLink
-                  to={`/channels/${channel.id}`}>
-
+                {/* {console.log("CHANEEL LIKS", channel.id)} */}
+                <div
+                  onClick={() => {
+                    console.log("NAVLINK CHANNEL ID", channel.id)
+                    setChannelId(channel.id)
+                    console.log("SET CHANNEL ID CHANNEL ID", channelId)
+                    history.push(`/channels/${channel.id}`)
+                  }
+                  }
+                >
                   {channel?.name}
-                </NavLink>
-                <span className="channel-settings-button">
+                </div>
+                <span className="channel-settings-button"
+                  onClick={() => {
+                    setChannelId(channel.id)
+                    setChannelIsHidden(!channelIsHidden)
+                  }}>
                   *
                 </span>
               </div>
             ))}
+
+            {!channelIsHidden && (
+              <div>
+                <button onClick={() => {
+                  setShowChannelModal(true)
+                }}>
+                  Edit Channel</button>
+                <button onClick={() => {
+                  setShowDeleteChannelModal(true)
+                }}>
+                  Delete Channel</button>
+              </div>
+            )}
+            {showChannelModal && (
+              <Modal onClose={() => setShowChannelModal(false)}>
+                <EditServerModal
+                  setShowModal={setShowChannelModal}
+                  setIsHidden={setChannelIsHidden}
+                  showModal={showModal}
+                />
+              </Modal>
+            )}
+            {showDeleteChannelModal && (
+              <Modal onClose={() => setShowDeleteChannelModal(false)}>
+                <ChannelDeleteModal
+                  setShowDeleteChannelModal={setShowDeleteChannelModal}
+                  showDeleteChannelModal={showDeleteChannelModal}
+                  setUpdateChannels={setUpdateChannels}
+                  updateChannels={updateChannels}
+                  channelId={channelId}
+                />
+              </Modal>
+            )}
           </div>
           {/* <div className="members-list">
             <strong>Members -</strong>

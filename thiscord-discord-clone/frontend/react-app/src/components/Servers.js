@@ -40,7 +40,7 @@ function ServersList() {
     //   // setServers(responseData.servers);
     // }
     // fetchData();
-  }, [dispatch, serverObj, serverArr.length]);
+  }, [dispatch, serverArr.length]);
 
   // useEffect(() => {
   //   setServerId(Object.values(serverArr.servers)[0]?.id)
