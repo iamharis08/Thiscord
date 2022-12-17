@@ -25,6 +25,23 @@ body {
   overflow-x: hidden;
 }
 
+
+.channel-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.channel-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.channel-container::-webkit-scrollbar-thumb {
+  background-color: #202225;
+  outline: 1px solid slategrey;
+  border-radius: 8px;
+  /* border: none; */
+  outline: none;
+}
+
 .channel-header-container {
   display: flex;
   justify-content: left;
@@ -33,13 +50,16 @@ body {
   background-color: rgb(54, 57, 63);
   width: 100%;
   border-bottom: solid rgb(38, 40, 44) 1px;
+  margin-left: 240px;
 }
 
 .channel-hash {
   display: flex;
   color: rgb(142, 146, 151);
-  font-size: 3rem;
+  font-size: 24px;
   font-weight: 100;
+  margin-right: 5px;
+  margin-left: 10px;
 }
 
 .channel-name {
@@ -57,15 +77,18 @@ body {
   margin-top: 5rem;
   /* margin-bottom: 68px; */
   padding-bottom: 68px;
+  /* width: inherit; */
+  margin-left: 240px;
 }
 
 .single-message-container {
   display: flex;
-  width: inherit;
+  width: 100%;
   justify-content: left;
-  padding: 0.5rem;
+  /* padding: 0.5rem; */
   flex-direction: column;
   margin: 0.2rem 0;
+  padding-left: 10px;
 }
 
 .single-message-container:hover {
@@ -106,6 +129,9 @@ body {
   display: flex;
   align-items: center;
   color: rgb(220, 221, 222);
+  white-space: normal;
+  word-break: break-word;
+  max-width: fit-content;
 }
 
 .message-form-container {
@@ -118,6 +144,7 @@ body {
   align-items: center;
   background-color: rgb(54, 57, 63);
   padding: 0 10px;
+  /* margin-right: 110px; */
 
   /* margin-top: .5rem 0; */
 }
@@ -138,6 +165,8 @@ body {
   border-radius: 0.3rem;
   border: none;
   padding: 0.75rem;
+  margin-left: 250px;
+  margin-right: 110px;
 }
 
 .message-form-input-container::placeholder {

@@ -147,7 +147,7 @@ function Channel() {
 
       <div className='channel-header-container'>
         <span className='channel-hash'>
-          <strong># {" "}</strong>
+          <p># {" "}</p>
         </span>
         <span className='channel-name'>
           {channel?.name}

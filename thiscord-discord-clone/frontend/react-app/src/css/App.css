@@ -12,10 +12,11 @@ body{
 .servers-app-container {
   /* float: left; */
   flex-grow: 0;
-  width: 322px;
+  /* width: 322px; */
 }
 
 .channel-app-container {
   flex-grow: 1;
   background-color: rgb(54, 57, 63);
+  margin-left: 82px;
 }
