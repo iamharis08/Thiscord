@@ -64,30 +64,30 @@ function ServersList() {
     return initials.length <= 5 ? initials.join("") : initials.slice(0, 5);
   };
 
-  const serverComponents = Object.values(serverObj).map((server) => {
+  const serverComponents = Object.values(serverObj).map((server,i) => {
     return (
-      <div className="listItem" key={server.id}>
-        {hoveredId === server.id && (
+      <div className="listItem" key={i}>
+        {hoveredId === server?.id && (
           <span className="hiddenItems">
             <span className="whiteNub"></span>
             <span className="textBox">
               <span className="triangle"></span>
-              <span className="serverNames">{server.name}</span>
+              <span className="serverNames">{server?.name}</span>
             </span>
           </span>
         )}
-        <NavLink
-          to={`/servers/${server?.id}`}
+        <div
+          // to={`/servers/${server?.id}`}
           onClick={() => {
             setClick(true);
-            setServerId(server.id);
+            setServerId(server?.id);
           }}
           className="serverIcon"
           onMouseOut={hideServerName}
-          onMouseOver={() => displayServerName(server.id)}
+          onMouseOver={() => displayServerName(server?.id)}
         >
-          <div className="link">{abbreviate(server.name)}</div>
-        </NavLink>
+          <div className="link">{server && abbreviate(server?.name)}</div>
+        </div>
 
       </div>
     );
@@ -139,7 +139,7 @@ function ServersList() {
         )}
       </div>
       <div className="general-bar">
-        <Server />
+        <Server serverId={serverId}/>
       </div>
     </div>
   );

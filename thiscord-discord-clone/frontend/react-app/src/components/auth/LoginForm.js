@@ -35,9 +35,11 @@ const LoginForm = () => {
           console.log(firstChannelResponse, "WORKKKKKKKK");
           setFirstChannel(firstChannelResponse);
           setServerId(data?.servers[0]?.id);
-          dispatch(fetchOneServer(data?.servers[0]?.id));
           history.push(`/channels/${firstChannelResponse}`);
-        })();
+          return firstChannelResponse
+        })().then((firstChannelResponse) => {
+          dispatch(fetchOneServer(firstChannelResponse));
+        })
       })
       // if (data) {
       //   setErrors(data);
@@ -56,12 +58,14 @@ const LoginForm = () => {
         const response = await fetch(`/api/servers/`);
         const data = await response.json();
         const firstChannelResponse = await data?.servers[0]?.channels[0]?.id;
-        console.log(firstChannelResponse, "WORKKKKKKKK");
         setFirstChannel(firstChannelResponse);
         setServerId(data?.servers[0]?.id);
-        dispatch(fetchOneServer(data?.servers[0]?.id));
         history.push(`/channels/${firstChannelResponse}`);
-      })();
+        return firstChannelResponse
+      })().then((firstChannelResponse) => {
+        dispatch(fetchOneServer(firstChannelResponse));
+
+    })
     })
     // .then(() => { <Redirect to={`/channels/${firstChannel}`} />;})
   };
@@ -73,13 +77,15 @@ const LoginForm = () => {
         const response = await fetch(`/api/servers/`);
         const data = await response.json();
         const firstChannelResponse = await data?.servers[0]?.channels[0]?.id;
-        console.log(firstChannelResponse, "WORKKKKKKKK");
+
         setFirstChannel(firstChannelResponse);
         setServerId(data?.servers[0]?.id);
-        dispatch(fetchOneServer(data.servers[0].id));
         history.push(`/channels/${firstChannelResponse}`);
-      })();
-    });
+        return firstChannelResponse
+      })().then((firstChannelResponse) => {
+        dispatch(fetchOneServer(firstChannelResponse));
+      })
+    })
   };
 
   const updateEmail = (e) => {
@@ -114,8 +120,18 @@ const LoginForm = () => {
 
   if (user) {
     // .then(()=> {console.log(server, "LOGINNNNNNNSERVER")})
+    (async () => {
+      const response = await fetch(`/api/servers/`);
+      const data = await response.json();
+      const firstChannelResponse = await data?.servers[0]?.channels[0]?.id;
 
-    return <Redirect to={`/channels/${firstChannel}`} />;
+      setFirstChannel(firstChannelResponse);
+      setServerId(data?.servers[0]?.id);
+      history.push(`/channels/${firstChannelResponse}`);
+      return firstChannelResponse
+    })().then((firstChannelResponse) => {
+      dispatch(fetchOneServer(firstChannelResponse));
+    })
   }
   return (
     <div className="login-form-page">

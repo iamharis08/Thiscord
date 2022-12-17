@@ -13,7 +13,7 @@ import Channel from './Channel'
 import CreateChannelModal from "./CreateChannel/CreateChannelModal.js";
 
 
-function Server() {
+function Server({serverId}) {
   // const [server, setServer] = useState({});
   const history = useHistory()
   const [users, setUsers] = useState([]);
@@ -31,7 +31,7 @@ function Server() {
   const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
 
   const serverObj = useSelector((state) => state.server.servers);
-  const { serverId } = useParams();
+  // const { serverId } = useParams();
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
@@ -83,7 +83,7 @@ function Server() {
     // setChannels(responseData.channels)
 
     // })();
-  }, [dispatch, serverInfo, updateServers, serverId]);
+  }, [updateServers, serverId]);
 
   useEffect(() => {
     // console.log("CHANELLLL ID", channelId)
@@ -109,7 +109,7 @@ function Server() {
               {server.name}
             </span>
             <span className='server-settings-button'>
-            >
+            {">"}
             </span>
           </div>
           :
@@ -181,7 +181,7 @@ function Server() {
                 >
                   {channel?.name}
                 </div>
-                {serverInfo.server.id === user.id &&
+                {serverInfo.server.ownerId === user.id &&
                   <span className="channel-settings-button"
                     onClick={() => {
                       setChannelId(channel.id)

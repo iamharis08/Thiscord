@@ -150,7 +150,7 @@ export default function reducer(state = initialState, action) {
       }
       console.log("ADDSERVER VARIBLE", addServer)
       console.log("AACTION AACTION AACITON", action)
-      addServer.servers[action.server.server.id] = action.server.server
+      addServer.servers[action.server.server?.id] = action.server.server
       return addServer
 
     case UPDATE_SERVER: {
