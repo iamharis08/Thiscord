@@ -1,7 +1,7 @@
 html, body {
     margin: 0;
     box-sizing: border-box;
-   
+
 }
 
 .hero-container {
@@ -54,6 +54,8 @@ html, body {
 
 .channels-section-container {
     /* margin-top: 110px; */
+    background-color: white;
+    /* color: white; */
     padding-top: 120px;
     padding-bottom: 120px;
     display: flex;
@@ -110,6 +112,7 @@ html, body {
 }
 
 .members-section-container {
+    background-color: white;
     padding-top: 120px;
     /* margin-top: 110px; */
     padding-left: 15px;
