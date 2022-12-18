@@ -20,7 +20,7 @@ def one_channel_index(id):
     one_channel_messages = Message.query.filter(Message.channel_id == id).order_by(Message.created_at.asc()).all()
 
     channel_messages = [message.to_dict() for message in one_channel_messages]
-    print('!!!!!! ------ messages from channel', channel_messages, '------ MESSAGES FROM CHANNEL !!!!!!!')
+    # print('!!!!!! ------ messages from channel', channel_messages, '------ MESSAGES FROM CHANNEL !!!!!!!')
     message_with_user = []
     for m in channel_messages:
         user = User.query.get(m['userId']).to_dict()
@@ -36,19 +36,20 @@ def one_channel_index(id):
 def update_channel(id):
     form = ChannelForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    channel = Channel.query.get(id)
-    channel.name = form.name.data
-    user = current_user.to_dict()
-    server = Server.query.get(channel.server_id)
+    if form.validate_on_submit():
+        channel = Channel.query.get(id)
+        channel.name = form.name.data
+        user = current_user.to_dict()
+        server = Server.query.get(channel.server_id)
 
-    if server.owner_id == user['id']:
+        if server.owner_id == user['id']:
 
-        db.session.add(channel)
-        db.session.commit()
+            db.session.add(channel)
+            db.session.commit()
 
-        return {'channel': channel.to_dict()}, 201
+            return {'channel': channel.to_dict()}, 201
 
-    return "Can't Edit a Channel in a Server You Don't Own!", 401
+    return {"errors": ["Can't Edit a Channel in a Server You Don't Own!"]}, 401
 
 
 # Delete Channel

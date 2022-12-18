@@ -58,6 +58,8 @@ function EditServerModal({ setShowModal, setIsHidden }) {
                                             // placeholder={`${user.username}'s server`}
                                             type="text"
                                             value={serverName}
+                                            minlength='3'
+                                            maxlength='50'
                                             onChange={(e) => setServerName(e.target.value)}
                                             required />
                                     </div>
