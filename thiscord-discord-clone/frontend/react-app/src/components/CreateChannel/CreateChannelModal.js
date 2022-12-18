@@ -17,7 +17,7 @@ function CreateChannelModal({ setShowCreateChannelModal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(createChannel({name:channelName, server_id: server.id}, server.id)).then(() => {
+    return dispatch(createChannel({ name: channelName, server_id: server.id }, server.id)).then(() => {
       setShowCreateChannelModal(false);
       dispatch(fetchOneServer(server.id))
     });
@@ -30,50 +30,50 @@ function CreateChannelModal({ setShowCreateChannelModal }) {
   };
 
   return (
-<div className="server-channel-modal">
-    <form className="server-channel-form" onSubmit={handleSubmit}>
-          {errors[0] ? (
-            <ul className="errors">
-              <li>{errors[0]}</li>
-            </ul>
-          ) : (
-            ""
-          )}
-          <div className="create-text">Create Channel</div>
+    <div className="server-channel-modal">
+      <form className="server-channel-form" onSubmit={handleSubmit}>
+        {errors[0] ? (
+          <ul className="errors">
+            <li>{errors[0]}</li>
+          </ul>
+        ) : (
+          ""
+        )}
+        <div className="create-text">Create Channel</div>
 
 
-                <label className="input-label">
-                  <div className="server-name">CHANNEL NAME</div>
-                  <div>
-                    <input
-                      className="input"
-                      placeholder={`new-channel`}
-                      type="text"
-                      value={channelName}
-                      onChange={(e) => setChannelName(e.target.value)}
-                      required
-                    />
-                  </div>
-                </label>
+        <label className="input-label">
+          <div className="server-name">CHANNEL NAME</div>
+          <div>
+            <input
+              className="input"
+              placeholder={`new-channel`}
+              type="text"
+              value={channelName}
+              onChange={(e) => setChannelName(e.target.value)}
+              required
+            />
+          </div>
+        </label>
 
-            <div className="button-container">
-              <span className="">
-                <button
-                  className="backButton"
-                  type="submit"
-                  onClick={() => setShowCreateChannelModal(false)}
-                >
-                  Back
-                </button>
-              </span>
-              <span className="">
-                <button className="createButton" type="submit">
-                  Create
-                </button>
-              </span>
-            </div>
-    </form>
-</div>
+        <div className="button-container">
+          <span className="">
+            <button
+              className="backButton"
+              type="button"
+              onClick={() => setShowCreateChannelModal(false)}
+            >
+              Back
+            </button>
+          </span>
+          <span className="">
+            <button className="createButton" type="submit">
+              Create
+            </button>
+          </span>
+        </div>
+      </form>
+    </div>
 
   );
 }

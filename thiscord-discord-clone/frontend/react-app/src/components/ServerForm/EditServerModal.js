@@ -72,7 +72,7 @@ function EditServerModal({ setShowModal, setIsHidden }) {
                         </div>
                         <div className='button-container'>
                             <span className=''>
-                                <button className='backButton' type="submit" onClick={() => {
+                                <button className='backButton' type="button" onClick={() => {
                                     setShowModal(false)
                                     setIsHidden(true);
                                 }} >

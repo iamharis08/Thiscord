@@ -31,12 +31,12 @@ function EditChannelModal({ setShowModal, setIsHidden, setUpdateChannels, update
                 setShowModal(false)
                 setUpdateChannels(!updateChannels)
             })
-        .catch(async (res) => {
-          const data = await res.json();
-          console.log("THE DATA OF THE NEW Channel", data)
-          if (data) setErrors(Object.values(data));
-          else return (<Redirect to={`/servers/${serverInfo.server.id}`} />);
-        });
+            .catch(async (res) => {
+                const data = await res.json();
+                console.log("THE DATA OF THE NEW Channel", data)
+                if (data) setErrors(Object.values(data));
+                else return (<Redirect to={`/servers/${serverInfo.server.id}`} />);
+            });
     }
 
     return (
@@ -78,7 +78,7 @@ function EditChannelModal({ setShowModal, setIsHidden, setUpdateChannels, update
                         </div>
                         <div className='button-container'>
                             <span className=''>
-                                <button className='backButton' type="submit" onClick={() => {
+                                <button className='backButton' type="button" onClick={() => {
                                     setShowModal(false)
                                     setIsHidden(true);
                                 }} >
