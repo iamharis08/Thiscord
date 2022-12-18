@@ -1,4 +1,4 @@
-body {
+html, body {
   margin: 0;
   box-sizing: border-box;
   /* background-color: rgb(54, 57, 63); */
@@ -16,29 +16,32 @@ body {
   flex-direction: column;
   /* padding: 0 1rem; */
   /* margin: 0 1rem; */
-  height: 100vh;
+  height: 100%;
   /* margin-bottom: 68px; */
   /* padding-left: 322px; */
   /* position: absolute; */
   /* margin-left: 322px; */
   overflow-y: scroll;
   overflow-x: hidden;
+  border: 1px red solid;
 }
 
 .channel-header-container {
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
-  position: fixed;
+  /* position: fixed; */
   background-color: rgb(54, 57, 63);
   width: 100%;
+  height: 58px;
+  border: 1px blue solid;
   border-bottom: solid rgb(38, 40, 44) 1px;
 }
 
 .channel-hash {
   display: flex;
   color: rgb(142, 146, 151);
-  font-size: 3rem;
+  font-size: 30px;
   font-weight: 100;
 }
 
@@ -54,9 +57,12 @@ body {
   display: flex;
   background-color: rgb(54, 57, 63);
   flex-direction: column;
-  margin-top: 5rem;
+  width: calc(100% - 240px);
+  /* margin-top: 5rem; */
   /* margin-bottom: 68px; */
-  padding-bottom: 68px;
+  /* padding-bottom: 68px; */
+  border: 1px solid purple;
+  /* height: 100%; */
 }
 
 .single-message-container {
@@ -108,12 +114,17 @@ body {
   color: rgb(220, 221, 222);
 }
 
+.search-form-container {
+  display: flex;
+  align-items: center;
+}
+
 .message-form-container {
   display: flex;
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
-  height: 68px;
-  width: 100%;
+  height: 78px;
+  /* width: 100%; */
   justify-content: center;
   align-items: center;
   background-color: rgb(54, 57, 63);
@@ -126,7 +137,19 @@ body {
   display: flex;
   width: 100%;
   justify-content: center;
-  height: 68pxgit;
+  /* height: 68px; */
+}
+
+.search-message-form-form {
+  height: 24px;
+  /* border-radius: 4px; */
+}
+
+.search-message-form-input-container {
+  height: 24px;
+  border-radius: 6px;
+  padding-left: 10px;
+  margin-right: 10px;
 }
 
 .message-form-input-container {
@@ -146,4 +169,10 @@ body {
 
 .message-form-input-container:focus {
   outline: none;
+}
+
+.messages-users-container {
+  display: flex;
+  border: 1px green solid;
+  width: 100%;
 }

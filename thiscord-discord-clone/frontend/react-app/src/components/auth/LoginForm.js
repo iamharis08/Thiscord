@@ -229,7 +229,7 @@ const LoginForm = () => {
             </div>
             <div className="qr-header-text">Log in with QR Code</div>
             <div className="qr-sub-header">
-              Scan this with the <span>Discord mobile app</span> to log in
+              Scan this with the <span>This.cord mobile app</span> to log in
               instantly.
             </div>
           </div>

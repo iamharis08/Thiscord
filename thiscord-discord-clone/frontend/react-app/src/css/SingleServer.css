@@ -90,6 +90,7 @@
     /* color: #8c989d; */
     padding: 10px 10px;
     /* border-radius: 4px; */
+    border: 1px solid red;
 }
 
 #one-member {

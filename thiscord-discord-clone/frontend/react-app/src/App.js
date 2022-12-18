@@ -60,12 +60,10 @@ function App() {
         </Route>
         <Route path='/channels/:channelId' exact={true}>
           <div className='app-container'>
-            <div className='servers-app-container'>
             <Servers />
-            </div>
-            <div className='channel-app-container'>
+            {/* <div className='channel-app-container'> */}
             <Channel />
-            </div>
+            {/* </div> */}
           </div>
 
         </Route>

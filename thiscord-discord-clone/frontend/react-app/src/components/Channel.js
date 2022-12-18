@@ -21,6 +21,7 @@ function Channel() {
   const the_channel = useSelector(state => state.channel)
   const user = useSelector(state => state.session.user)
   const currChannel = useSelector(state => state.channel)
+  const serverInfo = useSelector((state) => state.server.server);
 
   const [channel, setChannel] = useState({})
   const [messageTime, setMessageTime] = useState('')
@@ -156,15 +157,15 @@ function Channel() {
 
       <div className='channel-header-container'>
         <span className='channel-hash'>
-          <strong># {" "}</strong>
-        </span>
+          #
         <span className='channel-name'>
           {channel?.name}
         </span>
+        </span>
         <div className='search-form-container'>
-          <form onSubmit={sendSearch} className='message-form-form'>
+          <form onSubmit={sendSearch} className='search-message-form-form'>
             <input
-              className='message-form-input-container'
+              className='search-message-form-input-container'
               value={searchInput}
               onChange={updateSearchInput}
               placeholder={`Search`}
@@ -181,7 +182,7 @@ function Channel() {
           )}
         </div>
       </div>
-
+      <div className='messages-users-container'>
       <div className='channel-messages-container'>
         {messages?.map((message, i) => (
           <div key={i}
@@ -215,7 +216,6 @@ function Channel() {
           </div>
         ))}
         <div ref={messageEnd} />
-      </div>
       <div className='message-form-container'>
         <form onSubmit={sendChat} className='message-form-form'>
           <input
@@ -225,6 +225,21 @@ function Channel() {
             placeholder={`Message #${channel.name}`}
           />
         </form>
+      </div>
+      </div>
+      <div className="members-list">
+            <strong>Members -</strong>
+            {serverInfo?.users?.map((user) => (
+              <p id="one-member" key={user?.id}>
+                <img
+                  id="member-profile"
+                  src="https://www.svgrepo.com/show/331368/discord-v2.svg"
+                  alt=""
+                ></img>
+                {user?.username}
+              </p>
+            ))}
+          </div>
       </div>
     </div>
   );
