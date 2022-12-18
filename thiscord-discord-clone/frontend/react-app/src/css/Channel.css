@@ -23,6 +23,7 @@ html, body {
   /* margin-left: 322px; */
   overflow-y: hidden;
   overflow-x: hidden;
+  padding: 5px;
   /* border: 1px red solid; */
 }
 
@@ -30,6 +31,7 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   /* position: fixed; */
   background-color: rgb(54, 57, 63);
   width: 100%;
@@ -145,6 +147,7 @@ html, body {
 .search-form-container {
   display: flex;
   align-items: center;
+  padding-right: 70px;
 }
 
 .message-form-container {
@@ -173,6 +176,8 @@ html, body {
   height: 24px;
   /* border-radius: 4px; */
 }
+
+
 
 .search-message-form-input-container {
   height: 24px;
