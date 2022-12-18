@@ -13,7 +13,7 @@ import Channel from './Channel'
 import CreateChannelModal from "./CreateChannel/CreateChannelModal.js";
 
 
-function Server({serverId}) {
+function Server({ serverId }) {
   // const [server, setServer] = useState({});
   const history = useHistory()
   const [users, setUsers] = useState([]);
@@ -54,11 +54,16 @@ function Server({serverId}) {
           return server?.channels[0]?.id
         }
         // console.log(serverObj[serverId].ownerId, "OWNER ID")
-      }).then((channelid) => {dispatch(fetchServers(user?.id))
-                        return channelid}
-      ).then((channelid) => {if (channelid) {
-        // console.log("CHANELLLLLLINHSITORY", channelId)
-        history.push(`/channels/${channelid}`)}})
+      }).then((channelid) => {
+        dispatch(fetchServers(user?.id))
+        return channelid
+      }
+      ).then((channelid) => {
+        if (channelid) {
+          // console.log("CHANELLLLLLINHSITORY", channelId)
+          history.push(`/channels/${channelid}`)
+        }
+      })
 
 
     // .then(() => {
@@ -114,7 +119,7 @@ function Server({serverId}) {
               {server.name}
             </span>
             <span className='server-settings-button'>
-            {">"}
+              {">"}
             </span>
           </div>
           :
@@ -153,6 +158,7 @@ function Server({serverId}) {
             <ServerDeleteModal
               setShowDeleteModal={setShowDeleteModal}
               showDeleteModal={showDeleteModal}
+              setIsHidden={setIsHidden}
               setUpdateServers={setUpdateServers}
             />
           </Modal>
@@ -175,7 +181,7 @@ function Server({serverId}) {
               <div key={channel?.id} className="channel-list-item">
                 {/* {console.log("CHANEEL LIKS", channel.id)} */}
                 <div
-                className="channel-name"
+                  className="channel-name"
                   onClick={() => {
                     // console.log("NAVLINK CHANNEL ID", channel.id)
                     setChannelId(channel.id)
@@ -226,7 +232,10 @@ function Server({serverId}) {
               </div>
             )}
             {showChannelModal && (
-              <Modal onClose={() => setShowChannelModal(false)}>
+              <Modal onClose={() => {
+                setChannelIsHidden(true)
+                setShowChannelModal(false)
+              }}>
                 <EditChannelModal
                   setShowModal={setShowChannelModal}
                   setIsHidden={setChannelIsHidden}
@@ -238,10 +247,14 @@ function Server({serverId}) {
               </Modal>
             )}
             {showDeleteChannelModal && (
-              <Modal onClose={() => setShowDeleteChannelModal(false)}>
+              <Modal onClose={() => {
+                setShowDeleteChannelModal(false)
+                setChannelIsHidden(true)
+              }}>
                 <ChannelDeleteModal
                   setShowDeleteChannelModal={setShowDeleteChannelModal}
                   showDeleteChannelModal={showDeleteChannelModal}
+                  setIsHidden={setChannelIsHidden}
                   setUpdateChannels={setUpdateChannels}
                   updateChannels={updateChannels}
                   channelId={channelId}

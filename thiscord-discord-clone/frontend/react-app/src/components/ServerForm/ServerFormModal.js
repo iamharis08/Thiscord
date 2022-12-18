@@ -19,7 +19,7 @@ function ServerFormModal({ setShowModal }) {
     e.preventDefault();
     setErrors([]);
     return dispatch(createServer({ name: serverName }))
-    .then((newServer) => {dispatch(fetchOneServer(newServer.server.id))})
+      .then((newServer) => { dispatch(fetchOneServer(newServer.server.id)) })
       .then(() => { setShowModal(false) })
     // .catch(async (res) => {
     //   const data = await res.json();
@@ -69,7 +69,9 @@ function ServerFormModal({ setShowModal }) {
             </div>
             <div className='button-container'>
               <span className=''>
-                <button className='backButton' type="submit" >
+                <button className='backButton' type="button" onClick={() => {
+                  setShowModal(false)
+                }}>
                   Back
                 </button>
               </span>

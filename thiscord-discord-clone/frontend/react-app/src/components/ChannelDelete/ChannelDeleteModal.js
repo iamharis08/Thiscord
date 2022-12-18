@@ -8,7 +8,13 @@ import "./ChannelDeleteModal.css";
 import { fetchChannels, removeChannel } from "../../store/channel"
 import { fetchOneServer } from "../../store/server"
 
-function ChannelDeleteModal({ setShowDeleteChannelModal, setUpdateChannels, updateChannels, channelId }) {
+function ChannelDeleteModal({
+    setShowDeleteChannelModal,
+     setIsHidden,
+     setUpdateChannels,
+     updateChannels,
+     channelId
+    }) {
     const dispatch = useDispatch();
     const history = useHistory()
     const user = useSelector((state) => state.session.user);
@@ -51,17 +57,17 @@ function ChannelDeleteModal({ setShowDeleteChannelModal, setUpdateChannels, upda
         <div className="delete-server-modal">
             <div className="delete-server-heading">Delete '{channel?.name}'</div>
             <div className="delete-confirmation">
-                <p>
+                <p className="delete-confirmation-detail">
                     Are you sure you want to delete <span>{channel?.name}</span>?
                 </p>
-                <p>This action cannot be undone</p>
+                <p className="delete-confirmation-detail">This action cannot be undone.</p>
             </div>
             <form className="create-server-form" onSubmit={handleSubmit}>
                 <label className="input-label"></label>
                 <div className="enter-server-name">ENTER CHANNEL NAME</div>
                 <div>
                     <input
-                        className="input"
+                        className="delete-input"
                         // placeholder={`${user.username}'s server`}
                         type="text"
                         value={channelName}
@@ -69,8 +75,12 @@ function ChannelDeleteModal({ setShowDeleteChannelModal, setUpdateChannels, upda
                         required
                     />
                 </div>
-                <div className="delete-footer">
-                    <div className="cancel">Cancel</div>
+                <div className="delete-button-container">
+                    <div className="delete-back-button" onClick={() => {
+                        setShowDeleteChannelModal(false)
+                        setIsHidden(true);
+                    }}
+                    >back</div>
                     <button className="delete-button" type="submit">Delete Channel</button>
                 </div>
             </form>
