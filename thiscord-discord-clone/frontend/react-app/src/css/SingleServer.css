@@ -84,13 +84,14 @@
 }
 
 .members-list {
-    width: 220px;
+    width: 300px;
     background-color: #2f3136;
-    height: 100vh;
+    /* height: 100%; */
     /* color: #8c989d; */
     padding: 10px 10px;
+    overflow-y: auto;
     /* border-radius: 4px; */
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 #one-member {

@@ -26,6 +26,11 @@ body {
     background-color: rgb(32, 34, 37);
     width: 75px;
     min-height: 100vh;
+    overflow-y: auto;
+}
+
+.bg::-webkit-scrollbar {
+    display: none;
 }
 
 .dm {

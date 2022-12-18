@@ -123,18 +123,22 @@ function Channel() {
 
   const sendSearch = async (e) => {
     e.preventDefault()
-    const search = await fetch(`/api/channels/${channelId}/messages`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ search: searchInput })
-    })
-    const searchRes = await search.json()
-    const foundRes = searchRes?.messages
-    setSearchResults(foundRes, 'foundRes')
-    setShowSearchResults(true)
-    setSearchInput("")
+
+    if(searchInput.length) {
+
+      const search = await fetch(`/api/channels/${channelId}/messages`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ search: searchInput })
+      })
+      const searchRes = await search.json()
+      const foundRes = searchRes?.messages
+      setSearchResults(foundRes, 'foundRes')
+      setShowSearchResults(true)
+      setSearchInput("")
+    }
     return ''
   }
 
@@ -183,7 +187,8 @@ function Channel() {
         </div>
       </div>
       <div className='messages-users-container'>
-      <div className='channel-messages-container'>
+        <div className='message-input-container'>
+          <div className='channel-messages-container'>
         {messages?.map((message, i) => (
           <div key={i}
             // ref={searchRef  [i]}
@@ -216,6 +221,7 @@ function Channel() {
           </div>
         ))}
         <div ref={messageEnd} />
+      </div>
       <div className='message-form-container'>
         <form onSubmit={sendChat} className='message-form-form'>
           <input
@@ -226,7 +232,7 @@ function Channel() {
           />
         </form>
       </div>
-      </div>
+        </div>
       <div className="members-list">
             <strong>Members -</strong>
             {serverInfo?.users?.map((user) => (
