@@ -9,6 +9,7 @@ html, body {
   /* overflow-y: hidden; */
 }
 
+
 .channel-container {
   display: flex;
   width: 100%;
@@ -65,9 +66,9 @@ html, body {
   display: flex;
   background-color: rgb(54, 57, 63);
   flex-direction: column;
-  height: calc(100vh - 75px);
+  height: calc(100vh - 123px);
   /* width: calc(100% - 240px); */
-  width: 100%;
+  width: 99%;
   /* margin-top: 5rem; */
   /* margin-bottom: 68px; */
   padding: 5px;
@@ -78,21 +79,35 @@ html, body {
 }
 
 /* width */
-.channel-messages-container::-webkit-scrollbar {
+/* .channel-messages-container::-webkit-scrollbar {
   width: 8px;
   color: #202225;
-}
+} */
 
 /* Track */
-.channel-messages-container::-webkit-scrollbar-track {
+/* .channel-messages-container::-webkit-scrollbar-track {
   background-color: #2e3338;
   border-radius: 8px;
-}
+} */
 
 /* Handle */
-.channel-messages-container::-webkit-scrollbar-thumb {
+/* .channel-messages-container::-webkit-scrollbar-thumb {
   background: #202225;
   border-radius: 8px;
+} */
+
+.channel-messages-container::-webkit-scrollbar {
+  width: 10px;
+  background-color: #202225;
+}
+
+.channel-messages-container::-webkit-scrollbar-thumb {
+  background: #202225;
+  border-radius: 10px;
+}
+
+.channel-messages-container::-webkit-scrollbar-track {
+  background-color: #2e3338;
 }
 
 .single-message-container {
@@ -155,10 +170,10 @@ html, body {
 
 .message-form-container {
   display: flex;
-  position: absolute;
+  /* position: absolute; */
   bottom: 2%;
-  height: 78px;
-  width: 98%;
+
+  width: 97%;
   justify-content: center;
   align-items: center;
   background-color: rgb(54, 57, 63);
@@ -222,6 +237,6 @@ html, body {
   width: 100%;
   height: inherit;
   flex-grow: 1;
-  overflow-y: hidden;
-
+  overflow: hidden;
+  height: 100%;
 }

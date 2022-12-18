@@ -129,6 +129,7 @@
 
 }
 .channels-members-container {
+    height: 100%;
     display: flex;
     justify-content: space-between;
     color: #8c989d;
@@ -136,7 +137,7 @@
 
 .members-list {
     width: 300px;
-    height: 100%;
+ 
     background-color: #2f3136;
     /* height: 100%; */
     /* color: #8c989d; */
