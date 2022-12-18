@@ -40,7 +40,7 @@ function ServersList() {
     //   // setServers(responseData.servers);
     // }
     // fetchData();
-  }, [dispatch, serverArr.length]);
+  }, [dispatch, serverId]);
 
   // useEffect(() => {
   //   setServerId(Object.values(serverArr.servers)[0]?.id)
@@ -84,8 +84,7 @@ function ServersList() {
           }}
           className="serverIcon"
           onMouseOut={hideServerName}
-          onMouseOver={() => displayServerName(server?.id)}
-        >
+          onMouseOver={() => displayServerName(server?.id)}>
           <div className="link">{server && abbreviate(server?.name)}</div>
         </div>
 
@@ -139,7 +138,7 @@ function ServersList() {
         )}
       </div>
       <div className="general-bar">
-        <Server serverId={serverId}/>
+      {serverId && <Server serverId={serverId}/>}
       </div>
     </div>
   );

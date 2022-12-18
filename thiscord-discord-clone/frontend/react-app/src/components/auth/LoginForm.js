@@ -120,18 +120,26 @@ const LoginForm = () => {
 
   if (user) {
     // .then(()=> {console.log(server, "LOGINNNNNNNSERVER")})
-    (async () => {
-      const response = await fetch(`/api/servers/`);
-      const data = await response.json();
-      const firstChannelResponse = await data?.servers[0]?.channels[0]?.id;
+    // (async () => {
+    //   const response = await fetch(`/api/servers/`);
+    //   const data = await response.json();
+    //   const firstChannelResponse = await data?.servers[0]?.channels[0]?.id;
 
-      setFirstChannel(firstChannelResponse);
-      setServerId(data?.servers[0]?.id);
-      history.push(`/channels/${firstChannelResponse}`);
-      return firstChannelResponse
-    })().then((firstChannelResponse) => {
-      dispatch(fetchOneServer(firstChannelResponse));
+    //   setFirstChannel(firstChannelResponse);
+    //   setServerId(data?.servers[0]?.id);
+    //   // history.push(`/channels/${firstChannelResponse}`);
+    //   return firstChannelResponse
+    // })()
+    dispatch(fetchServers(user.id))
+    .then((servers) => {
+      console.log(servers.servers[0].id, "LOGINFORMMMMMM SERVERIDDDDD")
+      dispatch(fetchOneServer(servers.servers[0].id));
+      history.push(`/channels/${servers.servers[0].id}`);
     })
+    // .then((firstChannelResponse) => {
+    //   dispatch(fetchOneServer(firstChannelResponse));
+    //   history.push(`/channels/${firstChannelResponse}`);
+    // })
   }
   return (
     <div className="login-form-page">
@@ -159,7 +167,7 @@ const LoginForm = () => {
                       : "input-text"
                   }
                 >
-                  EMAIL OR PHONE NUMBER
+                  EMAIL
                   {errors.length && formErrors("email")["email"] ? (
                     <span className="errors">
                       {" "}
@@ -177,6 +185,7 @@ const LoginForm = () => {
                     // placeholder="Email"
                     value={email}
                     onChange={updateEmail}
+                    required
                   />
                 </div>
                 <div

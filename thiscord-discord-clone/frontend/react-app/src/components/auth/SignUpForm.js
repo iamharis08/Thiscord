@@ -4,6 +4,7 @@ import { Redirect, NavLink} from "react-router-dom";
 import { signUp } from "../../store/session";
 import "../../css/LoginForm.css";
 import "../../css/SignUpForm.css";
+import { createServer } from "../../store/server";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -17,12 +18,14 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data);
-      }
-    }
-  };
+      const data = await dispatch(signUp(username, email, password))
+
+        if (data){
+          setErrors(data);
+        console.log(errors, "INSIGNUP ASYNC ERRORS")
+        }
+  }else (setErrors(["password : paswords do not match"]))
+};
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -34,14 +37,43 @@ const SignUpForm = () => {
 
   const updatePassword = (e) => {
     setPassword(e.target.value);
+    setErrors([])
   };
 
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
+    setErrors([])
+  };
+
+  const formErrors = (inputField) => {
+    console.log(errors[0].split(" : ")[0]);
+    console.log("hittt");
+    if (!errors.length) {
+      return false;
+    }
+
+    // let passwordErrors = []
+    let errorObj = {};
+
+    errors.forEach((err) => {
+      if (err.split(" : ")[0] === "password") {
+        errorObj["password"] = err.split(" : ")[1];
+        console.log("INSIDE");
+      }
+      if (err.split(" : ")[0] === "email") {
+        errorObj["email"] = err.split(" : ")[1];
+      }
+      if (err.split(" : ")[0] === "username") {
+        errorObj["username"] = err.split(" : ")[1];
+      }
+    });
+
+    return errorObj;
   };
 
   if (user) {
-    return <Redirect to="/" />;
+
+    return <Redirect to="/login" />;
   }
 
   return (
@@ -52,43 +84,91 @@ const SignUpForm = () => {
             <div className="form-title">Create an account</div>
             <form onSubmit={onSignUp}>
               <div>
-                {errors.map((error, ind) => (
+                {/* {errors.map((error, ind) => (
                   <div key={ind}>{error}</div>
-                ))}
+                ))} */}
               </div>
               <div className="inputs-container">
-                <div className="form-input-text email-text">EMAIL</div>
+                <div className={
+                    errors.length && formErrors("email")["email"]
+                      ? "error-input-text"
+                      : "form-input-text email-text" }>EMAIL
+                      {errors.length && formErrors("email")["email"] ? (
+                    <span className="errors">
+                      {" "}
+                      - {formErrors("email")["email"]}
+                    </span>
+                  ) : (
+                    <span className="asterik"> *</span>
+                  )}</div>
                 <label></label>
+                <input
+                  type="email"
+                  name="email"
+                  onChange={updateEmail}
+                  value={email}
+
+                  required
+                ></input>
+              </div>
+              <div className="inputs-container">
+              <div className={
+                    errors.length && formErrors("username")["username"]
+                      ? "error-input-text"
+                      : "form-input-text" }>USERNAME
+                      {errors.length && formErrors("username")["username"] ? (
+                    <span className="errors">
+                      {" "}
+                      - {formErrors("username")["username"]}
+                    </span>
+                  ) : (
+                    <span className="asterik"> *</span>
+                  )}</div>
+                <label></label>
+
                 <input
                   type="text"
                   name="username"
                   onChange={updateUsername}
                   value={username}
+                  required
                 ></input>
               </div>
               <div className="inputs-container">
+              <div className={
+                    errors.length && formErrors("password")["password"]
+                      ? "error-input-text"
+                      : "form-input-text" }>PASSWORD
+                      {errors.length && formErrors("password")["password"] ? (
+                    <span className="errors">
+                      {" "}
+                      - {formErrors("password")["password"]}
+                    </span>
+                  ) : (
+                    <span className="asterik"> *</span>
+                  )}</div>
                 <label></label>
-                <div className="form-input-text">USERNAME</div>
-                <input
-                  type="text"
-                  name="email"
-                  onChange={updateEmail}
-                  value={email}
-                ></input>
-              </div>
-              <div className="inputs-container">
-                <label></label>
-                <div className="form-input-text">PASSWORD</div>
                 <input
                   type="password"
                   name="password"
                   onChange={updatePassword}
                   value={password}
+                  required
                 ></input>
               </div>
               <div className="inputs-container">
-                <label></label>
-                <div className="form-input-text">DATE OF BIRTH</div>
+              <div className={
+                    errors.length && formErrors("password")["password"]
+                      ? "error-input-text"
+                      : "form-input-text" }>CONFIRM PASSWORD
+                      {errors.length && formErrors("password")["password"] ? (
+                    <span className="errors">
+                      {" "}
+                      - {formErrors("password")["password"]}
+                    </span>
+                  ) : (
+                    <span className="asterik"> *</span>
+                  )}</div>
                 <input
                   type="password"
                   name="repeat_password"
