@@ -167,7 +167,7 @@ function Server({ serverId }) {
           <div className="channels-list">
 
             <div className="channel-list-title">
-              <strong>Channels</strong>
+              <strong>TEXT CHANNELS</strong>
               {user.id === serverInfo.server.ownerId ? (
                 <div
                   className="add-channel-button"

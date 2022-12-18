@@ -1,28 +1,40 @@
 .main-container{
     position: relative;
     height: 100vh;
-    width: 100%;
-    z-index: 100;
-}
 
+    z-index: 100;
+    box-sizing: border-box;
+}
+/*
 .channel-bar-container{
     position: absolute;
     width: 90vw;
-    /* height: 100vh; */
+    height: 100vh;
     height: 100%;
     top: 0%;
     left: 0%;
 
+} */
+
+.server{
+    width: 100%;
+
 }
 
 .server-title-container{
-    width: 100%;
+    max-width: 240px;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    padding: 12px 16px;
     align-items: center;
     color: white;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     cursor: pointer;
+}
+.title-text{
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .server-title-container:hover{
@@ -45,13 +57,16 @@
 
 .channels-list {
     width: 100%;
-    padding: 0 10px 0 10px;
+    padding: 12px 10px 0 10px;
 }
 
 .channel-list-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 12px;
+    color: #96989D;
+    font-weight: light;
 }
 
 .channel-list-item {
@@ -69,7 +84,7 @@
 }
 
 .add-channel-button {
-    font-size: 30px;
+    font-size: 22px;
     cursor: pointer;
     width: 20px;
 }
