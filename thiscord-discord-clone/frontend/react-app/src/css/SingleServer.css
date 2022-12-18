@@ -17,8 +17,38 @@
 } */
 
 .server{
+    position: relative;
     width: 100%;
 
+}
+
+.server-buttons-container{
+    position: absolute;
+    padding-top: ;
+    left: 12px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 8px;
+    /* justify-content: center; */
+    align-items: center;
+    height: 40vh;
+    width: 212px;
+    background-color: #18191C;
+}
+
+.server-button{
+    width: 204px;
+    background-color: #18191C;
+    color: #96989D;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    padding: 6px 8px;
+}
+.server-button:hover {
+    background-color: #;
+    background-color: #;
 }
 
 .server-title-container{

@@ -114,31 +114,31 @@ function Server({ serverId }) {
       <div className="server">
         {/* {serverObj[serverId] === user.id && */}
         {serverInfo.server.ownerId === user.id ?
-          <div className='server-title-container' onClick={() => setIsHidden(!isHidden)}>
+          (<div className='server-title-container' onClick={() => setIsHidden(!isHidden)}>
             <span className='title-text'>
               {server.name}
             </span>
             <span className='server-settings-button'>
               {">"}
             </span>
-          </div>
+          </div>)
           :
-          <div className='server-title-container-no-click'>
+          (<div className='server-title-container-no-click' >
             <span className='title-text'>
               {server.name}
             </span>
-          </div>
+          </div>)
         }
         {/* } */}
 
 
         {!isHidden && (
-          <div>
-            <button onClick={() => {
+          <div className="server-buttons-container">
+            <button className="server-button" onClick={() => {
               setShowModal(true)
             }}>
               Edit Server</button>
-            <button onClick={() => {
+            <button className="server-button" onClick={() => {
               setShowDeleteModal(true)
             }}>
               Delete Server</button>
@@ -205,19 +205,7 @@ function Server({ serverId }) {
             ))}
 
 
-            <div className='logout-user-container'>
-              <div className="general-bar-user">
-                <img
-                  id="member-profile"
-                  src="https://www.svgrepo.com/show/331368/discord-v2.svg"
-                  alt=""
-                ></img>
-                {user.username}
-              </div>
-              <div className="logout-button">
-                <LogoutButton />
-              </div>
-            </div>
+
 
             {!channelIsHidden && (
               <div>
@@ -282,6 +270,19 @@ function Server({ serverId }) {
           <Channel />
         </div>
         </div> */}
+        <div className='logout-user-container'>
+              <div className="general-bar-user">
+                <img
+                  id="member-profile"
+                  src="https://www.svgrepo.com/show/331368/discord-v2.svg"
+                  alt=""
+                ></img>
+                {user.username}
+              </div>
+              <div className="logout-button">
+                <LogoutButton />
+              </div>
+            </div>
       {showCreateChannelModal && (
         <Modal onClose={() => setShowCreateChannelModal(false)}>
           <CreateChannelModal
