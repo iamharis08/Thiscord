@@ -64,7 +64,7 @@ function ServersList() {
     return initials.length <= 5 ? initials.join("") : initials.slice(0, 5);
   };
 
-  const serverComponents = Object.values(serverObj).map((server,i) => {
+  const serverComponents = Object.values(serverObj).map((server, i) => {
     return (
       <div className="listItem" key={i}>
         {hoveredId === server?.id && (
@@ -95,7 +95,7 @@ function ServersList() {
   return (
     <div className="main">
       <div className="bg">
-        {hoveredId === 1000000 && (
+        {hoveredId !== 1000000 && (
           <span className="dmHiddenItems">
             <span className="dmWhiteNub"></span>
             <span className="dmtTextBox">
@@ -120,8 +120,8 @@ function ServersList() {
           </span>
         )}
         <span onClick={() => {
-            setShowModal(true)
-          }}
+          setShowModal(true)
+        }}
           className="addServerIcon"
           onMouseOut={hideServerName}
           onMouseOver={() => displayServerName(10000000)}
@@ -138,7 +138,7 @@ function ServersList() {
         )}
       </div>
       <div className="general-bar">
-      {serverId && <Server serverId={serverId}/>}
+        {serverId && <Server serverId={serverId} />}
       </div>
     </div>
   );

@@ -201,6 +201,7 @@ body {
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
     border-right: 5px solid rgb(24, 24, 24);
+    z-index: 1000;
 }
 
 .dmServerNames {
@@ -299,6 +300,7 @@ body {
     position: absolute;
     left: 90px;
     top: 28.5px;
+
     /* align-items: center;
     justify-content: center; */
     /* margin-left: 87px;
