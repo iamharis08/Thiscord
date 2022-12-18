@@ -101,7 +101,7 @@
     cursor: pointer;
 }
 
-.channel-name {
+.channel-list-name {
     cursor: pointer;
     /* font-weight: lighter; */
     color: #96989D;
@@ -123,6 +123,7 @@
     /* flex-direction: row; */
     /* justify-self: end; */
 }
+
 .channel-settings-button img {
     height: 14px;
 
