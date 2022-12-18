@@ -17,6 +17,7 @@ function ServersList() {
   const [clicked, setClick] = useState(false);
   const [hoveredId, setHoveredId] = useState(-1);
   const [serverId, setServerId] = useState("");
+
   const [channelId, setChannelId] = useState("");
   const [showModal, setShowModal] = useState(false);
 
@@ -28,6 +29,7 @@ function ServersList() {
   useEffect(() => {
     dispatch(fetchServers(user?.id)).then(() => {
       if (!clicked) {
+        console.log("INNNNNNNNNNNNNNNNNNNNNNNNNN CLICKED SERVERSSSS", Object.values(serverObj)[0]?.id)
         setServerId(Object.values(serverObj)[0]?.id);
       }
     });
@@ -40,7 +42,8 @@ function ServersList() {
     //   // setServers(responseData.servers);
     // }
     // fetchData();
-  }, [dispatch, serverArr.length]);
+  }, [dispatch, serverId]);
+  // }, [dispatch, serverArr.length]);
 
   // useEffect(() => {
   //   setServerId(Object.values(serverArr.servers)[0]?.id)
@@ -139,7 +142,8 @@ function ServersList() {
         )}
       </div>
       <div className="general-bar">
-        <Server serverId={serverId}/>
+        {serverId && <Server serverId={serverId}/>}
+
       </div>
     </div>
   );

@@ -1,4 +1,6 @@
 // constants
+
+import { createServer, fetchOneServer, fetchServers } from "./server";
 import { clearServersState } from "./server";
 import { clearMessagesState } from "./message";
 import { clearChannelsState } from "./channel";
@@ -71,8 +73,8 @@ export const logout = () => async (dispatch) => {
   if (response.ok) {
     dispatch(removeUser())
     dispatch(clearServersState())
-    dispatch(clearChannelsState)
-    dispatch(clearMessagesState)
+    dispatch(clearChannelsState())
+    dispatch(clearMessagesState())
 
     return
 
@@ -95,8 +97,11 @@ export const signUp = (username, email, password) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
+    console.log(data, "SESSION DATAAAAAAAAAAAAAAAAA")
+    dispatch(createServer({name: `${data.username}'s First Server`}))
+
     dispatch(setUser(data))
-    return null;
+    return data
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {

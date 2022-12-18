@@ -15,6 +15,7 @@ import CreateChannelModal from "./CreateChannel/CreateChannelModal.js";
 
 function Server({serverId}) {
   // const [server, setServer] = useState({});
+  console.log(serverId, "SERVERIDDDD PASSSSED DOWNNNNNNNNNNNN")
   const history = useHistory()
   const [users, setUsers] = useState([]);
   const [channels, setChannels] = useState([]);

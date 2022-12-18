@@ -1,188 +1,182 @@
-import { createChannel } from "./channel"
+import { createChannel } from "./channel";
 // import { REMOVE_USER } from "./session"
 
-const LOAD_SERVERS = 'server/LOAD_SERVERS'
-const ADD_SERVER = 'server/ADD_SERVER'
-const UPDATE_SERVER = 'server/UPDATE_SERVER'
-const DELETE_SERVER = 'server/DELETE_SERVER'
-const REMOVE_SERVERS = 'server/REMOVE_SERVERS'
+const LOAD_SERVERS = "server/LOAD_SERVERS";
+const ADD_SERVER = "server/ADD_SERVER";
+const UPDATE_SERVER = "server/UPDATE_SERVER";
+const DELETE_SERVER = "server/DELETE_SERVER";
+const REMOVE_SERVERS = "server/REMOVE_SERVERS";
 
 // --- ACTIONS --- //
 
 const loadServers = (servers) => ({
   type: LOAD_SERVERS,
-  servers
-})
-  ;
-
+  servers,
+});
 const addServer = (server) => ({
   type: ADD_SERVER,
-  server
-})
+  server,
+});
 
 const updateServer = (server) => ({
   type: UPDATE_SERVER,
-  server
-})
+  server,
+});
 
 const deleteServer = (server) => ({
   type: DELETE_SERVER,
-  server
-})
+  server,
+});
 
 export const clearServersState = () => ({
   type: REMOVE_SERVERS,
-
-})
+});
 // --- THUNKS --- //
 
 export const fetchServers = (userId) => async (dispatch) => {
   const response = await fetch(`/api/servers/`, {
-    method: 'GET'
+    method: "GET",
   });
 
   if (response.ok) {
-
-    const data = await response.json()
-    console.log("HERE IS FETCHHHHHSERVERS", data);
-    console.log(data, "DATAAAAAAAAAAAAAAAA")
+    const data = await response.json();
+    // console.log("HERE IS FETCHHHHHSERVERS", data);
+    // console.log(data, "DATAAAAAAAAAAAAAAAA");
     dispatch(loadServers(data));
-    return data
+    return data;
   }
 };
 
-
 export const fetchOneServer = (serverId) => async (dispatch) => {
-
   const response = await fetch(`/api/servers/${serverId}`, {
-    method: "GET"
+    method: "GET",
   });
 
   if (response.ok) {
-    const server = await response.json()
-    console.log("SERVEERBACKEND", server)
-    dispatch(addServer(server))
-    return server
+    const server = await response.json();
+    console.log(server, "FETHC ONE SERVER RESPONSE")
+    // console.log("SERVEERBACKEND", server);
+    dispatch(addServer(server));
+    return server;
   }
-}
-
+};
 
 export const createServer = (server) => async (dispatch) => {
-  console.log("IN THE CREATE SERVER THUNK ", server, " WHAT IS THIS?")
+  console.log("IN THE CREATE SERVER THUNK ", server, " WHAT IS THIS?");
   const response = await fetch(`/api/servers/`, {
     method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(server)
-  })
+    body: JSON.stringify(server),
+  });
 
   if (response.ok) {
     // console.log("RESPONSE WAS OK IN CREATE SERVER")
-    const newServer = await response.json()
-    console.log(newServer, "NEWWWWWWWWWWWWWWWWWWWWW")
-    dispatch(addServer(newServer))
+    const newServer = await response.json();
+    // console.log(newServer, "NEWWWWWWWWWWWWWWWWWWWWW");
+    dispatch(addServer(newServer));
     const newChannelObj = {
-      name: "general"
-    }
-    dispatch(createChannel(newChannelObj, newServer.server.id))
-    console.log("THE NEW SERVER IS ALIVE ", newServer)
-    return newServer
+      name: "general",
+    };
+    dispatch(createChannel(newChannelObj, newServer.server.id));
+    // console.log("THE NEW SERVER IS ALIVE ", newServer);
+    return newServer;
   }
-}
+};
 
 export const fetchUpdateServer = (server) => async (dispatch) => {
   const response = await fetch(`/api/servers/${server.id}`, {
     method: "PUT",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(server)
-  })
+    body: JSON.stringify(server),
+  });
 
   if (response.ok) {
-    const updatedServer = await response.json()
+    const updatedServer = await response.json();
 
-    dispatch(updateServer(updatedServer))
-    return updatedServer
+    dispatch(updateServer(updatedServer));
+    return updatedServer;
   }
-}
-
+};
 
 export const removeServer = (server) => async (dispatch) => {
   const response = await fetch(`/api/servers/${server.id}`, {
-    method: "DELETE"
-  })
+    method: "DELETE",
+  });
 
   if (response.ok) {
-      console.log("HERE IS in DELETEEEEEEFETCHHH",server.id);
+    console.log("HERE IS in DELETEEEEEEFETCHHH", server.id);
 
-    dispatch(deleteServer(server.id))
-    return server
+    dispatch(deleteServer(server.id));
+    return server;
   }
-}
-
+};
 
 // --- INITIAL STATE --- //
 const normalize = (arr) => {
-    let newObj = {}
-    arr.forEach((ele) => {
-      newObj[ele.id]=ele
-    })
-    return newObj
-}
+  let newObj = {};
+  arr.forEach((ele) => {
+    newObj[ele.id] = ele;
+  });
+  return newObj;
+};
 
-
-const clearedState = { servers: {}, server: {} }
-const initialState = { servers: {}, server: {} }
+const clearedState = { servers: {}, server: {} };
+const initialState = { servers: {}, server: {} };
 
 // --- REDUCER --- //
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-
     case LOAD_SERVERS:
-      let normalizedServers = normalize(action.servers.servers)
+      let normalizedServers = normalize(action.servers.servers);
+      console.log(normalizedServers, "NORMALIDEDSDEDESERVERRRRRRRRRRRRRR");
       // const normalizedServers = action.servers.servers.forEach((server) => (loadServers.servers[server.id] = server))
       // const loadServers = {
       //   ...state, servers: { ...normalizedServers},
       //   server: { ...state.server }
       // }
-      return {...state, servers: normalizedServers }
+      const stateNormalized ={ ...state, servers: normalizedServers }
+      console.log(stateNormalized, "STATE NORMALLLLLLLLLLLLLLL")
+      return { ...state, servers: normalizedServers };
 
     case ADD_SERVER:
       const addServer = {
         ...state,
-        server: { ...action.server }
-      }
-      console.log("ADDSERVER VARIBLE", addServer)
-      console.log("AACTION AACTION AACITON", action)
-      addServer.servers[action.server.server?.id] = action.server.server
-      return addServer
+        server: { ...action.server },
+      };
+      console.log("ADDSERVER VARIBLE", addServer);
+      // console.log("AACTION AACTION AACITON", action);
+      addServer.servers[action.server.server?.id] = action.server.server;
+      console.log(action, "ACTIONNNS  ADD SERVER")
+      return addServer;
 
     case UPDATE_SERVER: {
       const updateServer = {
         ...state,
-        server: { ...state.server, ...action.server }
-      }
-      updateServer.servers[action.server.server.id] = action.server.server
-      return updateServer
+        server: { ...state.server, ...action.server },
+      };
+      updateServer.servers[action.server.server.id] = action.server.server;
+      return updateServer;
     }
 
     case DELETE_SERVER: {
       const deleteServer = {
         ...state,
         servers: { ...state.servers },
-        server: { ...state.server }
-      }
-      delete deleteServer.servers[action.server.id]
-      deleteServer.server = {}
-      return deleteServer
+        server: { ...state.server },
+      };
+      delete deleteServer.servers[action.server.id];
+      deleteServer.server = {};
+      return deleteServer;
     }
 
     case REMOVE_SERVERS: {
-      console.log("HITTTTTTTING THE CLEAR")
-      return clearedState
+      console.log("HITTTTTTTING THE CLEAR");
+      return clearedState;
     }
     default:
       return state;
