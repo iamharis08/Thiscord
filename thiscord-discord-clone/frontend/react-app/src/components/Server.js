@@ -11,7 +11,7 @@ import { fetchOneServer, fetchServers } from "../store/server";
 import "../css/SingleServer.css";
 import Channel from './Channel'
 import CreateChannelModal from "./CreateChannel/CreateChannelModal.js";
-
+import gear from '../css/images/gear-solid.svg'
 
 function Server({ serverId }) {
   // const [server, setServer] = useState({});
@@ -190,7 +190,7 @@ function Server({ serverId }) {
                   }
                   }
                 >
-                  {channel?.name}
+                  <span className=".channel-list-hash">#</span>&nbsp;{channel?.name}
                 </div>
                 {serverInfo.server.ownerId === user.id &&
                   <span className="channel-settings-button"
@@ -198,7 +198,7 @@ function Server({ serverId }) {
                       setChannelId(channel.id)
                       setChannelIsHidden(!channelIsHidden)
                     }}>
-                    *
+                    <img src={gear} alt="settings" />
                   </span>
                 }
               </div>

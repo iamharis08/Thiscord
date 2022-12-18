@@ -37,8 +37,10 @@
     font-weight: 500;
 }
 
-.server-title-container:hover{
-    background-color: #323543;
+.server-title-container:hover {
+    background-color: #42464D;
+    color: white;
+    cursor: pointer;
 }
 
 .server-title-container-no-click{
@@ -55,10 +57,21 @@
     transform: rotate(90deg);
 }
 
+
 .channels-list {
     width: 100%;
     padding: 12px 10px 0 10px;
 }
+
+.channel-list-hash {
+
+    display: flex;
+    color: rgb(142, 146, 151);
+    font-size: 30px;
+    font-weight: 100;
+
+
+  }
 
 .channel-list-title {
     display: flex;
@@ -77,10 +90,22 @@
     flex-direction: row;
     justify-content: space-between;
     /* align-items: center; */
+    height: 34px;
+
+
+}
+
+.channel-list-item:hover {
+    background-color: #42464D;
+    color: white;
+    cursor: pointer;
 }
 
 .channel-name {
     cursor: pointer;
+    /* font-weight: lighter; */
+    color: #96989D;
+    font-size: 16px;
 }
 
 .add-channel-button {
@@ -90,13 +115,18 @@
 }
 
 .channel-settings-button {
+    display: flex;
     font-size: 44px;
     display: flex;
     cursor: pointer;
+    align-items: center;
     /* flex-direction: row; */
     /* justify-self: end; */
 }
+.channel-settings-button img {
+    height: 14px;
 
+}
 .channels-members-container {
     display: flex;
     justify-content: space-between;

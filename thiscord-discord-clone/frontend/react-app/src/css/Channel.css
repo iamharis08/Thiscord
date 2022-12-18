@@ -47,10 +47,14 @@ html, body {
 
 .channel-name {
   color: white;
-  font-weight: bold;
+  font-weight: 500;
   display: flex;
   align-items: center;
-  font-size: 1rem;
+  font-size: 15px;
+}
+
+.channel-name:hover {
+  color: white;
 }
 
 .channel-messages-container {
