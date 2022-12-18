@@ -6,6 +6,7 @@ html, body {
   /* position: relative; */
   /* overflow-x: hidden;
   overflow-y: hidden; */
+  /* overflow-y: hidden; */
 }
 
 .channel-container {
@@ -21,9 +22,9 @@ html, body {
   /* padding-left: 322px; */
   /* position: absolute; */
   /* margin-left: 322px; */
-  overflow-y: hidden;
-  overflow-x: hidden;
-  padding: 5px;
+  /* overflow-y: hidden; */
+
+
   /* border: 1px red solid; */
 }
 
@@ -38,6 +39,7 @@ html, body {
   height: 58px;
   /* border: 1px blue solid; */
   border-bottom: solid rgb(38, 40, 44) 1px;
+  padding: 5px 0px;
 }
 
 .channel-hash {
@@ -63,14 +65,15 @@ html, body {
   display: flex;
   background-color: rgb(54, 57, 63);
   flex-direction: column;
-  height: calc(100% - 75px);
+  height: calc(100vh - 75px);
   /* width: calc(100% - 240px); */
+  width: 100%;
   /* margin-top: 5rem; */
   /* margin-bottom: 68px; */
   padding: 5px;
   margin-right: 5px;
   /* border: 1px solid purple; */
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
 }
 
@@ -147,13 +150,13 @@ html, body {
 .search-form-container {
   display: flex;
   align-items: center;
-  padding-right: 70px;
+  padding-right: 5%;
 }
 
 .message-form-container {
   display: flex;
-  /* position: fixed; */
-  bottom: 0;
+  position: absolute;
+  bottom: 2%;
   height: 78px;
   width: 98%;
   justify-content: center;
@@ -163,6 +166,7 @@ html, body {
   /* border: 1px red solid; */
 
   /* margin-top: .5rem 0; */
+  z-index: 1000;
 }
 
 .message-form-form {
@@ -214,6 +218,10 @@ html, body {
 }
 
 .message-input-container {
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: inherit;
+  flex-grow: 1;
+  overflow-y: hidden;
+
 }

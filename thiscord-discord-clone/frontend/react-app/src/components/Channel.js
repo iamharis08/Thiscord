@@ -215,12 +215,14 @@ function Channel() {
                   </div>
                   <div className='single-message-message-info'>
                     {message?.message}
+                    <div ref={messageEnd} />
                   </div>
+
                 </>
               )}
           </div>
         ))}
-        <div ref={messageEnd} />
+
       </div>
       <div className='message-form-container'>
         <form onSubmit={sendChat} className='message-form-form'>
