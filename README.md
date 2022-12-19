@@ -202,6 +202,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
 ## Contact
+* ⭐ Trevor Moore ⭐ - trevormoore.2016@gmail.com : https://github.com/Trevor-Walton-Moore
 * Haris Ahmed - iamharis08@gmail.com : https://github.com/iamharis08
 * Jacob Lauxman - jlauxman@gmail.com : https://github.com/jacoblauxman
 * Tyler Short - infinitespace20@gmail.com : https://github.com/Cahzzm
