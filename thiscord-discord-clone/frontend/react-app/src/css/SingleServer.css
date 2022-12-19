@@ -24,31 +24,70 @@
 
 .server-buttons-container{
     position: absolute;
-    padding-top: ;
+    /* padding-top: ; */
     left: 12px;
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     padding-top: 8px;
     /* justify-content: center; */
     align-items: center;
-    height: 40vh;
+    height: 402px;
+    width: 212px;
+    background-color: #18191C;
+
+}
+.channels-buttons-container{
+    position: absolute;
+    /* padding-top: ; */
+    left: 12px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 8px;
+    /* justify-content: center; */
+    align-items: center;
+    height: 80px;
     width: 212px;
     background-color: #18191C;
 }
 
 .server-button{
-    width: 204px;
+    display: flex;
+    justify-content: space-between;
+    width: 198px;
     background-color: #18191C;
     color: #96989D;
     font-size: 14px;
     font-weight: 500;
     text-align: left;
-    padding: 6px 8px;
+    padding: 8px 8px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.server-button img{
+    width: 16px;
+
 }
 .server-button:hover {
-    background-color: #;
-    background-color: #;
+    background-color: #4752C4;
+    color: white;
+}
+.server-button.delete-server{
+    color: red;
+}
+.server-button.delete-server:hover{
+    color: white;
+    background-color: rgb(206, 0, 0);
+}
+.server-button.edit-server{
+    color: #5967fc;
+}
+.server-button.edit-server:hover{
+    color: white;
+    background-color: #5967fc;
 }
 
 .server-title-container{
@@ -193,40 +232,4 @@
 #member-profile {
     width: 30px;
     margin-right: 10px;
-}
-
-.logout-user-container {
-    width: 100%;
-    background-color: #292B2F;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    right: 0.5px;
-}
-
-.general-bar-user {
-    display: flex;
-    align-items: center;
-    vertical-align: middle;
-    color: white;
-}
-
-#logout-button {
-    border: none;
-    color: #8c989d;
-    padding: 5px;
-    border-radius: 4px;
-    /* width: 100px; /
-    / background-color: red; */
-}
-
-#logout-button:hover {
-    cursor: pointer;
-    background-color: #42464D;
-    color: white;
 }

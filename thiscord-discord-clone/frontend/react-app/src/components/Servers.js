@@ -5,7 +5,7 @@ import { fetchOneServer, fetchServers } from "../store/server";
 import "../css/Server.css";
 import Server from "./Server.js";
 import { fetchOneChannel } from "../store/channel";
-
+import LogoutButton from "./auth/LogoutButton";
 import { Modal } from "./context/Modal.js";
 import ServerFormModal from "./ServerForm/ServerFormModal";
 
@@ -139,6 +139,19 @@ function ServersList() {
       </div>
       <div className="general-bar">
         {serverId && <Server serverId={serverId} />}
+        <div className='logout-user-container'>
+              <div className="general-bar-user">
+                <img
+                  id="member-profile"
+                  src="https://www.svgrepo.com/show/331368/discord-v2.svg"
+                  alt=""
+                ></img>
+                {user.username}
+              </div>
+              <div className="logout-button">
+                <LogoutButton />
+              </div>
+            </div>
       </div>
     </div>
   );
