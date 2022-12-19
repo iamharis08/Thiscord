@@ -114,26 +114,45 @@ Below is how you can get the project started in a local environment
 
 ### Prerequisites
 
-You will need to define a .env file for backend to setup a database port as well as filepath, and generate a JWT Token / SECRET_KEY
+You will need to define a .env file for the backend to setup a database as well as filepath, and generate a CSRF Token / SECRET_KEY
 * Ex: .env
-  ```js
-  PORT=8000
-  DATABASE=db/dev.db
+  ```
+SECRET_KEY=lkasjdf09ajsdkfljalsiorj12n3490re9485309irefvn,u90818734902139489230
+DATABASE_URL=sqlite:///dev.db
+SCHEMA=flask_schema
+FLASK_DEBUG=true
   ```
 
 ### Installation
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/jacoblauxman/AirBnB-Proj.git
+   git clone https://github.com/iamharis08/Thiscord.git
    ```
-2. Install NPM packages
+2. Install Backend in /backend Dependencies via requirements.txt
+   ```sh
+   pipenv install -r requirements.txt
+   ```
+3. Install Frontend Dependencies in /frontend/react-app
    ```sh
    npm install
    ```
-3. Run via NPM start in backend and frontend folders
+4. Get into pipenv, migrate database and seed, run Flask app
    ```sh
-   npm start
+   pipenv shell
+   ```   
+   ```sh
+   flask db upgrade
+   ```   
+   ```sh
+   flask seed all
+   ```   
+   ```sh
+   flask run
+   ```   
+5. Start up Frontend React-App to connect to Backend
+  ```sh
+  npm start
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
