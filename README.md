@@ -1,1 +1,210 @@
 # Thiscord
+
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a name="readme-top"></a>
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
+
+
+
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Contributors][contributors-shield]][contributors-url]
+<!-- [![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url] -->
+
+
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/iamharis08/Thiscord">
+    <!-- <img src="images/logo.png" alt="Logo" width="80" height="80"> -->
+  </a>
+
+<h3 align="center">daAirBuh-N-Buh</h3>
+
+  <p align="center">
+    Thiscord: A Discord Clone Project
+    <br />
+    <a href="https://github.com/iamharis08/Thiscord/wiki"><strong>Checkout the Docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://this-cord.onrender.com/">View Demo Site</a>
+    ·
+    <a href="https://github.com/iamharis08/Thiscord/issues">Report Bug</a>
+    ·
+    <!-- <a href="https://github.com/jacoblauxman/AirBnB-Proj/issues">Request Feature</a> -->
+  </p>
+</div>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <!-- <li><a href="#contributing">Contributing</a></li> -->
+    <!-- <li><a href="#license">License</a></li> -->
+    <li><a href="#contact">Contact</a></li>
+    <!-- <li><a href="#acknowledgments">Acknowledgments</a></li> -->
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
+
+This is a fullstack clone group project bringing together the backend and frontend to approximate a recreation of Discord and some of their site's main features
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+### Built With
+
+* [![React][React.js]][React-url]
+* ExpressJS: https://expressjs.com/
+* Sequelize: https://sequelize.org/
+* Redux: https://redux.js.org/
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+Below is how you can get the project started in a local environment
+
+### Prerequisites
+
+You will need to define a .env file for backend to setup a database port as well as filepath, and generate a JWT Token / SECRET_KEY
+* Ex: .env
+  ```js
+  PORT=8000
+  DATABASE=db/dev.db
+  ```
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/jacoblauxman/AirBnB-Proj.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Run via NPM start in backend and frontend folders
+   ```sh
+   npm start
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+Goal of this project is to accurately imitate/clone the aspects of AirBnB's website, specifically their handling of user and spot data as well as reviews -- full CRUD operations!
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- ROADMAP -->
+## Roadmap
+
+- [ ] User - Login/Logout, Signup, Restore Session and permissions within site
+- [ ] Spots - Show all in display, see details of specific spot, add  a spot as well as images of spot (owner Auth)
+- [ ] Reviews - Show all reviews of a spot, user, and edit/update/delete features as well as review Image association
+    <!-- - [ ] Nested Feature -->
+
+See the [open issues](https://github.com/jacoblauxman/AirBnB-Proj/issues) for a full list of proposed features (and known issues).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+
+
+
+
+<!-- LICENSE -->
+<!-- ## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+
+
+
+<!-- CONTACT -->
+## Contact
+Jacob Lauxman - jlauxman@gmail.com
+<!-- Jacob Lauxman - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com -->
+
+Project Link: [https://github.com/jacoblauxman/AirBnB-Proj](https://github.com/jacoblauxman/AirBnB-Proj)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+Thankful for all the instructional and peer support in all areas of this project
+<!-- * []()
+* []()
+* []() -->
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/jacoblauxman/AirBnB-Proj.svg?style=for-the-badge
+[contributors-url]: https://github.com/jacoblauxman/AirBnB-Proj/graphs/contributors
+
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[ExpressJS-url]: https://expressjs.com/
+[Sequelize-url]: https://sequelize.org/
