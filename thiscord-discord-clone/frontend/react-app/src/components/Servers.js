@@ -104,11 +104,13 @@ function ServersList() {
             </span>
           </span>
         )}
-        <span
+        <NavLink
+          to="/coming-soon"
           className="dm"
           onMouseOut={hideServerName}
           onMouseOver={() => displayServerName(1000000)}
-        ></span>
+        >
+        </NavLink>
         <div className="line"></div>
         <div className="list">{serverComponents}</div>
         {hoveredId === 10000000 && (

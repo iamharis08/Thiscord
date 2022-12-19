@@ -9,7 +9,7 @@ const ComingSoon = () => {
             <div className='hero-container'>
                 <img id='hero-image' src='https://theme.zdassets.com/theme_assets/678183/b7e9dce75f9edb23504e13b4699e208f204e5015.png' alt='' />
                 <div className='hero-text'>
-                    <h1 className='coming-soon-h1-text'>Feature coming soon!</h1>
+                    <h1 className='coming-soon-h1-text'>Coming soon!</h1>
                     <div className='hero-body-text'>
                         Our team is working hard to make you a website better than Michael's group's website
                     </div>

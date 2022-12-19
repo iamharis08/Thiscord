@@ -77,7 +77,7 @@ function ServerFormModal({ setShowModal }) {
                 <div className='terms-and-highlight'>
                   <div className='terms'>
                     By creating a server, you agree to This.cord's
-                    <NavLink className='purple-highlight' to="/">&nbsp;Community GuideLines</NavLink>
+                    <NavLink className='purple-highlight' to="/coming-soon">&nbsp;Community GuideLines</NavLink>
                   </div>
                 </div>
               </div>

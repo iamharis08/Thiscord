@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { fetchMessages } from '../store/message';
 // import {socket} from '../components/socketInstance.js'
@@ -129,7 +129,7 @@ function Channel() {
     e.preventDefault()
 
     if (stringCheck(searchInput)) {
-    // if(searchInput.length) {
+      // if(searchInput.length) {
 
       const search = await fetch(`/api/channels/${channelId}/messages`, {
         method: 'POST',
@@ -168,9 +168,9 @@ function Channel() {
       <div className='channel-header-container'>
         <span className='channel-hash'>
           #
-        <span className='channel-name'>
-          {channel?.name}
-        </span>
+          <span className='channel-name'>
+            {channel?.name}
+          </span>
         </span>
         <div className='search-form-container'>
           <form onSubmit={sendSearch} className='search-message-form-form'>
@@ -195,55 +195,56 @@ function Channel() {
       <div className='messages-users-container'>
         <div className='message-input-container'>
           <div className='channel-messages-container'>
-        {messages?.map((message, i) => (
-          <div key={i}
-            // ref={searchRef  [i]}
-            ref={el => (searchRef.current[message.id] = el)}
-            className='single-message-container'
-            id={+i}
-          >
+            {messages?.map((message, i) => (
+              <div key={i}
+                // ref={searchRef  [i]}
+                ref={el => (searchRef.current[message.id] = el)}
+                className='single-message-container'
+                id={+i}
+              >
 
-            {message && messages[i - 1]?.user?.id !== messages[i]?.user?.id ? (
-              <>
-                <div className='single-message-user-info'>
-                  <span className='single-message-username'> {message?.user?.username} </span>
-                  <span className='single-message-user-timestamp'> {message?.createdAt} </span>
-                </div>
-                <div className='single-message-message-info'>
-                  {message?.message}
-                </div>
-              </>
-            )
-              : (
-                <>
-                  <div className='single-message-user-info'>
-                    <span className='single-message-timestamp'>{dateFormatter(message?.createdAt)}</span>
-                  </div>
-                  <div className='single-message-message-info'>
-                    {message?.message}
-                    <div ref={messageEnd} />
-                  </div>
+                {message && messages[i - 1]?.user?.id !== messages[i]?.user?.id ? (
+                  <>
+                    <div className='single-message-user-info'>
+                      <span className='single-message-username'> {message?.user?.username} </span>
+                      <span className='single-message-user-timestamp'> {message?.createdAt} </span>
+                    </div>
+                    <div className='single-message-message-info'>
+                      {message?.message}
+                    </div>
+                  </>
+                )
+                  : (
+                    <>
+                      <div className='single-message-user-info'>
+                        <span className='single-message-timestamp'>{dateFormatter(message?.createdAt)}</span>
+                      </div>
+                      <div className='single-message-message-info'>
+                        {message?.message}
+                        <div ref={messageEnd} />
+                      </div>
 
-                </>
-              )}
+                    </>
+                  )}
+              </div>
+            ))}
+
           </div>
-        ))}
-
-      </div>
-      <div className='message-form-container'>
-        <form onSubmit={sendChat} className='message-form-form'>
-          <input
-            className='message-form-input-container'
-            value={chatInput}
-            onChange={updateChatInput}
-            placeholder={`Message #${channel.name}`}
-          />
-        </form>
-      </div>
+          <div className='message-form-container'>
+            <form onSubmit={sendChat} className='message-form-form'>
+              <input
+                className='message-form-input-container'
+                value={chatInput}
+                onChange={updateChatInput}
+                placeholder={`Message #${channel.name}`}
+              />
+            </form>
+          </div>
         </div>
-      <div className="members-list">
-            <strong>Members - {serverInfo?.users?.length}</strong>
-            {serverInfo?.users?.map((user) => (
+        <div className="members-list">
+          <strong>Members - {serverInfo?.users?.length}</strong>
+          {serverInfo?.users?.map((user) => (
+            <NavLink to="/coming-soon">
               <p id="one-member" key={user?.id}>
                 <img
                   id="member-profile"
@@ -252,8 +253,9 @@ function Channel() {
                 ></img>
                 {user?.username}
               </p>
-            ))}
-          </div>
+            </NavLink>
+          ))}
+        </div>
       </div>
     </div>
   );

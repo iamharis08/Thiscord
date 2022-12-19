@@ -24,11 +24,11 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password))
-    .then((data) => {
-      if (data){
-        setErrors(data);
+      .then((data) => {
+        if (data) {
+          setErrors(data);
 
-      }else (async () => {
+        } else (async () => {
           const response = await fetch(`/api/servers/`);
           const data = await response.json();
           const firstChannelResponse = await data?.servers[0]?.channels[0]?.id;
@@ -41,9 +41,9 @@ const LoginForm = () => {
           dispatch(fetchOneServer(firstChannelResponse));
         })
       })
-      // if (data) {
-      //   setErrors(data);
-      // }
+    // if (data) {
+    //   setErrors(data);
+    // }
   };
 
   // useEffect(() => {
@@ -65,7 +65,7 @@ const LoginForm = () => {
       })().then((firstChannelResponse) => {
         dispatch(fetchOneServer(firstChannelResponse));
 
-    })
+      })
     })
     // .then(() => { <Redirect to={`/channels/${firstChannel}`} />;})
   };
@@ -131,11 +131,11 @@ const LoginForm = () => {
     //   return firstChannelResponse
     // })()
     dispatch(fetchServers(user.id))
-    .then((servers) => {
-      console.log(servers.servers[0].id, "LOGINFORMMMMMM SERVERIDDDDD")
-      dispatch(fetchOneServer(servers.servers[0].id));
-      history.push(`/channels/${servers.servers[0].id}`);
-    })
+      .then((servers) => {
+        console.log(servers.servers[0].id, "LOGINFORMMMMMM SERVERIDDDDD")
+        dispatch(fetchOneServer(servers.servers[0].id));
+        history.push(`/channels/${servers.servers[0].id}`);
+      })
     // .then((firstChannelResponse) => {
     //   dispatch(fetchOneServer(firstChannelResponse));
     //   history.push(`/channels/${firstChannelResponse}`);
@@ -214,7 +214,11 @@ const LoginForm = () => {
                     value={password}
                     onChange={updatePassword}
                   />
-                  <div className="forgot-password">Forgot your password</div>
+                  <NavLink to="/coming-soon">
+                    <div className="forgot-password">
+                      Forgot your password
+                    </div>
+                  </NavLink>
                   <button type="submit" className="submit-button">
                     Log in
                   </button>
