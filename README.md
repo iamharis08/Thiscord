@@ -10,10 +10,6 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
-![image](https://user-images.githubusercontent.com/106632610/208401285-dfb6a3b8-f870-4228-a14e-da770d1107ce.png)
-![image](https://user-images.githubusercontent.com/106632610/208401468-1bb70c10-5d75-43df-a89a-30d9b4b1b889.png)
-
-
 
 
 <!-- PROJECT SHIELDS -->
@@ -97,7 +93,6 @@ This is a fullstack clone group project bringing together the backend and fronte
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 ### Built With
 
 * [![React][React.js]][React-url]
@@ -108,6 +103,18 @@ This is a fullstack clone group project bringing together the backend and fronte
 * ![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+
+## For Reference:
+
+
+### Discord (per Fall/Winter '22):
+![image](https://user-images.githubusercontent.com/106632610/208401285-dfb6a3b8-f870-4228-a14e-da770d1107ce.png)
+### This.cord:
+![image](https://user-images.githubusercontent.com/106632610/208401468-1bb70c10-5d75-43df-a89a-30d9b4b1b889.png)
+
 
 
 
