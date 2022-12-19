@@ -51,16 +51,15 @@ html, body {
 }
 
 .channel-name {
-  color: white;
-  font-weight: 500;
+  font-weight: light;
   display: flex;
   align-items: center;
   font-size: 15px;
 }
 
-.channel-name:hover {
+/* .channel-name:hover {
   color: white;
-}
+} */
 
 .channel-messages-container {
   display: flex;

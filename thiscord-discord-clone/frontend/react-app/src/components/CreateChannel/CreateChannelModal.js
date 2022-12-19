@@ -55,7 +55,7 @@ function CreateChannelModal({ setShowCreateChannelModal }) {
               className="create-channel-input"
               placeholder={`new-channel`}
               minlength='3'
-              malength='50'
+              maxlength='20'
               type="text"
               value={channelName}
               onChange={(e) => setChannelName(e.target.value)}

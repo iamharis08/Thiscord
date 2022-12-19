@@ -188,6 +188,8 @@
 
 .channel-list-item {
     /* border: red 1px solid; */
+
+    color: rgb(142, 146, 151);
     height: 26px;
     /* width: 234px; */
     display: flex;
@@ -195,6 +197,7 @@
     justify-content: space-between;
     /* align-items: center; */
     height: 34px;
+    padding-right: 6.8px;
 
 
 }

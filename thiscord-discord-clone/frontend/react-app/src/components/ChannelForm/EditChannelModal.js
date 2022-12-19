@@ -72,7 +72,7 @@ function EditChannelModal({ channel, setShowModal, setIsHidden, setUpdateChannel
                                         <input className="input"
                                             // placeholder={`${user.username}'s server`}
                                             minlength='3'
-                                            maxlength='50'
+                                            maxlength='20'
                                             type="text"
                                             value={channelName}
                                             onChange={(e) => setChannelName(e.target.value)}

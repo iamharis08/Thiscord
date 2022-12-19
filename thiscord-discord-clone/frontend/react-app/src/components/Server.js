@@ -31,12 +31,20 @@ function Server({ serverId }) {
   const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showChannelMenu, setShowChannelMenu] = useState(false);
+  const [showSettingIcon, setShowSettingIcon] = useState(-1);
   const serverObj = useSelector((state) => state.server.servers);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const serverInfo = useSelector((state) => state.server.server);
   const server = serverInfo?.server;
+
+  const showSettingsIcon = (channelId) => {
+    setShowSettingIcon(channelId)
+  }
+  const hideSettingsIcon = () => {
+    setShowSettingIcon(-1)
+  }
 
   const openMenu = (menu) => {
     if (showMenu) return;
@@ -253,13 +261,15 @@ function Server({ serverId }) {
                 </div>
                 {serverInfo.server.ownerId === user.id &&
                   <span className="channel-settings-button"
+
                     onClick={() => {
                       setChannelId(channel.id)
                       setChannelIsHidden(!channelIsHidden)
                       setChannel(channel)
                       openMenu("channel")
+
                     }}>
-                    <img src={gear} alt="settings" />
+                   <img src={gear} alt="settings" />
                   </span>
                 }
               </div>
