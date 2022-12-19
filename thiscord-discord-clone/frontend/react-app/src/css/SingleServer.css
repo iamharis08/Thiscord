@@ -137,10 +137,10 @@
 
 .members-list {
     width: 300px;
- 
+
     background-color: #2f3136;
     /* height: 100%; */
-    /* color: #8c989d; */
+    color: #8c989d;
     padding: 10px 10px;
     overflow-y: scroll;
     /* border-radius: 4px; */

@@ -23,7 +23,7 @@ function ServerFormModal({ setShowModal }) {
       .then((res) => { setShowModal(false)
         console.log(res, 'IN THE THEN AFTER NEW SERVER')
                         return res})
-      .then((res) => { console.log(res, "RESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS")
+      .then((res) => { 
         if (res) {history.push(`/channels/${res?.channels[0]?.id}`)}} )
     // .catch(async (res) => {
     //   const data = await res.json();

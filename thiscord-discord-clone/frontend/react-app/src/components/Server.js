@@ -179,18 +179,12 @@ function Server({ serverId }) {
               ) : null}
             </div>
             {serverInfo?.channels?.map((channel) => (
-              <div key={channel?.id} className="channel-list-item">
-                {/* {console.log("CHANEEL LIKS", channel.id)} */}
-                <div
-                  className="channel-name"
-                  onClick={() => {
-                    // console.log("NAVLINK CHANNEL ID", channel.id)
-                    setChannelId(channel.id)
-                    // console.log("SET CHANNEL ID CHANNEL ID", channelId)
-                    history.push(`/channels/${channel.id}`)
-                  }
-                  }
-                >
+              <div key={channel?.id} className="channel-list-item"  onClick={() => {
+                setChannelId(channel.id)
+                history.push(`/channels/${channel.id}`)
+              }
+              }>
+                <div className="channel-name">
                   <span className=".channel-list-hash">#</span>&nbsp;{channel?.name}
                 </div>
                 {serverInfo.server.ownerId === user.id &&
