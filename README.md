@@ -202,8 +202,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
 ## Contact
-Jacob Lauxman - jlauxman@gmail.com : https://github.com/jacoblauxman
-Tyler Short - infinitespace20@gmail.com
+* Jacob Lauxman - jlauxman@gmail.com : https://github.com/jacoblauxman
+* Tyler Short - infinitespace20@gmail.com
 <!-- Jacob Lauxman - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com -->
 
 Project Link: [https://github.com/iamharis08/Thiscord](https://github.com/iamharis08/Thiscord)
