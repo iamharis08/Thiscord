@@ -170,6 +170,8 @@ const SignUpForm = () => {
                 <input
                   type="password"
                   name="repeat_password"
+                  minLength="5"
+                  maxLength="16"
                   onChange={updateRepeatPassword}
                   value={repeatPassword}
                   required={true}
