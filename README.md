@@ -116,8 +116,8 @@ Below is how you can get the project started in a local environment
 
 You will need to define a .env file for the backend to setup a database as well as filepath, and generate a CSRF Token / SECRET_KEY
 * Ex: .env
-  ```
-SECRET_KEY=lkasjdf09ajsdkfljalsiorj12n3490re9485309irefvn,u90818734902139489230
+  ```sh
+SECRET_KEY=SECRET_KEY_HERE
 DATABASE_URL=sqlite:///dev.db
 SCHEMA=flask_schema
 FLASK_DEBUG=true
