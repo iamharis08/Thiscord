@@ -36,7 +36,7 @@
     <!-- <img src="images/logo.png" alt="Logo" width="80" height="80"> -->
   </a>
 
-<h1 align="center">This.cord</h1>
+<h1 align="center">⭐⭐⭐This.cord⭐⭐⭐</h1>
 
   <p align="center">
     Thiscord: A Discord Clone Project
