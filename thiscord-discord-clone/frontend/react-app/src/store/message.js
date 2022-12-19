@@ -21,10 +21,6 @@ export const clearMessagesState = () => ({
 })
 
 // --- THUNKS --- //
-// const deleteMessage = messageId => ({
-//   type: DELETE,
-//   messageId
-// });
 
 export const fetchMessages = (channelId) => async (dispatch) => {
   const response = await fetch(`/api/channels/${channelId}`,{
@@ -50,7 +46,8 @@ export const deleteMessageThunk = (messageId) => async (dispatch) => {
   }
 };
 
-// Nomralizefunction
+// Normalization function
+
 const normalize = (dataArray) => {   //{'1': message1, '2': message2}
   let newObj = {}
   dataArray.forEach(message => {

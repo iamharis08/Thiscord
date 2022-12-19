@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-// import { createServer } from "../../store/server";
 import { useDispatch } from "react-redux";
 import { NavLink, Redirect, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./ChannelDeleteModal.css";
-// import { removeServer } from "../../store/server";
 import { fetchChannels, removeChannel } from "../../store/channel"
 import { fetchOneServer } from "../../store/server"
 
@@ -18,16 +16,11 @@ function ChannelDeleteModal({
     const dispatch = useDispatch();
     const history = useHistory()
     const user = useSelector((state) => state.session.user);
-    //   const channel = useSelector((state) => state.channel.channel)
     const serverInfo = useSelector((state) => state.server.server);
     const [channelName, setChannelName] = useState();
     const [errors, setErrors] = useState([]);
-    //   const channel = serverInfo?.channels[channelId]?.name
     const channel = serverInfo.channels.find(channel => channel.id === channelId)
 
-
-    console.log("DID THE CHANNEL?", channel)
-    console.log(serverInfo, "SERVER INFOOOOOOO")
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -39,18 +32,7 @@ function ChannelDeleteModal({
                 history.push(`/channels/${serverInfo?.channels[0]?.id}`)
             });
         }
-        // setErrors([]);
-
-
-
-        // .catch(async (res) => {
-        //   const data = await res.json();
-        //   console.log("THE DATA OF THE NEW SERVER", data)
-        //   if (data) setErrors(Object.values(data));
-        //   else return (<Redirect to={'/servers'} />);
-        // });
     };
-
 
 
     return (
@@ -68,7 +50,6 @@ function ChannelDeleteModal({
                 <div>
                     <input
                         className="delete-input"
-                        // placeholder={`${user.username}'s server`}
                         type="text"
                         value={channelName}
                         onChange={(e) => setChannelName(e.target.value)}

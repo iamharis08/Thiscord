@@ -46,10 +46,7 @@ const LoginForm = () => {
     // }
   };
 
-  // useEffect(() => {
 
-  // // .then(( => {}))
-  // }, [user])
 
   const demoOneLogin = async (e) => {
     e.preventDefault();
@@ -67,7 +64,6 @@ const LoginForm = () => {
 
       })
     })
-    // .then(() => { <Redirect to={`/channels/${firstChannel}`} />;})
   };
 
   const demoTwoLogin = async (e) => {
@@ -97,18 +93,14 @@ const LoginForm = () => {
   };
 
   const formErrors = (inputField) => {
-    console.log(errors[0].split(" : ")[0]);
-    console.log("hittt");
     if (!errors.length) {
       return false;
     }
-    // let passwordErrors = []
     let errorObj = {};
 
     errors.forEach((err) => {
       if (err.split(" : ")[0] === "password") {
         errorObj["password"] = err.split(" : ")[1];
-        console.log("INSIDE");
       }
       if (err.split(" : ")[0] === "email") {
         errorObj["email"] = err.split(" : ")[1];
@@ -119,31 +111,17 @@ const LoginForm = () => {
   };
 
   if (user) {
-    // .then(()=> {console.log(server, "LOGINNNNNNNSERVER")})
-    // (async () => {
-    //   const response = await fetch(`/api/servers/`);
-    //   const data = await response.json();
-    //   const firstChannelResponse = await data?.servers[0]?.channels[0]?.id;
 
-    //   setFirstChannel(firstChannelResponse);
-    //   setServerId(data?.servers[0]?.id);
-    //   // history.push(`/channels/${firstChannelResponse}`);
-    //   return firstChannelResponse
-    // })()
     dispatch(fetchServers(user.id))
       .then((servers) => {
         console.log(servers.servers[0].id, "LOGINFORMMMMMM SERVERIDDDDD")
         dispatch(fetchOneServer(servers.servers[0].id));
         history.push(`/channels/${servers.servers[0].id}`);
       })
-    // .then((firstChannelResponse) => {
-    //   dispatch(fetchOneServer(firstChannelResponse));
-    //   history.push(`/channels/${firstChannelResponse}`);
-    // })
+
   }
   return (
     <div className="login-form-page">
-      {/* <img src={loginFormImage} alt="loginForm" /> */}
       <div className="login-form-page-container">
         <div className="login-form">
           <div className="left-form">
@@ -155,11 +133,7 @@ const LoginForm = () => {
             </div>
             <div className="form-box">
               <form autocomplete="off" onSubmit={onLogin}>
-                {/* <div>
-              {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-              ))}
-            </div> */}
+
                 <div
                   className={
                     errors.length && formErrors("email")["email"]
@@ -210,7 +184,6 @@ const LoginForm = () => {
                   <input
                     name="password"
                     type="password"
-                    // placeholder="Password"
                     value={password}
                     onChange={updatePassword}
                   />

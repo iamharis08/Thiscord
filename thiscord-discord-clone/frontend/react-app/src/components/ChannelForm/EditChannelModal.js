@@ -12,7 +12,6 @@ function EditChannelModal({ channel, setShowModal, setIsHidden, setUpdateChannel
     const user = useSelector(state => state.session.user);
     const serverObj = useSelector((state) => state.server.server);
     const serverInfo = useSelector((state) => state.server.server);
-    //   console.log("THIS IS A SERVER OBJ", serverObj)
     const [channelName, setChannelName] = useState(channel.name);
     const [errors, setErrors] = useState([]);
 
@@ -36,7 +35,6 @@ function EditChannelModal({ channel, setShowModal, setIsHidden, setUpdateChannel
                 })
                 .catch(async (res) => {
                     const data = await res.json();
-                    console.log("THE DATA OF THE NEW Channel", data)
                     if (data) setErrors(Object.values(data));
                     else return (<Redirect to={`/servers/${serverInfo.server.id}`} />);
                 });

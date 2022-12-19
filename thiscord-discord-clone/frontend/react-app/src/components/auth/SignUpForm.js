@@ -22,7 +22,6 @@ const SignUpForm = () => {
 
         if (data){
           setErrors(data);
-        console.log(errors, "INSIGNUP ASYNC ERRORS")
         }
   }else (setErrors(["password : paswords do not match"]))
 };
@@ -46,8 +45,7 @@ const SignUpForm = () => {
   };
 
   const formErrors = (inputField) => {
-    console.log(errors[0].split(" : ")[0]);
-    console.log("hittt");
+
     if (!errors.length) {
       return false;
     }
@@ -58,7 +56,6 @@ const SignUpForm = () => {
     errors.forEach((err) => {
       if (err.split(" : ")[0] === "password") {
         errorObj["password"] = err.split(" : ")[1];
-        console.log("INSIDE");
       }
       if (err.split(" : ")[0] === "email") {
         errorObj["email"] = err.split(" : ")[1];
@@ -84,9 +81,6 @@ const SignUpForm = () => {
             <div className="form-title">Create an account</div>
             <form onSubmit={onSignUp}>
               <div>
-                {/* {errors.map((error, ind) => (
-                  <div key={ind}>{error}</div>
-                ))} */}
               </div>
               <div className="inputs-container">
                 <div className={

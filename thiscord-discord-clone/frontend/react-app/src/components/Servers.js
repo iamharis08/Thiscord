@@ -10,6 +10,7 @@ import { Modal } from "./context/Modal.js";
 import ServerFormModal from "./ServerForm/ServerFormModal";
 
 function ServersList() {
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const serverObj = useSelector((state) => state.server.servers);
@@ -19,10 +20,6 @@ function ServersList() {
   const [serverId, setServerId] = useState("");
   const [channelId, setChannelId] = useState("");
   const [showModal, setShowModal] = useState(false);
-
-  // console.log(serverArr, "HERE IS THE SERVERARR!!!!");
-  console.log("HERE IS USER in SERVERSLIST!!!", user);
-
   const serverArr = Object.values(serverObj)
 
   useEffect(() => {
@@ -31,20 +28,9 @@ function ServersList() {
         setServerId(Object.values(serverObj)[0]?.id);
       }
     });
-    // async function fetchData() {
-    //   const response = await fetch("/api/servers/");
-    //   const responseData = await response.json();
 
-    //   console.log("IN USEEFFECT, loading servers -----", responseData.servers);
-    console.log("HERE IS USER in SERVERSIDDDDDDDDDD!!!", serverId);
-    //   // setServers(responseData.servers);
-    // }
-    // fetchData();
   }, [dispatch, serverId]);
 
-  // useEffect(() => {
-  //   setServerId(Object.values(serverArr.servers)[0]?.id)
-  // }, [])
 
   const displayServerName = (serverId) => {
     setHoveredId(serverId);
@@ -77,7 +63,6 @@ function ServersList() {
           </span>
         )}
         <div
-          // to={`/servers/${server?.id}`}
           onClick={() => {
             setClick(true);
             setServerId(server?.id);
@@ -87,7 +72,6 @@ function ServersList() {
           onMouseOver={() => displayServerName(server?.id)}>
           <div className="link">{server && abbreviate(server?.name)}</div>
         </div>
-
       </div>
     );
   });

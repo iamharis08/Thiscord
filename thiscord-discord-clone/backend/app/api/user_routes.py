@@ -24,6 +24,4 @@ def user(id):
     user = User.query.get(id)
 
     joined_servers = Server.query.filter(Server.users.any(id=id)).all()
-    print("---- USER'S JOINED SERVERS ----", [server.to_dict() for server in joined_servers])
-
     return user.to_dict()

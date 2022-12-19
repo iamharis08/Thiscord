@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-// import { createServer } from '../../store/server'
-// import { useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import "./SearchResults.css"
-// import "../../css/Channel.css"
 
 
 export default function SearchResultsModal({ setShowSearchResults, messages }) {
@@ -35,10 +32,6 @@ export default function SearchResultsModal({ setShowSearchResults, messages }) {
           </div>
         </div>
       )}
-      {/* <button
-        onClick={() => setShowSearchResults(false)}>
-        '(click to close)'
-      </button> */}
     </div>
   )
 }

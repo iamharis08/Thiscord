@@ -20,13 +20,11 @@ function ServerFormModal({ setShowModal }) {
     setErrors([]);
 
     if (stringCheck(serverName)) {
-      console.log(inputReducer(serverName), 'NEW SERVER NAME REDUCED')
 
       return dispatch(createServer({ name: inputReducer(serverName) }))
         .then((newServer) => dispatch(fetchOneServer(newServer?.server?.id)))
         .then((res) => {
           setShowModal(false)
-          console.log(res, 'IN THE THEN AFTER NEW SERVER')
           return res
         })
         .then((res) => {
@@ -35,12 +33,6 @@ function ServerFormModal({ setShowModal }) {
     } else {
       setErrors(['Name needs to be at least three characters'])
     }
-    // .catch(async (res) => {
-    //   const data = await res.json();
-    //   console.log("THE DATA OF THE NEW SERVER", data)
-    //   if (data) setErrors(Object.values(data));
-    //   else return (<Redirect to={'/servers'} />);
-    // });
   }
 
   const stringCheck = str => str.split(' ').filter(c => c !== '').join('').length >= 3
@@ -70,7 +62,6 @@ function ServerFormModal({ setShowModal }) {
                   </div>
                   <div>
                     <input className="input"
-                      // placeholder={`${user.username}'s server`}
                       type="text"
                       value={serverName}
                       minlength='3'

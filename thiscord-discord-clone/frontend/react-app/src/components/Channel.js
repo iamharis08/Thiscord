@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { fetchMessages } from '../store/message';
-// import {socket} from '../components/socketInstance.js'
 
 import { fetchOneChannel } from '../store/channel';
 import '../css/Channel.css'
@@ -157,11 +156,6 @@ function Channel() {
       behavior: "smooth",
     })
   }
-
-  // if (!channel) {
-  //   return null;
-  // }
-
 
 
   return (

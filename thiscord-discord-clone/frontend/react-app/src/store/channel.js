@@ -60,7 +60,6 @@ export const fetchOneChannel = channelId => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json()
-    console.log('data in THUNK OK', data)
 
     dispatch(addChannel(data))
     return data
@@ -87,7 +86,6 @@ export const createChannel = (channel, serverId) => async (dispatch) => {
 
 
 export const fetchUpdateChannel = (channel) => async (dispatch) => {
-  console.log("we got a channel update", channel)
   const response = await fetch(`/api/channels/${channel.id}`, {
     method: "PUT",
     headers: {
@@ -98,7 +96,6 @@ export const fetchUpdateChannel = (channel) => async (dispatch) => {
 
   if (response.ok) {
     const updatedChannel = await response.json()
-    console.log("WAS THE CHANNEL UPDATE OK?", updatedChannel)
 
     dispatch(updateChannel(updatedChannel))
     return updatedChannel
@@ -131,7 +128,6 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
 
     case LOAD_CHANNELS:
-      console.log('HERE IN LOAD CHANNELS', action)
       const loadChannels = {
         ...state, channels: { ...state.channels },
         channel: { ...state.channel }
@@ -145,7 +141,6 @@ export default function reducer(state = initialState, action) {
         channel: { ...state.channel }
       }
       addChannel.channel = action.channel.channel
-      console.log(addChannel, 'ADD CHANNEL!')
       return addChannel
 
     case UPDATE_CHANNEL:

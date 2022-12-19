@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { createServer } from "../../store/server";
 import { useDispatch } from "react-redux";
 import { NavLink, Redirect, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -25,16 +24,6 @@ function ServerDeleteModal({ setShowDeleteModal, setUpdateServers, setIsHidden }
         history.push("/servers")
       });
     }
-    // setErrors([]);
-
-
-
-    // .catch(async (res) => {
-    //   const data = await res.json();
-    //   console.log("THE DATA OF THE NEW SERVER", data)
-    //   if (data) setErrors(Object.values(data));
-    //   else return (<Redirect to={'/servers'} />);
-    // });
   };
 
 
@@ -57,7 +46,6 @@ function ServerDeleteModal({ setShowDeleteModal, setUpdateServers, setIsHidden }
         <div>
           <input
             className="delete-input"
-            // placeholder={`${user.username}'s server`}
             type="text"
             value={serverName}
             onChange={(e) => setServerName(e.target.value)}

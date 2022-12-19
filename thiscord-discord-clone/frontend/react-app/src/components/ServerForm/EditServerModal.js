@@ -10,7 +10,6 @@ function EditServerModal({ setShowModal, setIsHidden }) {
 
     const user = useSelector(state => state.session.user);
     const serverObj = useSelector((state) => state.server.server);
-    //   console.log("THIS IS A SERVER OBJ", serverObj)
     const [serverName, setServerName] = useState(serverObj.server.name);
     const [errors, setErrors] = useState([]);
 
@@ -30,12 +29,6 @@ function EditServerModal({ setShowModal, setIsHidden }) {
         } else {
             setErrors(['Name needs to be at least three characters'])
         }
-        // .catch(async (res) => {
-        //   const data = await res.json();
-        //   console.log("THE DATA OF THE NEW SERVER", data)
-        //   if (data) setErrors(Object.values(data));
-        //   else return (<Redirect to={'/servers'} />);
-        // });
     }
 
     const stringCheck = str => str.split(' ').filter(c => c !== '').join('').length >= 3
@@ -65,7 +58,6 @@ function EditServerModal({ setShowModal, setIsHidden }) {
                                     </div>
                                     <div>
                                         <input className="input"
-                                            // placeholder={`${user.username}'s server`}
                                             type="text"
                                             value={serverName}
                                             minlength='3'

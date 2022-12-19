@@ -97,11 +97,10 @@ export const signUp = (username, email, password) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    console.log(data, "SESSION DATAAAAAAAAAAAAAAAAA")
     dispatch(createServer({name: `${data.username}'s First Server`}))
-
     dispatch(setUser(data))
     return data
+    
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {

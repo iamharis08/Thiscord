@@ -26,12 +26,6 @@ function CreateChannelModal({ setShowCreateChannelModal }) {
     } else {
       setErrors(['Name needs to be at least three characters'])
     }
-    // .catch(async (res) => {
-    //   const data = await res.json();
-    //   console.log("THE DATA OF THE NEW SERVER", data)
-    //   if (data) setErrors(Object.values(data));
-    //   else return (<Redirect to={'/servers'} />);
-    // });
   };
 
   const stringCheck = str => str.split(' ').filter(c => c !== '').join('').length >= 3

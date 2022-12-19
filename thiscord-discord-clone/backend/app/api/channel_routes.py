@@ -20,7 +20,6 @@ def one_channel_index(id):
     one_channel_messages = Message.query.filter(Message.channel_id == id).order_by(Message.created_at.asc()).all()
 
     channel_messages = [message.to_dict() for message in one_channel_messages]
-    # print('!!!!!! ------ messages from channel', channel_messages, '------ MESSAGES FROM CHANNEL !!!!!!!')
     message_with_user = []
     for m in channel_messages:
         user = User.query.get(m['userId']).to_dict()
@@ -75,7 +74,6 @@ def search_messages(id):
     form = SearchForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     search = form.search.data
-    print(search, '---HERE IS THE SEARCH!---')
     search = f"%{search}%"
 
     channel = Channel.query.get(id)
@@ -84,14 +82,10 @@ def search_messages(id):
         Message.message.ilike(f"%{search}%")
     ).all()
 
-    # print([m.message for m in messages], 'CHAINING QUERIES!!!')
     ans = [m.to_dict() for m in messages]
-    # print(ans, '--- ANS IN BACKEND FOR SEARCH ---')
 
     for m in channel_messages:
-        print(m, 'HERE IS M --------!!!!!!')
         user = User.query.get(m.user_id)
-        print(user.to_dict(), '--- USER OBJ TO ADD')
         test = [m for m in channel_messages]
 
     return {"messages": ans}
