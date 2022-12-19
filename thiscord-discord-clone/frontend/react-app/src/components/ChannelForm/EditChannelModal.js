@@ -5,7 +5,7 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { fetchOneServer } from "../../store/server"
 import "../ServerForm/ServerForm.css"
 
-function EditChannelModal({ setShowModal, setIsHidden, setUpdateChannels, updateChannels, channelId }) {
+function EditChannelModal({ channel, setShowModal, setIsHidden, setUpdateChannels, updateChannels, channelId }) {
 
     const dispatch = useDispatch();
 
@@ -13,7 +13,7 @@ function EditChannelModal({ setShowModal, setIsHidden, setUpdateChannels, update
     const serverObj = useSelector((state) => state.server.server);
     const serverInfo = useSelector((state) => state.server.server);
     //   console.log("THIS IS A SERVER OBJ", serverObj)
-    const [channelName, setChannelName] = useState();
+    const [channelName, setChannelName] = useState(channel.name);
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = (e) => {

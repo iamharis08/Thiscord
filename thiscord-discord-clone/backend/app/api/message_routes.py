@@ -22,7 +22,7 @@ def edit_message(id):
     db.session.commit()
     return {'message': message.to_dict()}, 200
 
-  return "YOU CAN'T EDIT THIS MESSAGE", 401
+  return {"errors": ["UNAUTHORIZED: YOU CAN'T EDIT THIS MESSAGE"]}, 401
 
 
 # Delete Message
@@ -37,4 +37,4 @@ def delete_message(id):
     db.session.commit()
     return {'message': "Successfully Deleted"}, 200
 
-  return "YOU CAN'T DELETE THIS MESSAGE", 401
+  return {"errors": ["UNAUTHORIZED: YOU CAN'T DELETE THIS MESSAGE"]}, 401

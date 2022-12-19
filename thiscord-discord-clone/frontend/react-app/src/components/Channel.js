@@ -99,7 +99,8 @@ function Channel() {
   }, [messages])
 
 
-
+  // MESSAGE length check
+  const messageCheck = str => str.split(' ').filter(c => c !== '').length
 
   // CHAT HELPER FUNCS
   const updateChatInput = (e) => {
@@ -109,7 +110,10 @@ function Channel() {
   const sendChat = (e) => {
     e.preventDefault()
 
-    socket.emit("chat", { user: user, message: chatInput, room: channelId, timestamp: new Date() });
+    if (messageCheck(chatInput)) {
+      socket.emit("chat", { user: user, message: chatInput, room: channelId, timestamp: new Date() });
+    }
+
     setChatInput("")
   }
 
@@ -124,7 +128,8 @@ function Channel() {
   const sendSearch = async (e) => {
     e.preventDefault()
 
-    if(searchInput.length) {
+    if (messageCheck(searchInput)) {
+    // if(searchInput.length) {
 
       const search = await fetch(`/api/channels/${channelId}/messages`, {
         method: 'POST',
@@ -139,7 +144,8 @@ function Channel() {
       setShowSearchResults(true)
       setSearchInput("")
     }
-    return ''
+
+    setSearchInput("")
   }
 
   const searchScroll = ref => {

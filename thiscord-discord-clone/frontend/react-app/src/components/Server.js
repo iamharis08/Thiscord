@@ -19,6 +19,7 @@ function Server({ serverId }) {
   const [users, setUsers] = useState([]);
   const [channels, setChannels] = useState([]);
   const [channelId, setChannelId] = useState("");
+  const [channel, setChannel] = useState("");
   const [click, setClicks] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
   const [channelIsHidden, setChannelIsHidden] = useState(true);
@@ -197,6 +198,7 @@ function Server({ serverId }) {
                     onClick={() => {
                       setChannelId(channel.id)
                       setChannelIsHidden(!channelIsHidden)
+                      setChannel(channel)
                     }}>
                     <img src={gear} alt="settings" />
                   </span>
@@ -237,6 +239,7 @@ function Server({ serverId }) {
                 setShowChannelModal(false)
               }}>
                 <EditChannelModal
+                  channel={channel}
                   setShowModal={setShowChannelModal}
                   setIsHidden={setChannelIsHidden}
                   setUpdateChannels={setUpdateChannels}

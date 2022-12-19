@@ -18,16 +18,20 @@ def create_channel(id):
 
   form=ChannelForm()
   form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
 
-  new_channel = Channel(
-    name=form.data["name"],
-    server_id = id
-  )
+    new_channel = Channel(
+        name=form.data["name"],
+        server_id = id
+    )
 
-  db.session.add(new_channel)
-  db.session.commit()
+    db.session.add(new_channel)
+    db.session.commit()
 
-  return new_channel.to_dict(), 302
+    return new_channel.to_dict(), 302
+
+  return {"errors": ['BAD REQUEST: Could not complete Your Request']}, 400
+
 
 # Get Server
 @server_routes.route("/<int:id>")
@@ -49,13 +53,16 @@ def update_server(id):
     # pass
     form = ServerForm() #Change form as needed for edit channel form
     form['csrf_token'].data = request.cookies['csrf_token']
-    server = Server.query.get(id)
-    server.name = form.name.data
+    if form.validate_on_submit():
+        server = Server.query.get(id)
+        server.name = form.name.data
 
-    db.session.add(server)
-    db.session.commit()
+        db.session.add(server)
+        db.session.commit()
 
-    return {'server': server.to_dict()}, 201
+        return {'server': server.to_dict()}, 201
+
+    return {"errors": ["UNAUTHORIZED: Can't Edit a Server You Don't Own!"]}, 400
 
 
 # Delete Server
@@ -79,25 +86,21 @@ def create_server():
     form = ServerForm()
     owner = current_user.to_dict()
     form['csrf_token'].data = request.cookies['csrf_token']
-    new_server = Server(name=form.name.data,
-    owner_id=owner['id'],
-     private=False
-    )
-    current_user.servers.append(new_server)
-    db.session.add(new_server)
-    db.session.commit()
+    if form.validate_on_submit():
+        new_server = Server(name=form.name.data,
+        owner_id=owner['id'],
+        private=False
+        )
+        current_user.servers.append(new_server)
+        db.session.add(new_server)
+        db.session.commit()
 
-    return {"server": new_server.to_dict()}, 201
+        return {"server": new_server.to_dict()}, 201
+
+    return {"errors": "VALIDATION: Could not complete Your request"}
+
 
 # Get Current User Servers
-# @server_routes.route("/")
-# @login_required
-# def users_server():
-#     id = current_user.id
-#     joined_servers = Server.query.filter(Server.users.any(id=id)).all()
-#     servers = {'servers': [server.to_dict() for server in joined_servers]}
-#     return servers, 200
-
 @server_routes.route("/")
 @login_required
 def users_server():
@@ -110,15 +113,11 @@ def users_server():
     joined_servers = Server.query.filter(Server.users.any(id=id)).all()
     res = []
     for s in joined_servers:
-        print(s.to_dict(), 'BEFORE JOIN??')
         channels = Channel.query.filter(Channel.server_id==id).all()
-        print([c.to_dict() for c in channels], 'CHANNELS!')
         server_channels = [c.to_dict() for c in channels]
         server = s.to_dict()
         server.update(channels=server_channels)
-        print(server, 'TRYING TO JOIN!!')
-        # print({})
+
         res.append(server)
         servers = {'servers': [server.to_dict() for server in joined_servers]}
-        print(res, 'HERE IS JOINED SERVERS!!')
     return {'servers': res}, 200

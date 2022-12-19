@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createServer } from '../../store/server'
 import { useDispatch } from 'react-redux';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import "./ServerForm.css"
 import { fetchOneServer } from '../../store/server';
@@ -9,7 +9,7 @@ import { fetchOneServer } from '../../store/server';
 function ServerFormModal({ setShowModal }) {
 
   const dispatch = useDispatch();
-
+  const history = useHistory()
   const user = useSelector(state => state.session.user);
 
   const [serverName, setServerName] = useState(`${user.username}'s server`);
@@ -19,8 +19,12 @@ function ServerFormModal({ setShowModal }) {
     e.preventDefault();
     setErrors([]);
     return dispatch(createServer({ name: serverName }))
-      .then((newServer) => { dispatch(fetchOneServer(newServer.server.id)) })
-      .then(() => { setShowModal(false) })
+      .then((newServer) =>  dispatch(fetchOneServer(newServer?.server?.id)))
+      .then((res) => { setShowModal(false)
+        console.log(res, 'IN THE THEN AFTER NEW SERVER')
+                        return res})
+      .then((res) => { console.log(res, "RESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS")
+        if (res) {history.push(`/channels/${res?.channels[0]?.id}`)}} )
     // .catch(async (res) => {
     //   const data = await res.json();
     //   console.log("THE DATA OF THE NEW SERVER", data)
@@ -54,6 +58,8 @@ function ServerFormModal({ setShowModal }) {
                       // placeholder={`${user.username}'s server`}
                       type="text"
                       value={serverName}
+                      minlength='3'
+                      maxlength='50'
                       onChange={(e) => setServerName(e.target.value)}
                       required
                       autoFocus />

@@ -3,7 +3,7 @@ import { createServer, fetchOneServer } from "../../store/server";
 import { useDispatch } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "../ServerForm/ServerForm.css";
+import "./CreateChannelModal.css";
 import { createChannel } from "../../store/channel";
 
 function CreateChannelModal({ setShowCreateChannelModal }) {
@@ -30,7 +30,7 @@ function CreateChannelModal({ setShowCreateChannelModal }) {
   };
 
   return (
-    <div className="server-channel-modal">
+    <div className="create-channel-modal">
       <form className="server-channel-form" onSubmit={handleSubmit}>
         {errors[0] ? (
           <ul className="errors">
@@ -39,14 +39,15 @@ function CreateChannelModal({ setShowCreateChannelModal }) {
         ) : (
           ""
         )}
-        <div className="create-text">Create Channel</div>
-
-
+        <div className="create-channel-heading">Create Channel</div>
+        <div className='create-channel-description'>
+          Give your new channel a personality with a name. You can always change it later
+        </div>
         <label className="input-label">
-          <div className="server-name">CHANNEL NAME</div>
+          <div className="enter-channel-name">CHANNEL NAME</div>
           <div>
             <input
-              className="input"
+              className="create-channel-input"
               placeholder={`new-channel`}
               minlength='3'
               malength='50'
@@ -58,10 +59,10 @@ function CreateChannelModal({ setShowCreateChannelModal }) {
           </div>
         </label>
 
-        <div className="button-container">
+        <div className="create-button-container">
           <span className="">
             <button
-              className="backButton"
+              className="create-channel-back-button"
               type="button"
               onClick={() => setShowCreateChannelModal(false)}
             >
