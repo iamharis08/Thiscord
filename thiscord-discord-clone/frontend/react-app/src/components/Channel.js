@@ -99,8 +99,8 @@ function Channel() {
   }, [messages])
 
 
-  // MESSAGE length check
-  const messageCheck = str => str.split(' ').filter(c => c !== '').length
+  // INPUT length check
+  const stringCheck = str => str.split(' ').filter(c => c !== '').join('').length >= 1
 
   // CHAT HELPER FUNCS
   const updateChatInput = (e) => {
@@ -110,7 +110,7 @@ function Channel() {
   const sendChat = (e) => {
     e.preventDefault()
 
-    if (messageCheck(chatInput)) {
+    if (stringCheck(chatInput)) {
       socket.emit("chat", { user: user, message: chatInput, room: channelId, timestamp: new Date() });
     }
 
@@ -128,7 +128,7 @@ function Channel() {
   const sendSearch = async (e) => {
     e.preventDefault()
 
-    if (messageCheck(searchInput)) {
+    if (stringCheck(searchInput)) {
     // if(searchInput.length) {
 
       const search = await fetch(`/api/channels/${channelId}/messages`, {
@@ -242,7 +242,7 @@ function Channel() {
       </div>
         </div>
       <div className="members-list">
-            <strong>Members -</strong>
+            <strong>Members - {serverInfo?.users?.length}</strong>
             {serverInfo?.users?.map((user) => (
               <p id="one-member" key={user?.id}>
                 <img

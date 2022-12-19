@@ -14,6 +14,7 @@ import Servers from './components/Servers';
 import Server from './components/Server';
 import Channel from './components/Channel'
 import "./css/App.css"
+import ComingSoon from './components/ComingSoon';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -65,9 +66,10 @@ function App() {
             <Channel />
             {/* </div> */}
           </div>
-
         </Route>
-
+        <Route path='/coming-soon' exact={true}>
+          <ComingSoon />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

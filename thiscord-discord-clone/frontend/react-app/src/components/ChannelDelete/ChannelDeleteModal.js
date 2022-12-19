@@ -36,7 +36,7 @@ function ChannelDeleteModal({
                 dispatch(fetchOneServer(serverInfo.server.id))
                 setShowDeleteChannelModal(false);
                 setUpdateChannels(!updateChannels)
-                history.push("/servers")
+                history.push(`/channels/${serverInfo?.channels[0]?.id}`)
             });
         }
         // setErrors([]);

@@ -19,25 +19,34 @@ function EditChannelModal({ channel, setShowModal, setIsHidden, setUpdateChannel
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-        setIsHidden(true);
-        const updatedChannel = {
-            id: channelId,
-            name: channelName,
-            serverId: serverInfo.server.id
+
+        if (stringCheck(channelName)){
+
+            setIsHidden(true);
+            const updatedChannel = {
+                id: channelId,
+                name: channelName,
+                serverId: serverInfo.server.id
+            }
+            return dispatch(fetchUpdateChannel(updatedChannel))
+                .then(() => {
+                    dispatch(fetchOneServer(serverInfo.server.id))
+                    setShowModal(false)
+                    setUpdateChannels(!updateChannels)
+                })
+                .catch(async (res) => {
+                    const data = await res.json();
+                    console.log("THE DATA OF THE NEW Channel", data)
+                    if (data) setErrors(Object.values(data));
+                    else return (<Redirect to={`/servers/${serverInfo.server.id}`} />);
+                });
+        } else {
+            setErrors(['Name needs to be at least three characters'])
         }
-        return dispatch(fetchUpdateChannel(updatedChannel))
-            .then(() => {
-                dispatch(fetchOneServer(serverInfo.server.id))
-                setShowModal(false)
-                setUpdateChannels(!updateChannels)
-            })
-            .catch(async (res) => {
-                const data = await res.json();
-                console.log("THE DATA OF THE NEW Channel", data)
-                if (data) setErrors(Object.values(data));
-                else return (<Redirect to={`/servers/${serverInfo.server.id}`} />);
-            });
     }
+
+    const stringCheck = str => str.split(' ').filter(c => c !== '').join('').length >= 3
+
 
     return (
         <>

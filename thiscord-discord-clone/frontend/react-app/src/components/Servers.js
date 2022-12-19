@@ -58,7 +58,7 @@ function ServersList() {
     let initials = [serverName[0]];
 
     for (let i = 0; i < serverName.length; i++) {
-      serverName[i - 1] === " " && initials.push(serverName[i]);
+      serverName[i - 1] === " " && serverName[i] !== " " && initials.push(serverName[i]);
     }
 
     return initials.length <= 5 ? initials.join("") : initials.slice(0, 5);

@@ -17,10 +17,15 @@ function CreateChannelModal({ setShowCreateChannelModal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(createChannel({ name: channelName, server_id: server.id }, server.id)).then(() => {
-      setShowCreateChannelModal(false);
-      dispatch(fetchOneServer(server.id))
-    });
+    if (stringCheck(channelName)) {
+
+      return dispatch(createChannel({ name: channelName, server_id: server.id }, server.id)).then(() => {
+        setShowCreateChannelModal(false);
+        dispatch(fetchOneServer(server.id))
+      });
+    } else {
+      setErrors(['Name needs to be at least three characters'])
+    }
     // .catch(async (res) => {
     //   const data = await res.json();
     //   console.log("THE DATA OF THE NEW SERVER", data)
@@ -28,6 +33,9 @@ function CreateChannelModal({ setShowCreateChannelModal }) {
     //   else return (<Redirect to={'/servers'} />);
     // });
   };
+
+  const stringCheck = str => str.split(' ').filter(c => c !== '').join('').length >= 3
+
 
   return (
     <div className="create-channel-modal">

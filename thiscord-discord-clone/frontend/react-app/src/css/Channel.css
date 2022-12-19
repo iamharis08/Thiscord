@@ -204,6 +204,7 @@ html, body {
   padding-left: 10px;
   margin-right: 10px;
   /* position: fixed; */
+  outline: none;
 }
 
 .message-form-input-container {

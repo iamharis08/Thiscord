@@ -18,13 +18,19 @@ function ServerFormModal({ setShowModal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(createServer({ name: serverName }))
-      .then((newServer) =>  dispatch(fetchOneServer(newServer?.server?.id)))
-      .then((res) => { setShowModal(false)
-        console.log(res, 'IN THE THEN AFTER NEW SERVER')
-                        return res})
-      .then((res) => { 
-        if (res) {history.push(`/channels/${res?.channels[0]?.id}`)}} )
+
+    if(stringCheck(serverName)) {
+
+      return dispatch(createServer({ name: serverName }))
+        .then((newServer) =>  dispatch(fetchOneServer(newServer?.server?.id)))
+        .then((res) => { setShowModal(false)
+          console.log(res, 'IN THE THEN AFTER NEW SERVER')
+                          return res})
+        .then((res) => {
+          if (res) {history.push(`/channels/${res?.channels[0]?.id}`)}} )
+    } else {
+      setErrors(['Name needs to be at least three characters'])
+    }
     // .catch(async (res) => {
     //   const data = await res.json();
     //   console.log("THE DATA OF THE NEW SERVER", data)
@@ -32,6 +38,9 @@ function ServerFormModal({ setShowModal }) {
     //   else return (<Redirect to={'/servers'} />);
     // });
   }
+
+  const stringCheck = str => str.split(' ').filter(c => c !== '').join('').length >= 3
+
 
   return (
     <>

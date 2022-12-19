@@ -17,14 +17,19 @@ function EditServerModal({ setShowModal, setIsHidden }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-        setIsHidden(true);
-        const updatedServer = {
-            id: serverObj.server.id,
-            name: serverName,
-            ownerId: user.id
+        if(stringCheck(serverName)){
+
+            setIsHidden(true);
+            const updatedServer = {
+                id: serverObj.server.id,
+                name: serverName,
+                ownerId: user.id
+            }
+            return dispatch(fetchUpdateServer(updatedServer))
+                .then(() => { setShowModal(false) })
+        } else {
+            setErrors(['Name needs to be at least three characters'])
         }
-        return dispatch(fetchUpdateServer(updatedServer))
-            .then(() => { setShowModal(false) })
         // .catch(async (res) => {
         //   const data = await res.json();
         //   console.log("THE DATA OF THE NEW SERVER", data)
@@ -32,6 +37,9 @@ function EditServerModal({ setShowModal, setIsHidden }) {
         //   else return (<Redirect to={'/servers'} />);
         // });
     }
+
+    const stringCheck = str => str.split(' ').filter(c => c !== '').join('').length >= 3
+
 
     return (
         <>

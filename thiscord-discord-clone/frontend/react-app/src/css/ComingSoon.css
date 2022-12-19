@@ -1,0 +1,324 @@
+html, body {
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+.hero-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+}
+
+
+.hero-text {
+    color: white;
+    position: absolute;
+    z-index: 99;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    margin-top: 120px;
+    text-align: center;
+}
+
+.coming-soon-h1-text {
+    font-size: 56px;
+    font-weight: 900;
+    font-family: 'Unbounded';
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-body-text {
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    line-height: 1.625;
+}
+
+
+#hero-image {
+    /* position: absolute; */
+    width: 100%;
+    height: 600px;
+    top: 0;
+}
+
+.channels-section-container {
+    /* margin-top: 110px; */
+    background-color: white;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.channels-home-text {
+    width: 24%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#channels-home-h2 {
+    font-size: 48px;
+}
+
+.channels-home-body-text {
+    font-size: 20px;
+}
+
+.voice-channels-section-container {
+    background-color: #F6f6f6;
+    padding-top: 120px;
+    padding-left: 15px;
+    padding-right: 15px;
+    /* margin-top: 110px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-bottom: 120px;
+}
+
+.voice-channels-home-text {
+    width: 25%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#voice-channels-home-h2 {
+    font-size: 48px;
+}
+
+.voice-channels-home-body-text {
+    font-size: 20px;
+}
+
+.members-section-container {
+    padding-top: 120px;
+    background-color: white;
+    /* margin-top: 110px; */
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-bottom: 120px;
+}
+
+.members-home-text {
+    width: 25%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#members-home-h2 {
+    font-size: 48px;
+}
+
+.members-home-body-text {
+    font-size: 20px;
+}
+
+.voice-call-section-container {
+    background-color: #F6f6f6;
+    padding-top: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 120px;
+}
+
+.voice-call-home-text {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* flex-wrap: wrap; */
+    align-items: center;
+}
+
+#voice-call-home-h2 {
+    font-size: 40px;
+    font-family: 'Unbounded';
+    text-align: center;
+}
+
+.voice-call-home-body-text {
+    font-size: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+}
+
+.journey-container {
+    background-color: #F6f6f6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-your-journey-text {
+    margin-top: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.sparkles {
+    position: absolute;
+    margin-bottom: 200px;
+}
+
+.download-btn {
+    margin-top: 40px;
+    border: none;
+    border-radius: 28px;
+    font-size: 20px;
+    padding: 16px 32px;
+    background-color: #5865f2;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 120px;
+}
+
+.download-btn:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 20%);
+    cursor: pointer;
+    background-color: #9099f1;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #23272a;
+    color: white;
+    padding-bottom: 80px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.imagine-a-place-footer {
+    display: flex;
+    /* font-family: ; */
+    flex-direction: column;
+}
+
+#usa-footer-img {
+    width: 25px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.imagine-text {
+    font-family: 'Unbounded';
+    font-size: 32px;
+}
+
+.language-footer {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.jacob-developer-footer {
+    padding-top: 100px;
+    vertical-align: middle;
+}
+
+.tyler-developer-footer {
+    padding-top: 100px;
+}
+
+.trevor-developer-footer {
+    padding-top: 100px;
+}
+
+.haris-developer-footer {
+    padding-top: 100px;
+}
+
+.logo-signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #23272a;
+    padding-bottom: 70px;
+}
+
+.footer-line-seperator {
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    height: 1px;
+    background-color: #5865f2;
+    margin-bottom: 32px;
+}
+
+#thiscord-logo-footer {
+    width: 30px;
+    vertical-align: middle;
+    border: none;
+    margin: 10px;
+}
+
+#logo-signup {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+}
+
+.logo-footer {
+    color: white;
+    font-family: 'Unbounded';
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.signup-footer {
+    border:none;
+    color: white;
+    background-color: #5865f2;
+    border-radius: 40px;
+    font-size: 14px;
+    padding: 7px 16px;
+}
+
+.signup-footer:hover {
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 20%);
+    background-color: #9099f1;
+}
+
+#github-logo {
+    width: 28px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
