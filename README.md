@@ -205,8 +205,8 @@ Thankful for all the instructional and peer support in all areas of this project
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/jacoblauxman/AirBnB-Proj.svg?style=for-the-badge
-[contributors-url]: https://github.com/jacoblauxman/AirBnB-Proj/graphs/contributors
+[contributors-shield]: https://img.shields.io/github/contributors/iamharis08/Thiscord.svg?style=for-the-badge
+[contributors-url]: https://github.com/iamharis08/Thiscord/graphs/contributors
 
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
