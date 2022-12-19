@@ -97,10 +97,11 @@ This is a fullstack clone group project bringing together the backend and fronte
 ### Built With
 
 * [![React][React.js]][React-url]
-* ExpressJS: https://expressjs.com/
-* Sequelize: https://sequelize.org/
-* Redux: https://redux.js.org/
-
+* ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+* ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+* ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+* ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+* ![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
