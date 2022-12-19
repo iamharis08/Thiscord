@@ -14,7 +14,7 @@ export default function SearchResultsModal({ setShowSearchResults, messages }) {
     <div className='search-result-container'>
       {messages && messages?.map((message, i) => (
         <div key={i}
-          className='single-message-container'
+          className='single-message-container-search'
         >
           <div className='single-message-user-info'>
             <span className='single-message-username'> {message?.user?.username} </span>

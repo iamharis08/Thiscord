@@ -247,7 +247,7 @@ body {
     cursor: pointer;
     position: relative;
     top: 5px;
-    margin: 0px auto 0px auto;
+    margin: 0px auto 12px auto;
     display: flex;
     justify-content: center;
     align-items: center;

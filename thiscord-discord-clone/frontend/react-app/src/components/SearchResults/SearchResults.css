@@ -6,10 +6,13 @@
     /* margin-bottom: 68px; */
     /* padding-bottom: 68px; */
     min-width: 440px;
-    max-width: 100%;
+    max-width: 56%;
+    max-height: 360px;
+    border-radius: 4px;
+    overflow: scroll;
   }
 
-  .single-message-container {
+  .single-message-container-search {
     display: flex;
     width: inherit;
     justify-content: left;
@@ -18,7 +21,7 @@
     margin: 0.2rem 0;
   }
 
-  .single-message-container:hover {
+  .single-message-container-search:hover {
     background-color: rgb(51, 54, 59);
   }
 

@@ -67,7 +67,7 @@ const ImagineAPlace = () => {
                 <div className='start-your-journey-text'>
                     Ready to start your journey?
                 </div>
-                <NavLink to='/login'>
+                <NavLink to='/coming-soon'>
                     <button className='download-btn'>
                         <img alt='' src='https://res.cloudinary.com/drybvuzux/image/upload/v1671061757/download-btn-img_1_l8p4b0.svg'></img>
                         Download for Windows
