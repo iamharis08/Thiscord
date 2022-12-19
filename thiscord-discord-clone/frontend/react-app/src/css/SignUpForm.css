@@ -55,9 +55,9 @@
     text-decoration: none;
 }
 
-.login-link:hover{
+/* .login-link:hover{
     text-decoration: underline;
-}
+} */
 .login-link:visited{
     text-decoration: none;
     color: #00AFF4;

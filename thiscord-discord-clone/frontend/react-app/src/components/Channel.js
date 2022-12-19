@@ -19,7 +19,7 @@ function Channel() {
   const allMessages = useSelector(state => state.channel.messages)
   const the_channel = useSelector(state => state.channel)
   const user = useSelector(state => state.session.user)
-  const currChannel = useSelector(state => state.channel)
+  const currChannel = useSelector(state => state.channel.channel)
   const serverInfo = useSelector((state) => state.server.server);
 
   const [channel, setChannel] = useState({})
@@ -79,7 +79,7 @@ function Channel() {
       socket.disconnect()
     })
 
-  }, [channelId])
+  }, [channelId, currChannel])
 
 
   // dispatching for new channel

@@ -146,7 +146,7 @@ export default function reducer(state = initialState, action) {
     case UPDATE_CHANNEL:
       const updateChannel = {
         ...state,
-        channel: { ...state.channel, ...action.channel }
+        channel: { ...state.channel, ...action.channel.channel }
       }
       return updateChannel
 

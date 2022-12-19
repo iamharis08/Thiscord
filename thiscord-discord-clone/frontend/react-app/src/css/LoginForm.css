@@ -143,6 +143,7 @@ input {
 }
 
 #register-link {
+    text-decoration: none;
     color: #00AFF4;
 }
 

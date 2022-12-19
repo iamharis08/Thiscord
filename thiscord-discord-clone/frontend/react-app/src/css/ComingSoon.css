@@ -36,6 +36,7 @@ html, body {
 
 .hero-body-text {
     display: flex;
+    flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     justify-content: center;
@@ -43,7 +44,18 @@ html, body {
     margin-top: 40px;
     line-height: 1.625;
 }
+.hero-body-text p {
+    font-size: 1.8rem;
+}
 
+.go-back{
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.go-back:hover{
+    color: red;
+}
 
 #hero-image {
     /* position: absolute; */

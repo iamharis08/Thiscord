@@ -179,7 +179,7 @@ const SignUpForm = () => {
               </div>
               <button type="submit" className="submit-button">Sign Up</button>
             </form>
-            <div className="login-link"><NavLink to='/login' style={{ textDecoration: 'none' }}>Already have an account?</NavLink></div>
+            <NavLink to='/login' style={{ textDecoration: 'none' }}><div className="login-link">Already have an account?</div></NavLink>
           </div>
         </div>
       </div>

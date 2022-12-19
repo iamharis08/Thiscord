@@ -11,7 +11,7 @@ const ComingSoon = () => {
                 <div className='hero-text'>
                     <h1 className='coming-soon-h1-text'>Feature coming soon!</h1>
                     <div className='hero-body-text'>
-                        Our team is working hard to make you a website better than Michael's group's website
+                        Our team is working hard to make you a website better than the actual discord itself. <p>Click <NavLink className='go-back' to='/'>here</NavLink> to go home</p>
                     </div>
                 </div>
             </div>
@@ -48,6 +48,17 @@ const ComingSoon = () => {
                     <img id='github-logo' src='https://www.shareicon.net/data/2015/09/15/101512_logo_512x512.png' alt=''></img>
                         Haris Ahmed
                     </a>
+                </div>
+            </div>
+            <div className='logo-signup-container'>
+                <div className='footer-line-seperator'></div>
+                <div id='logo-signup'>
+                    <NavLink to='/'>
+                        <div className='logo-footer'>
+                            <img id='thiscord-logo-footer' alt='' src='https://pnggrid.com/wp-content/uploads/2021/05/Black-and-white-Discord-Logo.png%27%3E' />
+                            This.cord
+                        </div>
+                    </NavLink>
                 </div>
             </div>
         </main>

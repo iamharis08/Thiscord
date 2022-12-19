@@ -201,7 +201,7 @@ const LoginForm = () => {
                   </button>
                   <div className="register">
                     <span id="need-account">Need an account?</span>{" "}
-                    <span id="register-link"><NavLink to='/sign-up'> Register</NavLink></span>
+                    <NavLink to='/sign-up'> <span id="register-link">Register</span></NavLink>
                   </div>
                 </div>
               </form>

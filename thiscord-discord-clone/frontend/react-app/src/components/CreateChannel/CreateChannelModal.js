@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./CreateChannelModal.css";
-import { createChannel } from "../../store/channel";
+import { createChannel, fetchOneChannel } from "../../store/channel";
 
 function CreateChannelModal({ setShowCreateChannelModal }) {
   const dispatch = useDispatch();
@@ -19,9 +19,10 @@ function CreateChannelModal({ setShowCreateChannelModal }) {
     setErrors([]);
     if (stringCheck(channelName)) {
 
-      return dispatch(createChannel({ name: inputReducer(channelName), server_id: server.id }, server.id)).then(() => {
+      return dispatch(createChannel({ name: inputReducer(channelName), server_id: server.id }, server.id)).then((res) => {
         setShowCreateChannelModal(false);
-        dispatch(fetchOneServer(server.id))
+        dispatch(fetchOneServer(server?.id))
+        dispatch(fetchOneChannel(res?.id))
       });
     } else {
       setErrors(['Name needs to be at least three characters'])
