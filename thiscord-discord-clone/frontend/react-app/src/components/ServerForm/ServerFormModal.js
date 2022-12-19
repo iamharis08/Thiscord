@@ -20,8 +20,9 @@ function ServerFormModal({ setShowModal }) {
     setErrors([]);
 
     if(stringCheck(serverName)) {
+      console.log(inputReducer(serverName), 'NEW SERVER NAME REDUCED')
 
-      return dispatch(createServer({ name: serverName }))
+      return dispatch(createServer({ name: inputReducer(serverName) }))
         .then((newServer) =>  dispatch(fetchOneServer(newServer?.server?.id)))
         .then((res) => { setShowModal(false)
           console.log(res, 'IN THE THEN AFTER NEW SERVER')
@@ -40,6 +41,8 @@ function ServerFormModal({ setShowModal }) {
   }
 
   const stringCheck = str => str.split(' ').filter(c => c !== '').join('').length >= 3
+  const inputReducer = str => str.replace(/\s+/g, ' ').trim()
+
 
 
   return (

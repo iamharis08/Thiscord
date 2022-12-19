@@ -19,7 +19,7 @@ function CreateChannelModal({ setShowCreateChannelModal }) {
     setErrors([]);
     if (stringCheck(channelName)) {
 
-      return dispatch(createChannel({ name: channelName, server_id: server.id }, server.id)).then(() => {
+      return dispatch(createChannel({ name: inputReducer(channelName), server_id: server.id }, server.id)).then(() => {
         setShowCreateChannelModal(false);
         dispatch(fetchOneServer(server.id))
       });
@@ -35,6 +35,8 @@ function CreateChannelModal({ setShowCreateChannelModal }) {
   };
 
   const stringCheck = str => str.split(' ').filter(c => c !== '').join('').length >= 3
+  const inputReducer = str => str.replace(/\s+/g, ' ').trim()
+
 
 
   return (

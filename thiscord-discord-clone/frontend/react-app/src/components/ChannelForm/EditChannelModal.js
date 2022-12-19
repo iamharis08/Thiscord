@@ -25,7 +25,7 @@ function EditChannelModal({ channel, setShowModal, setIsHidden, setUpdateChannel
             setIsHidden(true);
             const updatedChannel = {
                 id: channelId,
-                name: channelName,
+                name: inputReducer(channelName),
                 serverId: serverInfo.server.id
             }
             return dispatch(fetchUpdateChannel(updatedChannel))
@@ -46,6 +46,8 @@ function EditChannelModal({ channel, setShowModal, setIsHidden, setUpdateChannel
     }
 
     const stringCheck = str => str.split(' ').filter(c => c !== '').join('').length >= 3
+    const inputReducer = str => str.replace(/\s+/g, ' ').trim()
+
 
 
     return (

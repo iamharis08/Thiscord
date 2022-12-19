@@ -22,7 +22,7 @@ function EditServerModal({ setShowModal, setIsHidden }) {
             setIsHidden(true);
             const updatedServer = {
                 id: serverObj.server.id,
-                name: serverName,
+                name: inputReducer(serverName),
                 ownerId: user.id
             }
             return dispatch(fetchUpdateServer(updatedServer))
@@ -39,6 +39,8 @@ function EditServerModal({ setShowModal, setIsHidden }) {
     }
 
     const stringCheck = str => str.split(' ').filter(c => c !== '').join('').length >= 3
+    const inputReducer = str => str.replace(/\s+/g, ' ').trim()
+
 
 
     return (

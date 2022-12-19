@@ -101,6 +101,8 @@ function Channel() {
 
   // INPUT length check
   const stringCheck = str => str.split(' ').filter(c => c !== '').join('').length >= 1
+  const inputReducer = str => str.replace(/\s+/g, ' ').trim()
+
 
   // CHAT HELPER FUNCS
   const updateChatInput = (e) => {
