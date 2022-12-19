@@ -95,7 +95,7 @@ function ServersList() {
   return (
     <div className="main">
       <div className="bg">
-        {hoveredId !== 1000000 && (
+        {hoveredId === 1000000 && (
           <span className="dmHiddenItems">
             <span className="dmWhiteNub"></span>
             <span className="dmtTextBox">
@@ -104,11 +104,11 @@ function ServersList() {
             </span>
           </span>
         )}
-        <span
+        <NavLink to="/coming-soon"
           className="dm"
           onMouseOut={hideServerName}
           onMouseOver={() => displayServerName(1000000)}
-        ></span>
+        ></NavLink>
         <div className="line"></div>
         <div className="list">{serverComponents}</div>
         {hoveredId === 10000000 && (

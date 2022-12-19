@@ -19,16 +19,19 @@ function ServerFormModal({ setShowModal }) {
     e.preventDefault();
     setErrors([]);
 
-    if(stringCheck(serverName)) {
+    if (stringCheck(serverName)) {
       console.log(inputReducer(serverName), 'NEW SERVER NAME REDUCED')
 
       return dispatch(createServer({ name: inputReducer(serverName) }))
-        .then((newServer) =>  dispatch(fetchOneServer(newServer?.server?.id)))
-        .then((res) => { setShowModal(false)
-          console.log(res, 'IN THE THEN AFTER NEW SERVER')
-                          return res})
+        .then((newServer) => dispatch(fetchOneServer(newServer?.server?.id)))
         .then((res) => {
-          if (res) {history.push(`/channels/${res?.channels[0]?.id}`)}} )
+          setShowModal(false)
+          console.log(res, 'IN THE THEN AFTER NEW SERVER')
+          return res
+        })
+        .then((res) => {
+          if (res) { history.push(`/channels/${res?.channels[0]?.id}`) }
+        })
     } else {
       setErrors(['Name needs to be at least three characters'])
     }
@@ -80,7 +83,7 @@ function ServerFormModal({ setShowModal }) {
                 <div className='terms-and-highlight'>
                   <div className='terms'>
                     By creating a server, you agree to This.cord's
-                    <NavLink className='purple-highlight' to="/">&nbsp;Community GuideLines</NavLink>
+                    <NavLink className='purple-highlight' to="/coming-soon">&nbsp;Community GuideLines</NavLink>
                   </div>
                 </div>
               </div>
