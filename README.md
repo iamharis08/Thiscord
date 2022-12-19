@@ -142,7 +142,7 @@ You will need to define a .env file for backend to setup a database port as well
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Goal of this project is to accurately imitate/clone the aspects of AirBnB's website, specifically their handling of user and spot data as well as reviews -- full CRUD operations!
+Goal of this project is to accurately imitate/clone the aspects of Discord's website, specifically their handling of user and spot data as well as reviews -- full CRUD operations!
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -153,11 +153,15 @@ Goal of this project is to accurately imitate/clone the aspects of AirBnB's webs
 ## Roadmap
 
 - [ ] User - Login/Logout, Signup, Restore Session and permissions within site
-- [ ] Spots - Show all in display, see details of specific spot, add  a spot as well as images of spot (owner Auth)
-- [ ] Reviews - Show all reviews of a spot, user, and edit/update/delete features as well as review Image association
+- [ ] Servers - Show all in display, see details of specific server, add  a server as well as channels of server and its users
+- [ ] Channels - Show all messages of channel, and implement a message feature via sockets for real time updates
+- [ ] Live Chat - Send and receive messages in channels within a given channel, messages realtime update for all users in channel
+- [ ] Message Search - Search through a given channel's messages by text to display all matches to the user
+
+
     <!-- - [ ] Nested Feature -->
 
-See the [open issues](https://github.com/jacoblauxman/AirBnB-Proj/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/iamharis08/Thiscord/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -181,7 +185,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 Jacob Lauxman - jlauxman@gmail.com
 <!-- Jacob Lauxman - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com -->
 
-Project Link: [https://github.com/jacoblauxman/AirBnB-Proj](https://github.com/jacoblauxman/AirBnB-Proj)
+Project Link: [https://github.com/iamharis08/Thiscord](https://github.com/iamharis08/Thiscord)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
