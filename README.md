@@ -202,6 +202,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
 ## Contact
+* Haris Ahmed - iamharis08@gmail.com : https://github.com/iamharis08
 * Jacob Lauxman - jlauxman@gmail.com : https://github.com/jacoblauxman
 * Tyler Short - infinitespace20@gmail.com : https://github.com/Cahzzm
 <!-- Jacob Lauxman - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com -->
