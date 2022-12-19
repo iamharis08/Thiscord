@@ -123,6 +123,8 @@ const SignUpForm = () => {
                 <input
                   type="text"
                   name="username"
+                  minLength="4"
+                  maxLength="20"
                   onChange={updateUsername}
                   value={username}
                   required
@@ -145,6 +147,8 @@ const SignUpForm = () => {
                 <input
                   type="password"
                   name="password"
+                  minLength="5"
+                  maxLength="16"
                   onChange={updatePassword}
                   value={password}
                   required

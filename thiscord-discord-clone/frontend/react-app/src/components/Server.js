@@ -29,13 +29,49 @@ function Server({ serverId }) {
   const [updateServers, setUpdateServers] = useState("false");
   const [updateChannels, setUpdateChannels] = useState(false);
   const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
-
+  const [showMenu, setShowMenu] = useState(false);
+  const [showChannelMenu, setShowChannelMenu] = useState(false);
   const serverObj = useSelector((state) => state.server.servers);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const serverInfo = useSelector((state) => state.server.server);
   const server = serverInfo?.server;
+
+  const openMenu = (menu) => {
+    if (showMenu) return;
+    if (showChannelMenu) return;
+    if (!showMenu && menu === "server") {setShowMenu(true);}
+    if (!showChannelMenu && menu === "channel") { setShowChannelMenu(true)}
+  };
+
+
+  useEffect(() => {
+    if (!showMenu) {return}
+    const closeMenu = () => {
+      setShowMenu(false);
+    };
+
+    // click event listener to whole doc -- if we click on page it will run
+    // closeMenu!! -- really sets 'setShowMenu' to false or our slice of state on showing menu
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+  useEffect(() => {
+    if (!showChannelMenu) {return}
+    const closeMenu = () => {
+      setShowChannelMenu(false);
+    };
+
+    // click event listener to whole doc -- if we click on page it will run
+    // closeMenu!! -- really sets 'setShowMenu' to false or our slice of state on showing menu
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showChannelMenu]);
+
 
   useEffect(() => {
     dispatch(fetchOneServer(serverId))
@@ -73,7 +109,7 @@ function Server({ serverId }) {
     <div className="main-container">
       <div className="server">
         {serverInfo.server.ownerId === user.id ?
-          <div className='server-title-container' onClick={() => setIsHidden(!isHidden)}>
+          <div className='server-title-container' onClick={() => {setIsHidden(!isHidden); openMenu("server")}}>
             <span className='title-text'>
               {server.name}
             </span>
@@ -88,17 +124,90 @@ function Server({ serverId }) {
             </span>
           </div>
         }
-        {!isHidden && (
-          <div>
-            <button onClick={() => {
+        {showMenu && (
+        // {!isHidden && !showMenu && (
+          <div className="server-buttons-container">
+          <button className="server-button" onClick={() => {
+            history.push('/coming-soon')
+          }}>
+            Server Boost <span className="dropdown-img">
+              {/* <img src={} alt='server buttons' /> */}
+              </span></button>
+
+          <button className="server-button invite" onClick={() => {
+            history.push('/coming-soon')
+          }}>
+            Invite People <span className="dropdown-img">
+              {/* <img src={invite} alt='server buttons' /> */}
+              </span></button>
+
+            <button className="server-button edit-server" onClick={() => {
               setShowModal(true)
             }}>
-              Edit Server</button>
-            <button onClick={() => {
+              Edit Server<span className="dropdown-img">
+              {/* <img src={gear} alt='server buttons' /> */}
+              </span></button>
+
+            <button className="server-button delete-server" onClick={() => {
               setShowDeleteModal(true)
             }}>
-              Delete Server</button>
+              Delete Server<span className="dropdown-img">
+              {/* <img src={trashGrey} alt='server buttons' /> */}
+              </span></button>
+
+            <button className="server-button" onClick={() => {
+            history.push('/coming-soon')
+          }}>
+            Create Category <span className="dropdown-img">
+              {/* <img src={fileplus} alt='server buttons' /> */}
+              </span></button>
+
+            <button className="server-button" onClick={() => {
+            history.push('/coming-soon')
+          }}>
+            Create Event <span className="dropdown-img">
+              {/* <img src={calendar} alt='server buttons' /> */}
+              </span></button>
+
+              <button className="server-button" onClick={() => {
+            history.push('/coming-soon')
+          }}>
+            App Directory <span className="dropdown-img">
+              {/* <img src={appdir} alt='server buttons' /> */}
+              </span></button>
+
+              <button className="server-button" onClick={() => {
+            history.push('/coming-soon')
+          }}>
+            Notification Settings <span className="dropdown-img">
+              {/* <img src={bell} alt='server buttons' /> */}
+              </span></button>
+
+              <button className="server-button" onClick={() => {
+            history.push('/coming-soon')
+          }}>
+            Privacy Settings <span className="dropdown-img">
+              {/* <img src={shield} alt='server buttons' /> */}
+              </span></button>
+
+              <button className="server-button" onClick={() => {
+            history.push('/coming-soon')
+          }}>
+            Hide Muted Channels <span className="dropdown-img">
+              {/* <img src={square} alt='server buttons' /> */}
+              </span></button>
+
+              <button className="server-button raid" onClick={() => {
+            history.push('/coming-soon')
+          }}>
+            Report Raid <span className="dropdown-img">
+              {/* <img src={flag} alt='server buttons' /> */}
+              </span></button>
+
+
+
           </div>
+
         )}
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
@@ -127,7 +236,7 @@ function Server({ serverId }) {
               {user.id === serverInfo.server.ownerId ? (
                 <div
                   className="add-channel-button"
-                  onClick={() => setShowCreateChannelModal(true)}
+                  onClick={() => {setShowCreateChannelModal(true)}}
                 >
                   +
                 </div>
@@ -148,6 +257,7 @@ function Server({ serverId }) {
                       setChannelId(channel.id)
                       setChannelIsHidden(!channelIsHidden)
                       setChannel(channel)
+                      openMenu("channel")
                     }}>
                     <img src={gear} alt="settings" />
                   </span>
@@ -156,30 +266,24 @@ function Server({ serverId }) {
             ))}
 
 
-            <div className='logout-user-container'>
-              <div className="general-bar-user">
-                <img
-                  id="member-profile"
-                  src="https://www.svgrepo.com/show/331368/discord-v2.svg"
-                  alt=""
-                ></img>
-                {user.username}
-              </div>
-              <div className="logout-button">
-                <LogoutButton />
-              </div>
-            </div>
 
-            {!channelIsHidden && (
-              <div>
-                <button onClick={() => {
+
+            {showChannelMenu && (
+            // {!channelIsHidden && !showMenu && (
+
+              <div className="channels-buttons-container">
+                <button className="server-button edit-server" onClick={() => {
                   setShowChannelModal(true)
                 }}>
-                  Edit Channel</button>
-                <button onClick={() => {
+                  Edit Channel<span className="dropdown-img">
+              {/* <img src={gear} alt='server buttons' /> */}
+              </span></button>
+                <button className="server-button delete-server"onClick={() => {
                   setShowDeleteChannelModal(true)
                 }}>
-                  Delete Channel</button>
+                  Delete Channel<span className="dropdown-img">
+                  {/* <img src={trashGrey} alt='server buttons' /> */}
+              </span></button>
               </div>
             )}
             {showChannelModal && (
