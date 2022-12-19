@@ -162,7 +162,7 @@ You will need to define a .env file for the backend to setup a database as well 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Goal of this project is to accurately imitate/clone the aspects of Discord's website, specifically their handling of user and spot data as well as reviews -- full CRUD operations!
+Our goals for this project are to accurately imitate various aspects of Discord's website (browser specifically). Various aspects of their handling of users, servers, and channels data has been recreated with this project with most full CRUD operations with each feature.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
