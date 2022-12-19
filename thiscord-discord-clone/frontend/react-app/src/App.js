@@ -13,6 +13,7 @@ import ImagineAPlace from './components/ImagineAPlace';
 import Servers from './components/Servers';
 import Server from './components/Server';
 import Channel from './components/Channel'
+import NotFound from './components/404';
 import "./css/App.css"
 
 function App() {
@@ -66,6 +67,9 @@ function App() {
             {/* </div> */}
           </div>
 
+        </Route>
+        <Route>
+          <NotFound />
         </Route>
 
       </Switch>
