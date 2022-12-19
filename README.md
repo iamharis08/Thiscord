@@ -111,7 +111,7 @@ This is a fullstack clone group project bringing together the backend and fronte
 
 
 ### Discord (per Fall/Winter '22):
-![image](https://user-images.githubusercontent.com/106632610/208401285-dfb6a3b8-f870-4228-a14e-da770d1107ce.png)
+![image](https://user-images.githubusercontent.com/106632610/208404449-baf9a095-7720-4689-9d8e-74fd9c5c6357.png)
 ### This.cord:
 ![image](https://user-images.githubusercontent.com/106632610/208404035-1ef0ed76-2a61-4a0e-b006-55c99d8c07d0.png)
 
