@@ -10,6 +10,8 @@ import '../css/Channel.css'
 import { Modal } from "./context/Modal.js"
 import SearchResultsModal from './SearchResults/SearchResultsModal';
 
+import { v4 as uuidv4 } from 'uuid';
+
 let socket;
 
 function Channel() {
@@ -71,8 +73,27 @@ function Channel() {
 
       const currDate = Date(chat.timestamp)
       const dateStamp = currDate.toString().split('-')[0]
-      const res = { channelId: +chat.room, createdAt: dateStamp, message: chat.message, user: { ...chat.user } }
+      const res = { channelId: +chat.room, createdAt: dateStamp, message: chat.message, liveId: chat.live_id, isEdited: chat.is_edited, user: { ...chat.user } }
       setMessages(messages => [...messages, res]);
+
+    })
+
+    socket.on("update", (updated_chat) => {
+
+      const res = { channelId: +updated_chat.room, createdAt: dateStamp, message: updated_chat.message, liveId: updated_chat.live_id, isEdited: updated_chat.is_edited, user: { ...updated_chat.user } }
+      const index = messages.findIndex((message) => message.live_id === updated_chat.live_id)
+      let newMessages = messages
+      newMessages[index] = res
+      setMessages(newMessages => [...newMessages]);
+
+    })
+
+    socket.on("delete", (delete_chat) => {
+
+      const index = messages.findIndex((message) => message.live_id === delete_chat.live_id)
+      let newMessages = messages
+      newMessages.splice(index, 1)
+      setMessages(newMessages => [...newMessages]);
 
     })
     return (() => {
@@ -89,7 +110,6 @@ function Channel() {
     }
     dispatch(fetchOneChannel(+channelId))
   }, [dispatch, channelId])
-
 
 
   // SCROLL with useRef
@@ -112,8 +132,27 @@ function Channel() {
     e.preventDefault()
 
     if (stringCheck(chatInput)) {
-      socket.emit("chat", { user: user, message: chatInput, room: channelId, timestamp: new Date() });
+      socket.emit("chat", { user: user, message: chatInput, room: channelId, timestamp: new Date(), live_id: uuidv4() });
     }
+
+    setChatInput("")
+  }
+
+  const sendUpdatedChat = (e) => {
+    e.preventDefault()
+
+    if (stringCheck(chatInput)) {
+      socket.emit("update", { user: user, room: channelId, message: chatInput, is_edited: true, live_id: liveId });
+    }
+
+    setChatInput("")
+  }
+
+  const deleteChat = (e) => {
+    e.preventDefault()
+
+    socket.emit("delete", { user: user, room: channelId, live_id: liveId });
+
 
     setChatInput("")
   }

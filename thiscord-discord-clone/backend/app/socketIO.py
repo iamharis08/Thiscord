@@ -22,7 +22,6 @@ socketio = SocketIO(cors_allowed_origins=origins)
 def handle_chat(data):
     # now = datetime.now()
 
-
     print((data['timestamp']), 'DATA WITH CREATED AT', "HERE IS NOW!")
     # test_str = str(data['timestamp'])
     # print(test_str, "!!!!!! -------- HERE IS STR of TIMESTRING --------")
@@ -32,6 +31,7 @@ def handle_chat(data):
         user_id=current_user.id,
         channel_id=int(data['room']),
         message=data['message'],
+        live_id = data['live_id'],
         created_at=datetime.now()
     )
         # print('--------BACKENDDATA', message.to_dict())
@@ -43,12 +43,36 @@ def handle_chat(data):
             emit("chat", data, broadcast=True, to=room)
 
 
+@socketio.on("update")
+def update_chat(data):
+
+    live_id = data["live_id"]
+    message = data["message"]
+    is_edited = data["is_edited"]
+    user = data["user"]
+    update_chat = Message.query.filter(Message.live_id == live_id).first()
+    if user.id == current_user.id:
+        if len(data['message']) > 0 and len(data['message']) <= 2000:
+            update_chat.message = message
+            update_chat.is_edited = is_edited
+
+
+            db.session.commit()
+            if data['room']:
+                room = data['room']
+                emit("update", update_chat.to_dict(), broadcast=True, to=room)
 
 
 
-
-
-
+@socketio.on('delete')
+def on_delete(data):
+    live_id = data["live_id"]
+    delete_chat = Message.query.filter(Message.live_id == live_id).first()
+    db.session.delete(delete_chat)
+    db.session.commit()
+    if data['room']:
+        room = data['room']
+        emit("delete", data, broadcast=True, to=room)
 
 
 @socketio.on('join')
@@ -66,12 +90,7 @@ def on_leave(data):
     leave_room(room)
     send(username + ' has left the room.', to=room)
 
-@socketio.on('delete')
-def on_delete(target, messagesArr):
-    user_id=current_user.id,
-    channel_id=int(data['room']),
-    message=data['message'],
-    created_at=data['createdAt']
+
 #
 
 #you need which message in the array the user wants to delete
