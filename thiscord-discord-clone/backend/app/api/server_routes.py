@@ -41,6 +41,7 @@ def server_index(id):
     one_server_users = User.query.filter(User.servers.any(id=id)).all()
     server_users = [ user.to_dict() for user in one_server_users]
     one_server_channels = Channel.query.filter(Channel.server_id == id).all()
+    # messages = [channel.messages for channel in one_server_channels]
     server_channels = [server.to_dict() for server in one_server_channels]
 
     return {"server": one_server.to_dict(), "users": server_users, "channels": server_channels}, 200
