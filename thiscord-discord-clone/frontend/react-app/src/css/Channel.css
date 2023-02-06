@@ -111,6 +111,7 @@ html, body {
 
 .single-message-container {
   display: flex;
+  position: relative;
   width: 100%;
   /* justify-content: left; */
   padding-right: 10px;
@@ -239,4 +240,22 @@ html, body {
   flex-grow: 1;
   overflow: hidden;
   height: 100%;
+}
+.message-options-container{
+  display: flex;
+  position: absolute;
+  right: 25%;
+  top: -5px;
+  background-color: white;
+}
+
+.message-delete-button img {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+.message-edit-button img {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
 }
