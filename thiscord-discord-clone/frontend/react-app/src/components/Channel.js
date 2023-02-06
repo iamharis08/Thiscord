@@ -36,6 +36,7 @@ function Channel() {
   const [editInput, setEditInput] = useState('');
   const [editInputIndex, setEditInputIndex] = useState('');
   const [edited, setEdited] = useState(false);
+  const [deleted, setDeleted] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const messageEnd = useRef(null);
@@ -105,6 +106,7 @@ function Channel() {
     });
 
     socket.on("delete", (delete_chat) => {
+      setDeleted(!deleted)
       const index = messages.findIndex(
         (message) => message.live_id === delete_chat.live_id
       );
@@ -115,7 +117,7 @@ function Channel() {
     return () => {
       socket.disconnect();
     };
-  }, [channelId, currChannel, edited]);
+  }, [channelId, currChannel, edited, deleted]);
 
   // dispatching for new channel
   useEffect(() => {
@@ -165,8 +167,8 @@ function Channel() {
 
   const sendUpdatedChat = (e, message) => {
     e.preventDefault();
+    setShowEditInput(false)
 
-    console.log(message, "EDIT SUBMITTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
     if (stringCheck(editInput)) {
       socket.emit("update", {
         id: message.id,
@@ -214,7 +216,7 @@ function Channel() {
       });
       const searchRes = await search.json();
       const foundRes = searchRes?.messages;
-      setSearchResults(foundRes, "foundRes");
+      setSearchResults(foundRes);
       setShowSearchResults(true);
       setSearchInput("");
     }
@@ -240,8 +242,9 @@ function Channel() {
             setShowEditInput(true)
             setEditInput(message.message)
             setEditInputIndex(i)
+            setShowOptions("")
             }}>`<img src={`https://res.cloudinary.com/dixbzsdnm/image/upload/v1675642900/this.cord%20images/pencil-solid_tsonqb.svg`} />`</div>
-          <div className="message-delete-button"><img src={`https://res.cloudinary.com/dixbzsdnm/image/upload/v1675642406/this.cord%20images/trash-can-grey_bpmqlk.svg`} alt="delete" /></div>
+          <div className="message-delete-button" onClick={(e) => deleteChat(e, message)}><img src={`https://res.cloudinary.com/dixbzsdnm/image/upload/v1675642406/this.cord%20images/trash-can-grey_bpmqlk.svg`} alt="delete" /></div>
         </div>
       );
     } else return null;
@@ -279,7 +282,7 @@ function Channel() {
             {messages?.map((message, i) => (
               <div
                 key={i}
-                onMouseOver={() => setShowOptions(i)}
+                onMouseOver={() => {if(!showEditInput) setShowOptions(i)}}
                 onMouseLeave={() => setShowOptions("")}
                 // ref={searchRef  [i]}
                 ref={(el) => (searchRef.current[message.id] = el)}
@@ -301,8 +304,9 @@ function Channel() {
                       </span>
                     </div>
                     {(showEditInput && (editInputIndex === i))  ? null : (<div className="single-message-message-info">
-                      {message?.message}
+                      {message?.message} {message.isEdited && (<span>(edited)</span>)}
                     </div>) }
+
                   </>
                 ) : (
                   <>
@@ -313,7 +317,7 @@ function Channel() {
                     </div>
 
                       {(showEditInput && (editInputIndex === i))  ? null : (<div className="single-message-message-info">
-                      {message?.message}
+                      {message?.message} &nbsp; &nbsp; &nbsp; {message.isEdited && (<span className="edited">(edited)</span>)}
                     </div>) }
                       <div ref={messageEnd} />
 
